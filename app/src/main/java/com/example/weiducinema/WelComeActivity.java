@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 
 
+import com.bw.movie.R;
 import com.example.weiducinema.activity.ScountActivity;
 import com.example.weiducinema.core.base.BaseActivity;
 
