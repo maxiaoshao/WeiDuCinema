@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".fragment.Filmfragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/im_ding"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="24dp"
+
+        android:src="@drawable/cinema_detail_icon_location_default_"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+    <SearchView
+        android:id="@+id/cinema_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:layout_weight="0.0"
+        ></SearchView>
+        <recycler.coverflow.RecyclerCoverFlow
+            android:layout_marginTop="85dp"
+            android:id="@+id/rcf_cinema_flow"
+            android:background="@drawable/pupol"
+            android:layout_width="312dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="300dp"></recycler.coverflow.RecyclerCoverFlow>
+</RelativeLayout>

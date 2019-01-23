@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="<a target=_blank href="
+    xmlns:http="http://schemas.android.com/aapt"
+    xmlns:android1="http://schemas.android.com/apk/res/android">
+    <!-- 渐变 -->
+<gradient
+
+android:startColor="#fad961"
+android:endColor="#f66b1c"
+android:angle="45" />
+    <!-- 描边 -->
+    <corners
+        android:bottomLeftRadius="12dp"
+        android:topLeftRadius="12dp"/>
+    <!-- 填充色 -->
+    <solid android:color="#fad961"/>
+
+</shape>

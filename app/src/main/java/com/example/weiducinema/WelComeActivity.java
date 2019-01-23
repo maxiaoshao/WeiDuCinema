@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 
 
+import com.example.weiducinema.activity.ScountActivity;
 import com.example.weiducinema.core.base.BaseActivity;
 
 public class WelComeActivity extends BaseActivity {
@@ -16,7 +17,7 @@ public class WelComeActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             count--;
             if (count==0){
-                startActivity(new Intent(WelComeActivity.this,ShowActivity.class));
+                startActivity(new Intent(WelComeActivity.this,ScountActivity.class));
                 finish();
             }else{//消息不能复用，必须新建
                 handler.sendEmptyMessageDelayed(1,1000);

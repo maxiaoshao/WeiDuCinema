@@ -22,7 +22,7 @@
             android:id="@+id/pageactivity_imagefilm"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/com_icon_film_selected"
+            android:src="@drawable/com_icon_film_selected"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
             />
@@ -35,13 +35,13 @@
             android:layout_height="60dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/com_icon_cinema_default"
+            android:src="@drawable/com_icon_cinema_default"
             />
         <ImageView
             android:id="@+id/pageactivity_imagemy"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/com_icon_my_default"
+            android:src="@drawable/com_icon_my_default"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="25dp"

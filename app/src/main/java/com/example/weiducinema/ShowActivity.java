@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.weiducinema.core.base.BaseActivity;
+import com.example.weiducinema.fragment.Filmfragment;
 
 public class ShowActivity extends BaseActivity {
 

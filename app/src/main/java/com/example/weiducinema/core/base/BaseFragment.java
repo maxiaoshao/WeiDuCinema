@@ -28,7 +28,7 @@ public abstract class BaseFragment extends Fragment {
 		long time = System.currentTimeMillis();
 		View view = inflater.inflate(getLayoutId(),container,false);
 		unbinder = ButterKnife.bind(this,view);
-		initView();
+		initView(view);
 		return view;
 	}
 
@@ -64,6 +64,7 @@ public abstract class BaseFragment extends Fragment {
 
 	/**
 	 * 初始化视图
+	 * @param view
 	 */
-	protected abstract void initView();
+	protected abstract void initView(View view);
 }
