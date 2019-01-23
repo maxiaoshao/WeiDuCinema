@@ -1,5 +1,7 @@
 package com.example.weiducinema.fragment;
 
+import android.view.View;
+
 import com.example.weiducinema.R;
 import com.example.weiducinema.core.base.BaseFragment;
 
@@ -20,7 +22,7 @@ public class My_Fragment extends BaseFragment {
     }
 
     @Override
-    protected void initView() {
+    protected void initView(View view) {
 
     }
 }
