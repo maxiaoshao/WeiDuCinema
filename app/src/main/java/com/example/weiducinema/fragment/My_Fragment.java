@@ -2,7 +2,7 @@ package com.example.weiducinema.fragment;
 
 import android.view.View;
 
-import com.example.weiducinema.R;
+import com.bw.movie.R;
 import com.example.weiducinema.core.base.BaseFragment;
 
 /**

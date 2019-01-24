@@ -10,8 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.weiducinema.R;
-import com.example.weiducinema.ShowActivity;
+
 import com.example.weiducinema.core.base.BaseActivity;
 
 import java.util.ArrayList;

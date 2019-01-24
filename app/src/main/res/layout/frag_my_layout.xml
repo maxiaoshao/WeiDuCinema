@@ -56,31 +56,210 @@
         android:layout_marginRight="24dp"
         android:orientation="vertical"
         >
-         <RelativeLayout
+         <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="86dp"
              android:orientation="vertical"
              android:layout_marginTop="10dp"
-             android:background="@drawable/my_shap"
+             android:layout_gravity="center"
+             android:background="@drawable/my_bg_shap"
              >
-             <ImageView
-                 android:id="@+id/img_my_message"
-                 android:layout_width="24dp"
-                 android:layout_height="24dp"
-                 android:src="@drawable/my_icon_messiage_default"
-                 android:layout_centerVertical="true"
-                 android:layout_marginLeft="30dp"
-                 />
-             <TextView
-                 android:id="@+id/tv_my_massage"
+             <LinearLayout
+                 android:id="@+id/my_message"
                  android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="我的信息"
-                 android:layout_below="@+id/img_my_message"
-                 android:layout_marginTop="10dp"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical"
+                 android:layout_marginLeft="30dp"
+                 android:gravity="center_vertical"
+                 >
 
-                 />
-             
-         </RelativeLayout>
+                 <ImageView
+                     android:layout_width="24dp"
+                     android:layout_height="24dp"
+                     android:layout_centerVertical="true"
+                     android:layout_gravity="center_horizontal"
+
+                     android:src="@drawable/my_icon_messiage_default" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/img_my_message"
+                     android:layout_centerVertical="true"
+                     android:layout_marginTop="9dp"
+                     android:text="我的信息"
+                     />
+             </LinearLayout>
+         </LinearLayout>
+
+        <!-- -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/my_bg_shap"
+
+            >
+            <LinearLayout
+                android:id="@+id/my_attention"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="30dp"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+
+                    android:src="@drawable/my_icon_attention_default" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_my_message"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="9dp"
+                    android:text="我的关注"
+
+                    />
+            </LinearLayout>
+            <!--第二小组 -->
+            <LinearLayout
+                android:id="@+id/my_goupiao"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="54dp"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+
+                    android:src="@drawable/my_icon_rccord_default" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_my_message"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="9dp"
+                    android:text="购票记录"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- -->
+        <!-- -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/my_bg_shap"
+            >
+            <LinearLayout
+                android:id="@+id/my_tickling"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="30dp"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+
+                    android:src="@drawable/my_icon_feedback_default" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_my_message"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="9dp"
+                    android:text="意见反馈"
+
+                    />
+            </LinearLayout>
+            <!--第三小组 -->
+            <LinearLayout
+                android:id="@+id/my_new_versions"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="54dp"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/my_icon_version_default" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_my_message"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="9dp"
+                    android:text="最新版本"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="54dp"
+                android:gravity="center_vertical"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+
+                    android:src="@drawable/my_icon_logout_default" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_my_message"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="9dp"
+                    android:text="退出登录"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="©八维移动通信学院毕业作品"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            />
     </LinearLayout>
 </LinearLayout>
