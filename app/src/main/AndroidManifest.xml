@@ -42,6 +42,7 @@
         <activity android:name="com.example.weiducinema.activity.ScountActivity"/>
         <activity android:name="com.example.weiducinema.ShowActivity"/>
         <activity android:name="com.example.weiducinema.activity.ThreeActivity"/>
+        <activity android:name="com.example.weiducinema.activity.Show_moiver"/>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
