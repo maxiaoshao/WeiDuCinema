@@ -1,4 +1,4 @@
-package com.example.weiducinema.core.base;
+package com.example.weiducinema.base;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

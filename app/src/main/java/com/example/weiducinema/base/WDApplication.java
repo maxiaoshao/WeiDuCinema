@@ -1,4 +1,4 @@
-package com.example.weiducinema.core.base;
+package com.example.weiducinema.base;
 
 import android.app.Application;
 import android.content.Context;
