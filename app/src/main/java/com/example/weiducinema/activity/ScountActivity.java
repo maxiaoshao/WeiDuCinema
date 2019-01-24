@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.bw.movie.R;
+import com.example.weiducinema.ShowActivity;
 import com.example.weiducinema.core.base.BaseActivity;
 
 import java.util.ArrayList;
