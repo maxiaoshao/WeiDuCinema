@@ -7,12 +7,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+
 import com.bw.movie.R;
 import com.example.weiducinema.adapter.ShowMoiverAdapter;
 import com.example.weiducinema.app.SpacesItemDecoration;
+import com.example.weiducinema.base.BaseActivity;
+import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
-import com.example.weiducinema.core.base.BaseActivity;
+import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.precener.PopulPresenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -59,13 +62,13 @@ public class Show_moiver extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.yi:
-                        populPresenter.request("1", "10");
+                        populPresenter.reqeust("1", "10");
                         break;
                     case R.id.er:
-                        populPresenter2.request("1", "10");
+                        populPresenter2.reqeust("1", "10");
                         break;
                     case R.id.san:
-                        populPresenter3.request("1", "10");
+                        populPresenter3.reqeust("1", "10");
                         break;
                 }
             }
@@ -89,51 +92,70 @@ public class Show_moiver extends BaseActivity {
             yi.setChecked(true);
             er.setChecked(false);
             san.setChecked(false);
-            populPresenter.request("1","10");
+            populPresenter.reqeust("1","10");
         }else if (type.equals("2")){
             yi.setChecked(false);
             er.setChecked(true);
             san.setChecked(false);
-            populPresenter2.request("1","10");
+            populPresenter2.reqeust("1","10");
         }else{
             yi.setChecked(false);
             er.setChecked(false);
             san.setChecked(true);
-            populPresenter3.request("1","10");
+            populPresenter3.reqeust("1","10");
         }
     }
 
 
 
-    private class PopulData implements Consumer<Result<List<PopularBean>>> {
-        @Override
-        public void accept(Result<List<PopularBean>> listResult) throws Exception {
-            if (listResult.getStatus().equals("0000")){
+    private class PopulData implements DataCall<Result<List<PopularBean>>> {
 
-                adapter.setList(listResult.getResult());
+        @Override
+        public void success(Result<List<PopularBean>> data) {
+            if (data.getStatus().equals("0000")){
+
+                adapter.setList(data.getResult());
                 adapter.notifyDataSetChanged();
             }
         }
-    }
 
-    private class PopulData2 implements Consumer<Result<List<PopularBean>>>  {
         @Override
-        public void accept(Result<List<PopularBean>> listResult) throws Exception {
-            if (listResult.getStatus().equals("0000")){
+        public void fail(ApiException e) {
 
-                adapter.setList(listResult.getResult());
-                adapter.notifyDataSetChanged();
-            }
         }
     }
 
-    private class PopulData3 implements Consumer<Result<List<PopularBean>>>  {
+    private class PopulData2 implements DataCall<Result<List<PopularBean>>> {
+
+
         @Override
-        public void accept(Result<List<PopularBean>> listResult) throws Exception {
-            if (listResult.getStatus().equals("0000")){
-                adapter.setList(listResult.getResult());
+        public void success(Result<List<PopularBean>> data) {
+            if (data.getStatus().equals("0000")){
+
+                adapter.setList(data.getResult());
                 adapter.notifyDataSetChanged();
             }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class PopulData3 implements DataCall<Result<List<PopularBean>>>  {
+
+        @Override
+        public void success(Result<List<PopularBean>> data) {
+            if (data.getStatus().equals("0000")){
+                adapter.setList(data.getResult());
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
         }
     }
 

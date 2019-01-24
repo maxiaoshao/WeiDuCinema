@@ -12,7 +12,7 @@ import com.bw.movie.R;
 import com.example.weiducinema.bean.PopularBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import org.w3c.dom.Text;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,7 @@ public class Recycle1Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = View.inflate(context, R.layout.popul_adapter,null);
         return new ViewHolder1(view);
+
     }
 
     @Override

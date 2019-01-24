@@ -1,4 +1,4 @@
-package com.example.weiducinema;
+package com.example.weiducinema.activity;
 
 
 import android.animation.AnimatorSet;
@@ -9,8 +9,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+
 import com.bw.movie.R;
-import com.example.weiducinema.core.base.BaseActivity;
+import com.example.weiducinema.base.BaseActivity;
 import com.example.weiducinema.fragment.Cinema_Fragment;
 import com.example.weiducinema.fragment.Filmfragment;
 import com.example.weiducinema.fragment.My_Fragment;

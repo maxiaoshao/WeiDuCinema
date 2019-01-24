@@ -1,10 +1,12 @@
 package com.example.weiducinema.precener;
 
+import com.example.weiducinema.base.BasePresenter;
+import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.core.http.IRequest;
-import com.example.weiducinema.core.http.NetworkManager;
+import com.example.weiducinema.uitls.NoteWorkMargent;
+
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 
 /**
  * @author dingtao
@@ -14,13 +16,13 @@ import io.reactivex.functions.Consumer;
 public class PopulPresenter3 extends BasePresenter {
 
 
-    public PopulPresenter3(Consumer consumer) {
-        super(consumer);
+    public PopulPresenter3(DataCall dataCall) {
+        super(dataCall);
     }
 
     @Override
     protected Observable observable(Object... args) {
-        IRequest iRequest = NetworkManager.instance().create(IRequest.class);
+        IRequest iRequest = NoteWorkMargent.getInsert().create(IRequest.class);
         return iRequest.getPopul3((String) args[0], (String) args[1]);
     }
 

@@ -10,12 +10,11 @@
         app:placeholderImage="@drawable/baobei"
         android:layout_width="126dp"
         android:layout_height="164dp" />
-    <RelativeLayout
-    android:layout_width="126dp"
-
-    android:layout_alignBottom="@id/sims"
-    android:background="#70eeeeee"
-    android:layout_height="40dp">
+   <RelativeLayout
+        android:layout_width="126dp"
+        android:layout_alignBottom="@id/sims"
+        android:background="#70eeeeee"
+        android:layout_height="40dp">
     <TextView
         android:id="@+id/t1"
         android:textColor="#ffffff"
@@ -25,5 +24,5 @@
         android:textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</RelativeLayout>
+   </RelativeLayout>
 </RelativeLayout>
