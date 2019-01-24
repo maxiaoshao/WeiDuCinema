@@ -15,11 +15,11 @@ import retrofit2.http.Query;
  * qq:1940870847
  */
 public interface IRequest {
-    @GET("movie/v1/findHotMovieList")
+    @GET("movieApi/movie/v1/findHotMovieList")
     Observable<Result<List<PopularBean>>> getPopul(@Query("page") String page , @Query("count") String count);
-    @GET("movie/v1/findReleaseMovieList")
+    @GET("movieApi/movie/v1/findReleaseMovieList")
     Observable<Result<List<PopularBean>>> getPopul2(@Query("page") String page , @Query("count") String count);
-    @GET("movie/v1/findComingSoonMovieList")
+    @GET("movieApi/movie/v1/findComingSoonMovieList")
     Observable<Result<List<PopularBean>>> getPopul3(@Query("page") String page , @Query("count") String count);
 
 }
