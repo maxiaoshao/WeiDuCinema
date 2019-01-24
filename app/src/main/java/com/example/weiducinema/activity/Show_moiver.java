@@ -3,6 +3,7 @@ package com.example.weiducinema.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.core.exception.ApiException;
+import com.example.weiducinema.bean.PopularBean;
+import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.precener.PopulPresenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -36,6 +39,7 @@ public class Show_moiver extends BaseActivity {
     String type ;
     RadioButton yi,er,san;
     RadioGroup group;
+    ImageView fanhui;
     ShowMoiverAdapter adapter;
     PopulPresenter populPresenter;
     PopulPresenter populPresenter2;
@@ -50,6 +54,7 @@ public class Show_moiver extends BaseActivity {
         yi = findViewById(R.id.yi);
         er = findViewById(R.id.er);
         san = findViewById(R.id.san);
+        fanhui = findViewById(R.id.fanhui);
         group = findViewById(R.id.group);
         populPresenter = new PopulPresenter(new PopulData());
         populPresenter2 = new PopulPresenter(new PopulData2());
@@ -76,7 +81,12 @@ public class Show_moiver extends BaseActivity {
         xRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         xRecyclerView.addItemDecoration(new SpacesItemDecoration(20));
         xRecyclerView.setAdapter(adapter);
-
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

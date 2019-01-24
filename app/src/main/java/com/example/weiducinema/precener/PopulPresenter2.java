@@ -4,8 +4,7 @@ import com.example.weiducinema.base.BasePresenter;
 import com.example.weiducinema.base.DataCall;
 
 import com.example.weiducinema.core.http.IRequest;
-
-import com.example.weiducinema.uitls.NoteWorkMargent;
+import com.example.weiducinema.core.http.NetworkManager;
 
 import io.reactivex.Observable;
 
@@ -23,7 +22,7 @@ public class PopulPresenter2 extends BasePresenter {
 
     @Override
     protected Observable observable(Object... args) {
-        IRequest iRequest = NoteWorkMargent.getInsert().create(IRequest.class);
+        IRequest iRequest = NetworkManager.instance().create(IRequest.class);
         return iRequest.getPopul2((String) args[0], (String) args[1]);
     }
 
