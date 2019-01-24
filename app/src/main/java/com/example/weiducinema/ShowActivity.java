@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.bw.movie.R;
 import com.example.weiducinema.core.base.BaseActivity;
 import com.example.weiducinema.fragment.Cinema_Fragment;
 import com.example.weiducinema.fragment.Filmfragment;

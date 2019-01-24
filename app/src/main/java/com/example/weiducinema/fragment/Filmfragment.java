@@ -2,9 +2,20 @@ package com.example.weiducinema.fragment;
 
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
-import com.example.weiducinema.R;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.bw.movie.R;
+import com.example.weiducinema.adapter.Recycle1Adapter;
+import com.example.weiducinema.adapter.Recycle2Adapter;
+import com.example.weiducinema.adapter.Recycle3Adapter;
 import com.example.weiducinema.adapter.RecycleAdapter;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
@@ -15,6 +26,7 @@ import com.example.weiducinema.precener.PopulPresenter;
 
 import java.util.List;
 
+import io.reactivex.functions.Consumer;
 import recycler.coverflow.CoverFlowLayoutManger;
 import recycler.coverflow.RecyclerCoverFlow;
 
@@ -24,7 +36,30 @@ import recycler.coverflow.RecyclerCoverFlow;
 public class Filmfragment extends BaseFragment {
     RecyclerCoverFlow recyclerCoverFlow;
     PopulPresenter populPresenter;
-   RecycleAdapter adapter;
+    PopulPresenter populPresenter2;
+    PopulPresenter populPresenter3;
+    RecycleAdapter adapter;
+    RecyclerView recyclerView1,recyclerView2,recyclerView3;
+    Recycle1Adapter adapter1;
+    Recycle2Adapter adapter2;
+    Recycle3Adapter adapter3;
+    public LocationClient mLocationClient;
+
+    public BDLocationListener myListener = new MyLocationListener();
+
+    private TextView text1;
+    public class MyLocationListener implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+
+            String locationDescribe = bdLocation.getLocationDescribe();    //获取位置描述信息
+            String addr = bdLocation.getAddrStr();    //获取详细地址信息
+            String in = locationDescribe.substring(0,2);
+            Log.d("asds",in);
+            text1.setText(in);
+        }
+    }
     @Override
     public String getPageName() {
         return null;
@@ -33,41 +68,92 @@ public class Filmfragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_filmfragment;
+
     }
 
     @Override
     protected void initView(View view) {
-        adapter = new RecycleAdapter(getActivity());
+        //adapter = new RecycleAdapter(getActivity());
 
-        recyclerCoverFlow = view.findViewById(R.id.rcf_cinema_flow);
+
+        recyclerView1 = view.findViewById(R.id.recy1);
+        recyclerView2 = view.findViewById(R.id.recy2);
+        recyclerView3 = view.findViewById(R.id.recy3);
+       // recyclerCoverFlow = view.findViewById(R.id.rcf_cinema_flow);
         populPresenter = new PopulPresenter(new PopulData());
+        populPresenter2 = new PopulPresenter(new PopulData2());
+        populPresenter3 = new PopulPresenter(new PopulData3());
+        populPresenter.request("1","10");
+        populPresenter2.request("1","10");
+        populPresenter3.request("1","10");
+
         initData();
     }
 
     private void initData() {
-        recyclerCoverFlow.setAlphaItem(true); //设置半透渐变
+        // recyclerCoverFlow.setAlphaItem(true); //设置半透渐变
         //平面滚动
+        adapter1 = new Recycle1Adapter(getActivity());
+        adapter2 = new Recycle2Adapter(getActivity());
+        adapter3 = new Recycle3Adapter(getActivity());
+        mLocationClient=new LocationClient(getActivity().getApplicationContext());
 
 
-        recyclerCoverFlow.setAdapter(adapter);
-        recyclerCoverFlow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {//滑动监听
-            @Override
-            public void onItemSelected(int position) {
 
-            }
-        });
+        mLocationClient.registerLocationListener(myListener);
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Battery_Saving);
+        option.setOpenGps(true);
+        //可选，默认false，设置是否当GPS有效时按照1S/1次频率输出GPS结果
+        option.setLocationNotify(true);
+        option.setIsNeedLocationDescribe(true);
+        option.setIsNeedAddress(true);
+        mLocationClient.setLocOption(option);
+
+        mLocationClient.start();
+
     }
 
-    private class PopulData implements DataCall<Result<List<PopularBean>>> {
-        @Override
-        public void success(Result<List<PopularBean>> data) {
 
-            adapter.setList(data.getResult());
+    private class PopulData implements Consumer<Result<List<PopularBean>>> {
+        @Override
+        public void accept(Result<List<PopularBean>> listResult) throws Exception {
+            if (listResult.getStatus().equals("0000")){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView1.setLayoutManager(layoutManager);
+                recyclerView1.setAdapter(adapter1);
+                adapter1.setList(listResult.getResult());
+            }
         }
+    }
 
+    private class PopulData2 implements Consumer<Result<List<PopularBean>>>  {
         @Override
-        public void fail(ApiException e) {
+        public void accept(Result<List<PopularBean>> listResult) throws Exception {
+            if (listResult.getStatus().equals("0000")){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView2.setLayoutManager(layoutManager);
+                recyclerView2.setAdapter(adapter2);
+                adapter2.setList(listResult.getResult());
+            }
+        }
+    }
+
+    private class PopulData3 implements Consumer<Result<List<PopularBean>>>  {
+        @Override
+        public void accept(Result<List<PopularBean>> listResult) throws Exception {
+            if (listResult.getStatus().equals("0000")){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView3.setLayoutManager(layoutManager);
+                recyclerView3.setAdapter(adapter3);
+                adapter3.setList(listResult.getResult());
+            }
         }
     }
 }

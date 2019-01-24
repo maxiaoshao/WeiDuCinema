@@ -7,6 +7,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * @author dingtao
@@ -15,6 +16,10 @@ import retrofit2.http.GET;
  */
 public interface IRequest {
     @GET("movie/v1/findHotMovieList")
-    Observable<Result<List<PopularBean>>> getPopul();
+    Observable<Result<List<PopularBean>>> getPopul(@Query("page") String page , @Query("count") String count);
+    @GET("movie/v1/findReleaseMovieList")
+    Observable<Result<List<PopularBean>>> getPopul2(@Query("page") String page , @Query("count") String count);
+    @GET("movie/v1/findComingSoonMovieList")
+    Observable<Result<List<PopularBean>>> getPopul3(@Query("page") String page , @Query("count") String count);
 
 }

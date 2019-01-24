@@ -118,11 +118,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mForegroundActivity = this;
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mForegroundActivity = this;
+//    }
 
     /**
      * 获取当前处于前台的activity

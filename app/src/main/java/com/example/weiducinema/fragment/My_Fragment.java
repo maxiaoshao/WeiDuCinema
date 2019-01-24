@@ -25,4 +25,6 @@ public class My_Fragment extends BaseFragment {
     protected void initView(View view) {
 
     }
+
+
 }
