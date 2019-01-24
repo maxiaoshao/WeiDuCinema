@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.widget.Toast;
+
+import com.example.weiducinema.app.WifiUtils;
 
 import butterknife.ButterKnife;
 import crossoverone.statuslib.StatusUtil;
@@ -39,12 +42,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         initLoad();
-        setContentView(getLayoutId());
-        ButterKnife.bind(this);//绑定布局
-        initView();
-        setStatusColor();
-        setSystemInvadeBlack();
+        int type = WifiUtils.getInstance(this).getNetype();
+        if (type == -1) {
+            Toast.makeText(this, "没有网络", Toast.LENGTH_LONG).show();
+        } else {
 
+
+            setContentView(getLayoutId());
+            ButterKnife.bind(this);//绑定布局
+            initView();
+            setStatusColor();
+            setSystemInvadeBlack();
+        }
     }
     protected void setStatusColor() {
         StatusUtil.setUseStatusBarColor(this, Color.parseColor("#00000000"));
