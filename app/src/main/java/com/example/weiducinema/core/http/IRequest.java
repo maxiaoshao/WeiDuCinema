@@ -25,7 +25,7 @@ public interface IRequest {
      * @param count
      * @return
      */
-    @GET("movie/v1/findHotMovieList")
+    @GET("movieApi/movie/v1/findHotMovieList")
     Observable<Result<List<PopularBean>>> getPopul(
             @Query("page") String page ,
             @Query("count") String count);
@@ -35,7 +35,7 @@ public interface IRequest {
      * @param count
      * @return
      */
-    @GET("movie/v1/findReleaseMovieList")
+    @GET("movieApi/movie/v1/findReleaseMovieList")
     Observable<Result<List<PopularBean>>> getPopul2(
             @Query("page") String page ,
             @Query("count") String count);
@@ -45,7 +45,7 @@ public interface IRequest {
      * @param count
      * @return
      */
-    @GET("movie/v1/findComingSoonMovieList")
+    @GET("movieApi/movie/v1/findComingSoonMovieList")
     Observable<Result<List<PopularBean>>> getPopul3(
             @Query("page") String page ,
             @Query("count") String count);
@@ -57,7 +57,7 @@ public interface IRequest {
      * @return
      */
     @FormUrlEncoded
-    @POST("user/v1/login")
+    @POST("movieApi/user/v1/login")
     Observable<Result<Login_Bean>> getLogin(@Field("phone") String phone,
                              @Field("pwd") String pwd);
 
@@ -76,7 +76,8 @@ public interface IRequest {
      * @param email
      * @return
      */
-    @POST("user1/registerUser")
+    @POST("movieApi/user1/registerUser")
+    
     @FormUrlEncoded
     Observable<Result> getRegiest(@Field("nickName") String nickName,
                                @Field("phone") String phone,
