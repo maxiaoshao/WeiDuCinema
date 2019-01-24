@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.weiducinema.app.WifiUtils;
 import com.google.gson.Gson;
 
 import butterknife.ButterKnife;
@@ -26,10 +28,16 @@ public abstract class BaseFragment extends Fragment {
 
 		// 每次ViewPager要展示该页面时，均会调用该方法获取显示的View
 		long time = System.currentTimeMillis();
-		View view = inflater.inflate(getLayoutId(),container,false);
-		unbinder = ButterKnife.bind(this,view);
-		initView(view);
-		return view;
+		int type = WifiUtils.getInstance(getActivity()).getNetype();
+		if (type == -1) {
+			Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_LONG).show();
+		}
+
+			View view = inflater.inflate(getLayoutId(), container, false);
+			unbinder = ButterKnife.bind(this, view);
+			initView(view);
+			return view;
+
 	}
 
 	@Override
