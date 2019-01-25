@@ -19,6 +19,8 @@ import com.example.weiducinema.precener.YuanCinemaPersent;
 
 import java.util.List;
 
+import static com.bw.movie.R.drawable.btn_gradient;
+
 /**
  * Created by 邵新轩(轩少)
  * function:
@@ -62,6 +64,8 @@ public class WDCinemaFragment extends WDBaseFragment {
             @Override
             public void onClick(View v) {
                 yuanCinemaPersent.reqeust("0","","1","10");
+
+
             }
         });
         adaptr.setOnItemClick(new YuanTuiAdaptr.onItemClick() {

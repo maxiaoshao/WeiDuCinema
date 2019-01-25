@@ -7,7 +7,7 @@
     tools:context="com.example.weiducinema.activity.my.MyOpinionActivity">
 
     <TextView
-        android:id="@+id/tv_"
+        android:id="@+id/tv_opinion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="意见反馈"
@@ -16,5 +16,48 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="30dp"
+        />
+    <RelativeLayout
+        android:id="@+id/relay_opinion"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_opinion"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="24dp"
+        >
+        <EditText
+            android:id="@+id/user_opinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="写下你对产品的感受吧!工作人员将会在第一时间评估处理."
+            />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_sent"
+        android:layout_below="@+id/relay_opinion"
+        android:layout_width="48dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="24dp"
+        android:text="提交"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/opinion_shape"
+        />
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/com_icon_my_default_"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="20dp"
         />
 </RelativeLayout>

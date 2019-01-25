@@ -4,37 +4,40 @@
     android:layout_height="match_parent"
     >
    <ImageView
-
         android:id="@+id/im_ding"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="24dp"
-
         android:src="@drawable/cinema_detail_icon_location_default_"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
     <TextView
         android:id="@+id/text1"
         android:text="北京"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        android:textColor="#333333"
         android:layout_alignLeft="@id/im_ding"
-        android:layout_marginLeft="56dp"
+        android:layout_marginLeft="30dp"
         android:layout_alignBottom="@id/im_ding"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-    <SearchView
-        android:id="@+id/cinema_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:paddingRight="10dp"
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="24dp"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:layout_weight="0.0"
-        ></SearchView>
+        android:gravity="right"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+        <SearchView
+            android:id="@+id/cinema_search"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:background="@drawable/find_shape"
+            android:paddingRight="10dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            ></SearchView>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -58,9 +61,8 @@
                     android:button="@null"
                     android:text="热门电影"
                     android:background="@drawable/radio"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
                     android:padding="1dp"
+                    android:gravity="center"
                     android:textSize="14sp"
                     android:layout_width="83dp"
                     android:layout_height="25dp" />
@@ -68,25 +70,22 @@
                     android:button="@null"
                     android:id="@+id/er"
                     android:text="正在热映"
-
+                    android:gravity="center"
                     android:background="@drawable/radio"
-                    android:layout_centerVertical="true"
                     android:padding="1dp"
-                    android:layout_centerHorizontal="true"
                     android:textSize="14sp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_width="83dp"
                     android:layout_height="25dp" />
                 <RadioButton
                     android:button="@null"
-
+                    android:gravity="center"
                     android:background="@drawable/radio"
                     android:id="@+id/san"
                     android:text="即将上映"
                     android:layout_centerVertical="true"
                     android:padding="1dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="30dp"
                     android:textSize="14sp"
                     android:layout_width="83dp"
                     android:layout_height="25dp" />
