@@ -2,8 +2,9 @@ package com.example.weiducinema.fragment;
 
 import android.view.View;
 
+
 import com.bw.movie.R;
-import com.example.weiducinema.core.base.BaseFragment;
+import com.example.weiducinema.base.BaseFragment;
 
 /**
  * Created by 邵新轩(轩少)

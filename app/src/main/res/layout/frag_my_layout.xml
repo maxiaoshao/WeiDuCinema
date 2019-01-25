@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,15 +16,17 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/my_icon_remind_default" />
+            android:src="@drawable/my_icon_remind_default"
+            />
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/my_pic"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/my_pic"
+            fresco:roundAsCircle="true"
+            fresco:placeholderImage="@drawable/my_pic_img"
             />
         <TextView
             android:id="@+id/my_name"

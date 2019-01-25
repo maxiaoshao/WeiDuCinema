@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
     //获取统计数据
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -32,19 +31,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.weiducinema.WelComeActivity">
+        <activity android:name="com.example.weiducinema.activity.WelComeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.weiducinema.activity.ShowActivity"></activity>
         <activity android:name="com.example.weiducinema.activity.ScountActivity"/>
-        <activity android:name="com.example.weiducinema.ShowActivity"/>
+        <activity android:name="com.example.weiducinema.activity.RegionActivity"/>
+        <activity android:name="com.example.weiducinema.activity.LoginActivity"/>
+        <activity android:name="com.example.weiducinema.activity.Show_moiver"/>
         <activity android:name="com.example.weiducinema.activity.ThreeActivity"/>
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
     </application>
 
 </manifest>

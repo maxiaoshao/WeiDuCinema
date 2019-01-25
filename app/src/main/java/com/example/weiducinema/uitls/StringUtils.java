@@ -36,7 +36,7 @@ public class StringUtils {
      * @param mobiles
      * @return [0-9]{5,9}
      */
-    public boolean isMobileNO(String mobiles) {
+    public static boolean isMobileNO(String mobiles) {
         try {
             Pattern p = Pattern
                     .compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");

@@ -1,8 +1,8 @@
 package com.example.weiducinema.core.http;
 
-import com.example.weiducinema.bean.Login_Bean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
+import com.example.weiducinema.bean.encrypt.UserInfo;
 
 import java.util.List;
 
@@ -58,8 +58,8 @@ public interface IRequest {
      */
     @FormUrlEncoded
     @POST("movieApi/user/v1/login")
-    Observable<Result<Login_Bean>> getLogin(@Field("phone") String phone,
-                             @Field("pwd") String pwd);
+    Observable<Result<UserInfo>> getLogin(@Field("phone") String phone,
+                                          @Field("pwd") String pwd);
 
     /**
      * 注册
@@ -76,7 +76,7 @@ public interface IRequest {
      * @param email
      * @return
      */
-    @POST("movieApi/user1/registerUser")
+    @POST("movieApi/user/v1/registerUser")
     
     @FormUrlEncoded
     Observable<Result> getRegiest(@Field("nickName") String nickName,

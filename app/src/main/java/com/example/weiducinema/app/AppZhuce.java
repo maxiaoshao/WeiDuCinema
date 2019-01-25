@@ -3,12 +3,13 @@ package com.example.weiducinema.app;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 
-public class AppZhuce extends Application {
+public class AppZhuce extends MultiDexApplication {
     private final static String DATA_BASE_NAME = "ZZZ";
 
     @Override

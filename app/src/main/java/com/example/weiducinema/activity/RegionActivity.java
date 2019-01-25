@@ -9,6 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.example.weiducinema.base.DataCall;
+import com.example.weiducinema.bean.Result;
+import com.example.weiducinema.bean.encrypt.EncryptUtil;
+import com.example.weiducinema.core.exception.ApiException;
+import com.example.weiducinema.precener.RegionPersent;
 
 
 public class RegionActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +25,8 @@ public class RegionActivity extends AppCompatActivity implements View.OnClickLis
     private EditText edittext_email;
     private EditText edittext_login;
     private Button button_register;
+    private RegionPersent persent;
+    private int sexNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class RegionActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_register:
-
+               submit();
                 break;
         }
     }
@@ -88,8 +95,32 @@ public class RegionActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
+        if(gender.equals("男")){
+            sexNum = 1;
+        }else if(gender.equals("女")){
+            sexNum = 2;
+        }
+
+        String s = EncryptUtil.encrypt(login);
         // TODO validate success, do something
+        persent = new RegionPersent(new RegionCall());
+        persent.reqeust(name,phone,s,s,sexNum,data,"123456","小米/红米","5.0","android",email);
 
+    }
+    //获取数据
+    class RegionCall implements DataCall<Result> {
 
+        @Override
+        public void success(Result data) {
+            if (data.getStatus().equals("0000")) {
+                finish();
+            }
+            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+        @Override
+        public void fail(ApiException e) {
+            Toast.makeText(getBaseContext(),"异常",Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

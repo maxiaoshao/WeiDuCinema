@@ -8,30 +8,30 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+
 
 import com.bw.movie.R;
 import com.example.weiducinema.activity.Show_moiver;
 import com.example.weiducinema.adapter.Recycle1Adapter;
 import com.example.weiducinema.adapter.Recycle2Adapter;
 import com.example.weiducinema.adapter.Recycle3Adapter;
+import com.example.weiducinema.base.BaseFragment;
+import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
-import com.example.weiducinema.core.base.BaseFragment;
+import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.precener.PopulPresenter;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-import io.reactivex.functions.Consumer;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Filmfragment extends BaseFragment implements View.OnClickListener {
+
     PopulPresenter populPresenter;
     PopulPresenter populPresenter2;
     PopulPresenter populPresenter3;
@@ -62,9 +62,9 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
         populPresenter = new PopulPresenter(new PopulData());
         populPresenter2 = new PopulPresenter(new PopulData2());
         populPresenter3 = new PopulPresenter(new PopulData3());
-        populPresenter.request("1","10");
-        populPresenter2.request("1","10");
-        populPresenter3.request("1","10");
+        populPresenter.reqeust("1","10");
+        populPresenter2.reqeust("1","10");
+        populPresenter3.reqeust("1","10");
         remen = view.findViewById(R.id.remen);
         zhengzai = view.findViewById(R.id.zhengzai);
         jijiang = view.findViewById(R.id.jijiang);
@@ -100,46 +100,62 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
-    private class PopulData implements Consumer<Result<List<PopularBean>>> {
-        @Override
-        public void accept(Result<List<PopularBean>> listResult) throws Exception {
-            if (listResult.getStatus().equals("0000")){
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+    private class PopulData implements DataCall<Result<List<PopularBean>>> {
 
+        @Override
+        public void success(Result<List<PopularBean>> data) {
+            if (data.getStatus().equals("0000")){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView1.setLayoutManager(layoutManager);
                 recyclerView1.setAdapter(adapter1);
-                adapter1.setList(listResult.getResult());
+                adapter1.setList(data.getResult());
             }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
         }
     }
 
-    private class PopulData2 implements Consumer<Result<List<PopularBean>>>  {
-        @Override
-        public void accept(Result<List<PopularBean>> listResult) throws Exception {
-            if (listResult.getStatus().equals("0000")){
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+    private class PopulData2 implements DataCall<Result<List<PopularBean>>>  {
 
+        @Override
+        public void success(Result<List<PopularBean>> data) {
+            if (data.getStatus().equals("0000")){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView2.setLayoutManager(layoutManager);
                 recyclerView2.setAdapter(adapter2);
-                adapter2.setList(listResult.getResult());
+                adapter2.setList(data.getResult());
             }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
         }
     }
 
-    private class PopulData3 implements Consumer<Result<List<PopularBean>>>  {
-        @Override
-        public void accept(Result<List<PopularBean>> listResult) throws Exception {
-            if (listResult.getStatus().equals("0000")){
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+    private class PopulData3 implements DataCall<Result<List<PopularBean>>>  {
 
+        @Override
+        public void success(Result<List<PopularBean>> data) {
+            if (data.getStatus().equals("0000")){
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView3.setLayoutManager(layoutManager);
                 recyclerView3.setAdapter(adapter3);
-                adapter3.setList(listResult.getResult());
+                adapter3.setList(data.getResult());
             }
         }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
     }
+
 
 }
