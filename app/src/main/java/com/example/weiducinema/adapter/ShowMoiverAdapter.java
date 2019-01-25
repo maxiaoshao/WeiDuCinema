@@ -39,11 +39,17 @@ public class ShowMoiverAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.sim.setImageURI(li.get(i).getImageUrl());
         viewHolder1.name.setText(li.get(i).getName());
         viewHolder1.title.setText("简介："+li.get(i).getSummary());
+        viewHolder1.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.tiao(li.get(i).getId()+"");
+            }
+        });
     }
 
     @Override
@@ -59,6 +65,13 @@ public class ShowMoiverAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewH
           name = itemView.findViewById(R.id.name);
           title = itemView.findViewById(R.id.titles);
         }
+    }
+    public interface onItemClick{
+        void tiao(String json);
+    }
+    private onItemClick onItemClick;
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
     }
 
 }

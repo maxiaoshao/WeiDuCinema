@@ -1,5 +1,6 @@
 package com.example.weiducinema.core.http;
 
+import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.Login_Bean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
@@ -123,4 +124,7 @@ public interface IRequest {
             @Query("latitude") String latitude,
             @Query("page") String page ,
             @Query("count") String count);
+    @GET("movieApi/movie/v1/findMoviesDetail")
+    Observable<Result<DetailsBean>> getDetails(
+            @Query("movieId") String movieId);
 }

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/xiangqingmove"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="24dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/yi"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/com_icon_movie_default_"
+            />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@id/yi"
+            android:layout_marginLeft="6dp"
+            android:text="电影详情"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:src="@drawable/com_icon_collection_default_"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/movier_name"
+        android:text="铁血战士"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/movier_sim"
+        android:layout_width="259dp"
+        android:layout_below="@id/movier_name"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        app:placeholderImage="@drawable/baobei"
+        android:layout_height="360dp" />
+   <RadioGroup
+       android:id="@+id/groups"
+       android:layout_width="match_parent"
+       android:layout_marginLeft="24dp"
+       android:layout_marginRight="24dp"
+       android:layout_below="@id/movier_sim"
+       android:layout_marginTop="40dp"
+       android:orientation="horizontal"
+
+       android:layout_height="wrap_content">
+       <RadioButton
+           android:id="@+id/xiangqing"
+           android:text="详情"
+           android:button="@null"
+           android:gravity="center"
+           android:textColor="#ffffff"
+
+           android:layout_width="58dp"
+           android:layout_height="32dp" />
+       <RadioButton
+           android:id="@+id/yugao"
+           android:text="预告"
+           android:button="@null"
+           android:gravity="center"
+           android:textColor="#ffffff"
+
+           android:layout_width="58dp"
+           android:layout_height="32dp" />
+       <RadioButton
+           android:id="@+id/juzhao"
+           android:text="剧照"
+           android:button="@null"
+           android:gravity="center"
+           android:textColor="#ffffff"
+
+           android:layout_width="58dp"
+           android:layout_height="32dp" />
+       <RadioButton
+           android:id="@+id/yingping"
+           android:text="影评"
+           android:button="@null"
+           android:gravity="center"
+           android:textColor="#ffffff"
+
+           android:layout_width="58dp"
+           android:layout_height="32dp" />
+   </RadioGroup>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#50ffffff"
+        android:layout_alignParentBottom="true"
+        >
+        <ImageView
+            android:id="@+id/fanhui"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:src="@drawable/com_icon_my_default_"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            />
+        <ImageView
+            android:id="@+id/goupiao"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+
+            android:src="@drawable/com_icon_my_default_"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            />
+    </RelativeLayout>
+    <LinearLayout
+    android:id="@+id/rela_my_info"
+    android:orientation="vertical"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></LinearLayout>
+
+</RelativeLayout>

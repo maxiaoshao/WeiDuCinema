@@ -1,5 +1,6 @@
 package com.example.weiducinema.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +63,14 @@ public class Show_moiver extends BaseActivity {
         EventBus.getDefault().register(this);
         xRecyclerView = findViewById(R.id.xrecy);
         adapter = new ShowMoiverAdapter(this);
+        adapter.setOnItemClick(new ShowMoiverAdapter.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                Intent intent = new Intent(Show_moiver.this,DetailsActivity.class);
+                intent .putExtra("mid",json);
+                startActivity(intent);
+            }
+        });
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
