@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rectangle"
-    tools:context=".WelComeActivity"
     >
   <TextView
       android:text="维度影院"
