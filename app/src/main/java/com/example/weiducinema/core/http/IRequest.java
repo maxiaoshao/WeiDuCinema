@@ -1,7 +1,6 @@
 package com.example.weiducinema.core.http;
 
 import com.example.weiducinema.bean.DetailsBean;
-import com.example.weiducinema.bean.Login_Bean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.YuantuiBean;

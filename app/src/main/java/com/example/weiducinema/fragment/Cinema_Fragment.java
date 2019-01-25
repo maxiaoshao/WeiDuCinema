@@ -1,5 +1,6 @@
 package com.example.weiducinema.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -61,6 +62,12 @@ public class Cinema_Fragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 yuanCinemaPersent.reqeust("0","","1","10");
+            }
+        });
+        adaptr.setOnItemClick(new YuanTuiAdaptr.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                Intent intent = new Intent();
             }
         });
     }
