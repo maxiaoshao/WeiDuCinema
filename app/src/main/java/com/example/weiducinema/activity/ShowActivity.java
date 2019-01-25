@@ -79,6 +79,9 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()){
              case R.id.pageactivity_imagefilm:
                  manager = getSupportFragmentManager();
+                 pageactivity_imagefilm.setImageResource(R.drawable.com_icon_film_selected);
+                 pageactivity_imagecinema.setImageResource(R.drawable.com_icon_cinema_default);
+                 pageactivity_imagemy.setImageResource(R.drawable.com_icon_my_default);
                  manager.beginTransaction().replace(R.id.frag,new Filmfragment()).commit();
                  //属性动画改变图片大小
                  AnimatorSet set = new AnimatorSet();
@@ -97,6 +100,9 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
                  break;
              case R.id.pageactivity_imagecinema:
                  manager = getSupportFragmentManager();
+                 pageactivity_imagefilm.setImageResource(R.drawable.com_icon_film_fault);
+                 pageactivity_imagecinema.setImageResource(R.drawable.com_icon_cinema_selected);
+                 pageactivity_imagemy.setImageResource(R.drawable.com_icon_my_default);
                  manager.beginTransaction().replace(R.id.frag,new Cinema_Fragment()).commit();
                  //属性动画改变图片大小
                  AnimatorSet set1 = new AnimatorSet();
@@ -115,6 +121,9 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
                  break;
              case R.id.pageactivity_imagemy:
                  manager = getSupportFragmentManager();
+                 pageactivity_imagefilm.setImageResource(R.drawable.com_icon_film_fault);
+                 pageactivity_imagecinema.setImageResource(R.drawable.com_icon_cinema_default);
+                 pageactivity_imagemy.setImageResource(R.drawable.com_icon_my_selected);
                  manager.beginTransaction().replace(R.id.frag,new My_Fragment()).commit();
                  //属性动画改变图片大小
                  AnimatorSet set2 = new AnimatorSet();
