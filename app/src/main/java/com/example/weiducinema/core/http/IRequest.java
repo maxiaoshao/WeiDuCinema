@@ -1,7 +1,10 @@
 package com.example.weiducinema.core.http;
 
+import com.example.weiducinema.bean.DetailsBean;
+import com.example.weiducinema.bean.Login_Bean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
+import com.example.weiducinema.bean.YuantuiBean;
 import com.example.weiducinema.bean.encrypt.UserInfo;
 
 import java.util.List;
@@ -10,6 +13,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -76,8 +80,9 @@ public interface IRequest {
      * @param email
      * @return
      */
+
     @POST("movieApi/user/v1/registerUser")
-    
+
     @FormUrlEncoded
     Observable<Result> getRegiest(@Field("nickName") String nickName,
                                @Field("phone") String phone,
@@ -90,4 +95,38 @@ public interface IRequest {
                                @Field("screenSize") String screenSize,
                                @Field("os") String os,
                                @Field("email") String email);
+
+    /**
+     * 推荐影院
+     * @param page
+     * @param count
+     * @return
+     */
+
+    @GET("movieApi/cinema/v1/findRecommendCinemas")
+    Observable<Result<List<YuantuiBean>>> getTui(
+            @Header("userId") String userid,
+            @Header("sessionId") String sessid,
+            @Query("page") String page ,
+            @Query("count") String count);
+
+    /**
+     * 附近影院
+     * @param userid
+     * @param sessid
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("movieApi/cinema/v1/findNearbyCinemas")
+    Observable<Result<List<YuantuiBean>>> getFu(
+            @Header("userId") String userid,
+            @Header("sessionId") String sessid,
+            @Query("longitude") String longitude ,
+            @Query("latitude") String latitude,
+            @Query("page") String page ,
+            @Query("count") String count);
+    @GET("movieApi/movie/v1/findMoviesDetail")
+    Observable<Result<DetailsBean>> getDetails(
+            @Query("movieId") String movieId);
 }

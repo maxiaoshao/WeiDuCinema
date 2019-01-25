@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
-
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.example.weiducinema.activity.Show_moiver;
@@ -23,15 +23,17 @@ import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.precener.PopulPresenter;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import io.reactivex.functions.Consumer;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Filmfragment extends BaseFragment implements View.OnClickListener {
-
     PopulPresenter populPresenter;
     PopulPresenter populPresenter2;
     PopulPresenter populPresenter3;
@@ -106,6 +108,7 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
         public void success(Result<List<PopularBean>> data) {
             if (data.getStatus().equals("0000")){
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView1.setLayoutManager(layoutManager);
                 recyclerView1.setAdapter(adapter1);
@@ -121,10 +124,12 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
 
     private class PopulData2 implements DataCall<Result<List<PopularBean>>>  {
 
+
         @Override
         public void success(Result<List<PopularBean>> data) {
             if (data.getStatus().equals("0000")){
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView2.setLayoutManager(layoutManager);
                 recyclerView2.setAdapter(adapter2);
@@ -140,10 +145,12 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
 
     private class PopulData3 implements DataCall<Result<List<PopularBean>>>  {
 
+
         @Override
         public void success(Result<List<PopularBean>> data) {
             if (data.getStatus().equals("0000")){
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView3.setLayoutManager(layoutManager);
                 recyclerView3.setAdapter(adapter3);
@@ -156,6 +163,5 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
 
         }
     }
-
 
 }

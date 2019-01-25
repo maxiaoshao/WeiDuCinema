@@ -31,7 +31,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.weiducinema.activity.WelComeActivity">
+        <activity android:name="com.example.weiducinema.WelComeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,10 +40,15 @@
         </activity>
         <activity android:name="com.example.weiducinema.activity.ShowActivity"></activity>
         <activity android:name="com.example.weiducinema.activity.ScountActivity"/>
+
         <activity android:name="com.example.weiducinema.activity.RegionActivity"/>
         <activity android:name="com.example.weiducinema.activity.LoginActivity"/>
         <activity android:name="com.example.weiducinema.activity.Show_moiver"/>
         <activity android:name="com.example.weiducinema.activity.ThreeActivity"/>
+        <activity android:name="com.example.weiducinema.activity.DetailsActivity"/>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
     </application>
 
 </manifest>
