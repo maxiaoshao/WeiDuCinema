@@ -1,6 +1,7 @@
 package com.example.weiducinema.base;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import crossoverone.statuslib.StatusUtil;
 
 public abstract class WDBaseFragment extends Fragment {
 	public Gson mGson = new Gson();
@@ -36,6 +38,8 @@ public abstract class WDBaseFragment extends Fragment {
 			View view = inflater.inflate(getLayoutId(), container, false);
 			unbinder = ButterKnife.bind(this, view);
 			initView(view);
+		setStatusColor();
+		setSystemInvadeBlack();
 			return view;
 
 	}
@@ -44,6 +48,14 @@ public abstract class WDBaseFragment extends Fragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 		unbinder.unbind();
+	}
+	protected void setStatusColor() {
+		StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#00000000"));
+	}
+
+	protected void setSystemInvadeBlack() {
+		// 第二个参数是是否沉浸,第三个参数是状态栏字体是否为黑色。
+		StatusUtil.setSystemStatus(getActivity(), true, true);
 	}
 
 	//	@Override

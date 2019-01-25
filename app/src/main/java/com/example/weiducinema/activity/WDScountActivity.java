@@ -22,6 +22,8 @@ import io.reactivex.annotations.NonNull;
  * created by 命运的尘 on 2019/1/22 17:09
  */
 public class WDScountActivity extends WDBaseActivity {
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     ViewPager pagers;
     ArrayList<Integer> list1;
@@ -31,6 +33,16 @@ public class WDScountActivity extends WDBaseActivity {
 
     @Override
     protected int getLayoutId() {
+
+        sharedPreferences = getSharedPreferences("movie", MODE_PRIVATE);
+
+        editor = sharedPreferences.edit();
+        boolean lk = sharedPreferences.getBoolean("flag",false);
+        if(lk){
+            Intent intent = new Intent(WDScountActivity.this, WDShowActivity.class);
+            startActivity(intent);
+            finish();
+        }
         return R.layout.activity_double;
     }
 
@@ -149,17 +161,15 @@ public class WDScountActivity extends WDBaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(WDScountActivity.this, WDShowActivity.class);
+                saveData();
                 startActivity(intent);
                 finish();
             }
         });
 
-        saveData();
+
     }
     private void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("movie", MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putBoolean("flag", true);
 
