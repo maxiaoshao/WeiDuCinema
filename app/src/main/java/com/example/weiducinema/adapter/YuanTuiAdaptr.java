@@ -37,13 +37,18 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHelow1 viewHelow1 = (ViewHelow1) viewHolder;
         viewHelow1.sim.setImageURI(li.get(i).getLogo());
         viewHelow1.name.setText(li.get(i).getName());
         viewHelow1.jie.setText(li.get(i).getAddress());
         viewHelow1.ju.setText(li.get(i).getFollowCinema()+" KM");
-
+        viewHelow1.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.tiao(li.get(i).getId()+"");
+            }
+        });
     }
 
     @Override
@@ -61,5 +66,12 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ju = itemView.findViewById(R.id.ju);
       }
   }
+    public interface onItemClick{
+        void tiao(String json);
+    }
+    private onItemClick onItemClick;
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 
 }
