@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bw.movie">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     //获取设备网络状态，禁用后无法获取网络状态
     //网络权限，当禁用后，无法进行检索等相关业务
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -12,43 +13,52 @@
     //读取系统信息，包含系统版本等信息，用作统计
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     //获取设备的网络状态，鉴权所需网络代理
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     //允许sd卡写权限，需写入地图数据，禁用后无法显示地图
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
     //获取统计数据
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name="com.example.weiducinema.app.AppZhuce"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.weiducinema.activity.WelComeActivity">
+        <activity android:name="com.example.weiducinema.activity.WDWelComeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.weiducinema.activity.ShowActivity"></activity>
-        <activity android:name="com.example.weiducinema.activity.ScountActivity"/>
+        <activity android:name="com.example.weiducinema.activity.WDShowActivity" />
+        <activity android:name="com.example.weiducinema.activity.WDScountActivity" />
+        <activity android:name="com.example.weiducinema.activity.WDRegionActivity" />
+        <activity android:name="com.example.weiducinema.activity.WDLoginActivity" />
+        <activity android:name="com.example.weiducinema.activity.WDShowmoiver" />
+        <activity android:name="com.example.weiducinema.activity.WDThreeActivity" />
+        <activity android:name="com.example.weiducinema.activity.WDDetailsActivity" />
 
-        <activity android:name="com.example.weiducinema.activity.RegionActivity"/>
-        <activity android:name="com.example.weiducinema.activity.LoginActivity"/>
-        <activity android:name="com.example.weiducinema.activity.Show_moiver"/>
-        <activity android:name="com.example.weiducinema.activity.ThreeActivity"/>
-        <activity android:name="com.example.weiducinema.activity.DetailsActivity"/>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
+
+        <activity android:name="com.example.weiducinema.activity.my.My_Message_Activity" />
+        <activity android:name="com.example.weiducinema.activity.my.MyAttentionActivity" />
+        <activity android:name="com.example.weiducinema.activity.my.MyTrackerActivity" />
+        <activity android:name="com.example.weiducinema.activity.my.MyOpinionActivity" />
+        <activity android:name="com.example.weiducinema.activity.my.MyNewVersionsActivity"></activity>
     </application>
 
 </manifest>

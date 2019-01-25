@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
-public class My_New_Versions_Activity extends AppCompatActivity {
+public class MyTrackerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my__new__versions_);
+        setContentView(R.layout.activity_my__tracker_);
     }
 }

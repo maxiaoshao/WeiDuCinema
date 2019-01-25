@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.weiducinema.activity.my.My_Attention_Activity">
+    tools:context="com.example.weiducinema.activity.my.MyAttentionActivity">
 
 </android.support.constraint.ConstraintLayout>

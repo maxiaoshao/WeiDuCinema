@@ -17,13 +17,13 @@ import java.util.List;
 
 /**
  * created by fxb
- * 2019/1/23 19:03
+ * 2019/1/25 14:09
  */
-public class Recycle2Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleFilmDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     List<PopularBean> li;
 
-    public Recycle2Adapter(FragmentActivity activity) {
+    public RecycleFilmDetailsAdapter(FragmentActivity activity) {
         this.context = activity;
         li = new ArrayList<>();
     }
@@ -35,15 +35,15 @@ public class Recycle2Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHold
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = View.inflate(context, R.layout.popul_adapter,null);
+        View view = View.inflate(context, R.layout.muma,null);
         return new ViewHolder1(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.sim.setImageURI(li.get(i).getImageUrl());
-        viewHolder1.t1.setText(li.get(i).getName());
     }
 
     @Override
@@ -53,11 +53,9 @@ public class Recycle2Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHold
 
     class ViewHolder1 extends RecyclerView.ViewHolder {
         SimpleDraweeView sim;
-        TextView t1;
         public ViewHolder1(@NonNull View itemView) {
             super(itemView);
-            sim = itemView.findViewById(R.id.sims);
-            t1 = itemView.findViewById(R.id.t1);
+            sim = itemView.findViewById(R.id.simm);
         }
     }
 }

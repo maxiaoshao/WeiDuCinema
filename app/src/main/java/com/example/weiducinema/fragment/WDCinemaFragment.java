@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.bw.movie.R;
 import com.example.weiducinema.adapter.YuanTuiAdaptr;
 import com.example.weiducinema.app.SpacesItemDecoration;
-import com.example.weiducinema.base.BaseFragment;
+import com.example.weiducinema.base.WDBaseFragment;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.YuantuiBean;
@@ -24,7 +24,7 @@ import java.util.List;
  * function:
  * on 2019/1/23
  */
-public class Cinema_Fragment extends BaseFragment {
+public class WDCinemaFragment extends WDBaseFragment {
     RecyclerView recy_tui;
     Button tui,fu;
     YuanTuiAdaptr adaptr;

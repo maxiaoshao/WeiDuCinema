@@ -12,8 +12,6 @@ import com.bw.movie.R;
 import com.example.weiducinema.bean.PopularBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +19,11 @@ import java.util.List;
  * created by fxb
  * 2019/1/23 19:03
  */
-public class Recycle1Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleHotShowAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     List<PopularBean> li;
 
-    public Recycle1Adapter(FragmentActivity activity) {
+    public RecycleHotShowAdapter(FragmentActivity activity) {
         this.context = activity;
         li = new ArrayList<>();
     }
@@ -39,7 +37,6 @@ public class Recycle1Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = View.inflate(context, R.layout.popul_adapter,null);
         return new ViewHolder1(view);
-
     }
 
     @Override

@@ -8,44 +8,40 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.bw.movie.R;
-import com.example.weiducinema.activity.Show_moiver;
-import com.example.weiducinema.adapter.Recycle1Adapter;
-import com.example.weiducinema.adapter.Recycle2Adapter;
-import com.example.weiducinema.adapter.Recycle3Adapter;
-import com.example.weiducinema.adapter.Recycle4Adapter;
-import com.example.weiducinema.base.BaseFragment;
+import com.example.weiducinema.activity.WDShowmoiver;
+import com.example.weiducinema.adapter.RecycleHotAdapter;
+import com.example.weiducinema.adapter.RecycleHotShowAdapter;
+import com.example.weiducinema.adapter.RecycleUpComeAdapter;
+import com.example.weiducinema.adapter.RecycleFilmDetailsAdapter;
+import com.example.weiducinema.base.WDBaseFragment;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.core.exception.ApiException;
-import com.example.weiducinema.precener.PopulPresenter;
-import com.example.weiducinema.precener.PopulPresenter2;
-import com.example.weiducinema.precener.PopulPresenter3;
+import com.example.weiducinema.precener.HotFilmPopulPresenter;
+import com.example.weiducinema.precener.HotShowPopulPresenter;
+import com.example.weiducinema.precener.UpComePopulPresenter;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-import io.reactivex.functions.Consumer;
 import recycler.coverflow.RecyclerCoverFlow;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Filmfragment extends BaseFragment implements View.OnClickListener {
-    PopulPresenter populPresenter;
-    PopulPresenter2 populPresenter2;
-    PopulPresenter3 populPresenter3;
+public class WDFilmfragment extends WDBaseFragment implements View.OnClickListener {
+    HotFilmPopulPresenter mHotFilmPopulPresenter;
+    HotShowPopulPresenter mHotShowPopulPresenter;
+    UpComePopulPresenter mUpComePopulPresenter;
     RecyclerView recyclerView1,recyclerView2,recyclerView3;
-    Recycle1Adapter adapter1;
-    Recycle2Adapter adapter2;
-    Recycle3Adapter adapter3;
-    Recycle4Adapter adapter4;
+    RecycleHotAdapter adapter1;
+    RecycleHotShowAdapter adapter2;
+    RecycleUpComeAdapter adapter3;
+    RecycleFilmDetailsAdapter adapter4;
     RecyclerCoverFlow rcf_cinema_flow;
     RelativeLayout remen,zhengzai,jijiang;
 
@@ -68,13 +64,13 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
         recyclerView2 = view.findViewById(R.id.recy2);
         recyclerView3 = view.findViewById(R.id.recy3);
         // recyclerCoverFlow = view.findViewById(R.id.rcf_cinema_flow);
-        populPresenter = new PopulPresenter(new PopulData());
-        populPresenter2 = new PopulPresenter2(new PopulData2());
-        populPresenter3 = new PopulPresenter3(new PopulData3());
+        mHotFilmPopulPresenter = new HotFilmPopulPresenter(new PopulData());
+        mHotShowPopulPresenter = new HotShowPopulPresenter(new PopulData2());
+        mUpComePopulPresenter = new UpComePopulPresenter(new PopulData3());
 
-        populPresenter.reqeust("1","10");
-        populPresenter2.reqeust("1","10");
-        populPresenter3.reqeust("1","10");
+        mHotFilmPopulPresenter.reqeust("1","10");
+        mHotShowPopulPresenter.reqeust("1","10");
+        mUpComePopulPresenter.reqeust("1","10");
         remen = view.findViewById(R.id.remen);
         zhengzai = view.findViewById(R.id.zhengzai);
         jijiang = view.findViewById(R.id.jijiang);
@@ -85,25 +81,25 @@ public class Filmfragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initData() {
-        adapter1 = new Recycle1Adapter(getActivity());
-        adapter2 = new Recycle2Adapter(getActivity());
-        adapter3 = new Recycle3Adapter(getActivity());
-        adapter4 = new Recycle4Adapter(getActivity());
+        adapter1 = new RecycleHotAdapter(getActivity());
+        adapter2 = new RecycleHotShowAdapter(getActivity());
+        adapter3 = new RecycleUpComeAdapter(getActivity());
+        adapter4 = new RecycleFilmDetailsAdapter(getActivity());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.remen:
-                startActivity(new Intent(getActivity(), Show_moiver.class));
+                startActivity(new Intent(getActivity(), WDShowmoiver.class));
                 EventBus.getDefault().postSticky("1");
                 break;
             case R.id.zhengzai:
-                startActivity(new Intent(getActivity(), Show_moiver.class));
+                startActivity(new Intent(getActivity(), WDShowmoiver.class));
                 EventBus.getDefault().postSticky("2");
                 break;
             case R.id.jijiang:
-                startActivity(new Intent(getActivity(), Show_moiver.class));
+                startActivity(new Intent(getActivity(), WDShowmoiver.class));
                 EventBus.getDefault().postSticky("3");
                 break;
 

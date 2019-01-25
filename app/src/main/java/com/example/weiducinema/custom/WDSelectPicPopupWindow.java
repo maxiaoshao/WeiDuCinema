@@ -13,10 +13,10 @@ import android.widget.PopupWindow;
 import com.bw.movie.R;
 
 
-public class SelectPicPopupWindow extends PopupWindow {
+public class WDSelectPicPopupWindow extends PopupWindow {
 
     private View mMenuView;
-    public SelectPicPopupWindow(Activity context, View.OnClickListener itemsOnClick) {
+    public WDSelectPicPopupWindow(Activity context, View.OnClickListener itemsOnClick) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

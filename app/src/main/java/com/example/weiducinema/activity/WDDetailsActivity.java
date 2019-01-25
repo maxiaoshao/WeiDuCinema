@@ -1,44 +1,33 @@
 package com.example.weiducinema.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bw.movie.R;
-import com.example.weiducinema.base.BaseActivity;
+import com.example.weiducinema.base.WDBaseActivity;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.core.exception.ApiException;
-import com.example.weiducinema.custom.SelectPicPopupWindow;
+import com.example.weiducinema.custom.WDSelectPicPopupWindow;
 import com.example.weiducinema.precener.DetailsPrencenter;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import java.util.List;
 
 /**
  * created by fxb
  * 2019/1/25 08:47
  */
-public class DetailsActivity extends BaseActivity {
+public class WDDetailsActivity extends WDBaseActivity {
     ImageView fanhui,goupiao;
     TextView mover_name;
     DetailsPrencenter detailsPrencenter;
     SimpleDraweeView movier_sim;
-    SelectPicPopupWindow menuWindow;
+    WDSelectPicPopupWindow menuWindow;
     RadioGroup group;
     @Override
     protected int getLayoutId() {
@@ -65,10 +54,10 @@ public class DetailsActivity extends BaseActivity {
        goupiao.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               menuWindow = new SelectPicPopupWindow(DetailsActivity.this, itemsOnClick);
+               menuWindow = new WDSelectPicPopupWindow(WDDetailsActivity.this, itemsOnClick);
                //显示窗口
                //设置layout在PopupWindow中显示的位置
-               menuWindow.showAtLocation(DetailsActivity.this.findViewById(R.id.rela_my_info), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+               menuWindow.showAtLocation(WDDetailsActivity.this.findViewById(R.id.rela_my_info), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 
        }
        });

@@ -19,11 +19,11 @@ import java.util.List;
  * created by fxb
  * 2019/1/23 19:03
  */
-public class Recycle3Adapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleUpComeAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     List<PopularBean> li;
 
-    public Recycle3Adapter(FragmentActivity activity) {
+    public RecycleUpComeAdapter(FragmentActivity activity) {
         this.context = activity;
         li = new ArrayList<>();
     }

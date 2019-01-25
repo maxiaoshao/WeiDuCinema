@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bitmap"
-    tools:context="com.example.weiducinema.activity.LoginActivity">
+    tools:context="com.example.weiducinema.activity.WDLoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

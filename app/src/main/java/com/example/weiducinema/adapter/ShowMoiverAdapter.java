@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 
 import com.bw.movie.R;
-import com.example.weiducinema.activity.Show_moiver;
+import com.example.weiducinema.activity.WDShowmoiver;
 import com.example.weiducinema.bean.PopularBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -24,8 +24,8 @@ import java.util.List;
 public class ShowMoiverAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewHolder> {
     Context context;
     List<PopularBean> li;
-    public ShowMoiverAdapter(Show_moiver show_moiver) {
-        this.context = show_moiver;
+    public ShowMoiverAdapter(WDShowmoiver WDShowmoiver) {
+        this.context = WDShowmoiver;
         li = new ArrayList<>();
     }
     public void setList(List<PopularBean> result) {

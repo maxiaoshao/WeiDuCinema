@@ -25,7 +25,7 @@ import crossoverone.statuslib.StatusUtil;
  * @date 2018/12/29 14:00
  * qq:1940870847
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class WDBaseActivity extends AppCompatActivity {
 
     public final static int PHOTO = 0;// 相册选取
     public final static int CAMERA = 1;// 拍照
@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 记录处于前台的Activity
      */
-    private static BaseActivity mForegroundActivity = null;
+    private static WDBaseActivity mForegroundActivity = null;
 
 
     @Override
@@ -136,7 +136,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 获取当前处于前台的activity
      */
-    public static BaseActivity getForegroundActivity() {
+    public static WDBaseActivity getForegroundActivity() {
         return mForegroundActivity;
     }
 

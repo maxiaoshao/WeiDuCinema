@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
-public class My_Attention_Activity extends AppCompatActivity {
+public class MyOpinionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my__attention_);
+        setContentView(R.layout.activity_my__opinion_);
     }
 }

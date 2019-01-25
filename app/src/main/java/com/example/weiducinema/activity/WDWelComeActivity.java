@@ -6,9 +6,9 @@ import android.os.Message;
 
 
 import com.bw.movie.R;
-import com.example.weiducinema.base.BaseActivity;
+import com.example.weiducinema.base.WDBaseActivity;
 
-public class WelComeActivity extends BaseActivity {
+public class WDWelComeActivity extends WDBaseActivity {
 
     private int count = 3;
 
@@ -17,7 +17,7 @@ public class WelComeActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             count--;
             if (count==0){
-                startActivity(new Intent(WelComeActivity.this, ScountActivity.class));
+                startActivity(new Intent(WDWelComeActivity.this, WDScountActivity.class));
                 finish();
             }else{//消息不能复用，必须新建
                 handler.sendEmptyMessageDelayed(1,1000);

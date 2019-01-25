@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class WDBaseFragment extends Fragment {
 	public Gson mGson = new Gson();
 	public SharedPreferences mShare = WDApplication.getShare();
 

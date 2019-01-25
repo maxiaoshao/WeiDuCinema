@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 
 import com.bw.movie.R;
-import com.example.weiducinema.base.BaseActivity;
+import com.example.weiducinema.base.WDBaseActivity;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import io.reactivex.annotations.NonNull;
 /**
  * created by 命运的尘 on 2019/1/22 17:09
  */
-public class ScountActivity extends BaseActivity {
+public class WDScountActivity extends WDBaseActivity {
 
     ViewPager pagers;
     ArrayList<Integer> list1;
@@ -148,7 +148,7 @@ public class ScountActivity extends BaseActivity {
         viewclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ScountActivity.this, ShowActivity.class);
+                Intent intent = new Intent(WDScountActivity.this, WDShowActivity.class);
                 startActivity(intent);
                 finish();
             }

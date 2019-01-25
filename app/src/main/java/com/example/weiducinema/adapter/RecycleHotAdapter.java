@@ -12,18 +12,20 @@ import com.bw.movie.R;
 import com.example.weiducinema.bean.PopularBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * created by fxb
- * 2019/1/25 14:09
+ * 2019/1/23 19:03
  */
-public class Recycle4Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecycleHotAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     List<PopularBean> li;
 
-    public Recycle4Adapter(FragmentActivity activity) {
+    public RecycleHotAdapter(FragmentActivity activity) {
         this.context = activity;
         li = new ArrayList<>();
     }
@@ -35,7 +37,7 @@ public class Recycle4Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = View.inflate(context, R.layout.muma,null);
+        View view = View.inflate(context, R.layout.popul_adapter,null);
         return new ViewHolder1(view);
 
     }
@@ -44,6 +46,7 @@ public class Recycle4Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.sim.setImageURI(li.get(i).getImageUrl());
+        viewHolder1.t1.setText(li.get(i).getName());
     }
 
     @Override
@@ -53,9 +56,11 @@ public class Recycle4Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     class ViewHolder1 extends RecyclerView.ViewHolder {
         SimpleDraweeView sim;
+        TextView t1;
         public ViewHolder1(@NonNull View itemView) {
             super(itemView);
-            sim = itemView.findViewById(R.id.simm);
+            sim = itemView.findViewById(R.id.sims);
+            t1 = itemView.findViewById(R.id.t1);
         }
     }
 }

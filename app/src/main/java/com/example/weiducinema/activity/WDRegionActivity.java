@@ -16,7 +16,7 @@ import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.precener.RegionPersent;
 
 
-public class RegionActivity extends AppCompatActivity implements View.OnClickListener {
+public class WDRegionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edittext_name;
     private EditText edittext_gender;

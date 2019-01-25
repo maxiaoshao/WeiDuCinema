@@ -2,38 +2,29 @@ package com.example.weiducinema.fragment;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.bw.movie.R;
-import com.example.weiducinema.activity.LoginActivity;
-import com.example.weiducinema.activity.my.My_Attention_Activity;
+import com.example.weiducinema.activity.WDLoginActivity;
+import com.example.weiducinema.activity.my.MyAttentionActivity;
 import com.example.weiducinema.activity.my.My_Message_Activity;
-import com.example.weiducinema.activity.my.My_New_Versions_Activity;
-import com.example.weiducinema.activity.my.My_Opinion_Activity;
-import com.example.weiducinema.activity.my.My_Tracker_Activity;
-import com.example.weiducinema.base.BaseFragment;
+import com.example.weiducinema.activity.my.MyNewVersionsActivity;
+import com.example.weiducinema.activity.my.MyOpinionActivity;
+import com.example.weiducinema.activity.my.MyTrackerActivity;
+import com.example.weiducinema.base.WDBaseFragment;
 
 import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.bean.encrypt.UserInfoBean;
 import com.example.weiducinema.db.DBManager;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.io.File;
-import java.sql.SQLException;
 import java.util.List;
-
-import static com.baidu.location.d.a.e;
-import static com.baidu.location.d.a.m;
-import static com.baidu.location.d.a.s;
 
 
 /**
@@ -41,7 +32,7 @@ import static com.baidu.location.d.a.s;
  * function:
  * on 2019/1/23
  */
-public class My_Fragment extends BaseFragment implements View.OnClickListener {
+public class WDMyFragment extends WDBaseFragment implements View.OnClickListener {
     private SimpleDraweeView my_pic;
     private TextView my_name;
     private Button my_sign;
@@ -89,12 +80,21 @@ public class My_Fragment extends BaseFragment implements View.OnClickListener {
         my_tickling.setOnClickListener(this);
         my_new_versions.setOnClickListener(this);
         my_finish.setOnClickListener(this);
+
+
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         //数据库查询
         try {
             manager = new DBManager(getActivity());
             student = manager.getStudent();
             if(student.size()==0) {
-             Toast.makeText(getActivity(),"没有信息"+student,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"没有信息"+student,Toast.LENGTH_SHORT).show();
 
             }else {
                 Toast.makeText(getActivity(),"有信息"+student,Toast.LENGTH_SHORT).show();
@@ -110,34 +110,30 @@ public class My_Fragment extends BaseFragment implements View.OnClickListener {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-
-
-
     }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.my_pic:
                 if (student.size() == 0) {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    startActivity(new Intent(getActivity(), WDLoginActivity.class));
                 }
                 break;
             case R.id.my_message:
                     startActivity(new Intent(getActivity(), My_Message_Activity.class));
                 break;
             case R.id.my_attention://我的关注
-                startActivity(new Intent(getActivity(), My_Attention_Activity.class));
+                startActivity(new Intent(getActivity(), MyAttentionActivity.class));
                 break;
             case R.id.my_goupiao:
-                startActivity(new Intent(getActivity(), My_Tracker_Activity.class));
+                startActivity(new Intent(getActivity(), MyTrackerActivity.class));
                 break;
             case R.id.my_tickling:
-                startActivity(new Intent(getActivity(), My_Opinion_Activity.class));
+                startActivity(new Intent(getActivity(), MyOpinionActivity.class));
                 break;
             case R.id.my_new_versions:
-                startActivity(new Intent(getActivity(), My_New_Versions_Activity.class));
+                startActivity(new Intent(getActivity(), MyNewVersionsActivity.class));
                 break;
             case R.id.my_finish:
                 if (student.size()!=0){
@@ -148,10 +144,8 @@ public class My_Fragment extends BaseFragment implements View.OnClickListener {
                             e1.printStackTrace();
                         }
                     }
-                    Intent intent5 = new Intent(getActivity(), LoginActivity.class);
-                    intent5.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent5 = new Intent(getActivity(), WDLoginActivity.class);
                     startActivity(intent5);//跳转登录页
-                    getActivity().finish();//本页面关闭
 
                 }
 

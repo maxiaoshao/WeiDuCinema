@@ -1,12 +1,12 @@
 package com.example.weiducinema.activity;
 
-import com.example.weiducinema.base.BaseActivity;
+import com.example.weiducinema.base.WDBaseActivity;
 
 /**
  * created by fxb
  * 2019/1/25 15:37
  */
-public class StudiosActivity extends BaseActivity {
+public class WDStudiosActivity extends WDBaseActivity {
     @Override
     protected int getLayoutId() {
         return 0;

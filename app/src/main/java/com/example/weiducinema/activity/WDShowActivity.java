@@ -11,21 +11,21 @@ import android.widget.ImageView;
 
 
 import com.bw.movie.R;
-import com.example.weiducinema.base.BaseActivity;
-import com.example.weiducinema.fragment.Cinema_Fragment;
-import com.example.weiducinema.fragment.Filmfragment;
-import com.example.weiducinema.fragment.My_Fragment;
+import com.example.weiducinema.base.WDBaseActivity;
+import com.example.weiducinema.fragment.WDCinemaFragment;
+import com.example.weiducinema.fragment.WDFilmfragment;
+import com.example.weiducinema.fragment.WDMyFragment;
 
-public class ShowActivity extends BaseActivity implements View.OnClickListener {
+public class WDShowActivity extends WDBaseActivity implements View.OnClickListener {
 
 
     private FrameLayout frag;
     private ImageView pageactivity_imagefilm;
     private ImageView pageactivity_imagecinema;
     private ImageView pageactivity_imagemy;
-    private Filmfragment filmfragment;
-    private Cinema_Fragment cinema_fragment;
-    private My_Fragment my_fragment;
+    private WDFilmfragment mWDFilmfragment;
+    private WDCinemaFragment mWDCinema_fragment;
+    private WDMyFragment mWDMy_fragment;
     FragmentManager manager;
 
     @Override
@@ -51,7 +51,7 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
 
 
         manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.frag,new Filmfragment()).commit();
+        manager.beginTransaction().replace(R.id.frag,new WDFilmfragment()).commit();
         //变大
         AnimatorSet set = new AnimatorSet();
         ObjectAnimator o1 = ObjectAnimator.ofFloat(pageactivity_imagefilm, "scaleX",1.17f);
@@ -82,7 +82,7 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
                  pageactivity_imagefilm.setImageResource(R.drawable.com_icon_film_selected);
                  pageactivity_imagecinema.setImageResource(R.drawable.com_icon_cinema_default);
                  pageactivity_imagemy.setImageResource(R.drawable.com_icon_my_default);
-                 manager.beginTransaction().replace(R.id.frag,new Filmfragment()).commit();
+                 manager.beginTransaction().replace(R.id.frag,new WDFilmfragment()).commit();
                  //属性动画改变图片大小
                  AnimatorSet set = new AnimatorSet();
                  ObjectAnimator o1 = ObjectAnimator.ofFloat(pageactivity_imagefilm, "scaleX",1.17f);
@@ -103,7 +103,7 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
                  pageactivity_imagefilm.setImageResource(R.drawable.com_icon_film_fault);
                  pageactivity_imagecinema.setImageResource(R.drawable.com_icon_cinema_selected);
                  pageactivity_imagemy.setImageResource(R.drawable.com_icon_my_default);
-                 manager.beginTransaction().replace(R.id.frag,new Cinema_Fragment()).commit();
+                 manager.beginTransaction().replace(R.id.frag,new WDCinemaFragment()).commit();
                  //属性动画改变图片大小
                  AnimatorSet set1 = new AnimatorSet();
                  ObjectAnimator o11 = ObjectAnimator.ofFloat(pageactivity_imagefilm, "scaleX",1.0f);
@@ -124,7 +124,7 @@ public class ShowActivity extends BaseActivity implements View.OnClickListener {
                  pageactivity_imagefilm.setImageResource(R.drawable.com_icon_film_fault);
                  pageactivity_imagecinema.setImageResource(R.drawable.com_icon_cinema_default);
                  pageactivity_imagemy.setImageResource(R.drawable.com_icon_my_selected);
-                 manager.beginTransaction().replace(R.id.frag,new My_Fragment()).commit();
+                 manager.beginTransaction().replace(R.id.frag,new WDMyFragment()).commit();
                  //属性动画改变图片大小
                  AnimatorSet set2 = new AnimatorSet();
                  ObjectAnimator o12 = ObjectAnimator.ofFloat(pageactivity_imagefilm, "scaleX",1.0f);

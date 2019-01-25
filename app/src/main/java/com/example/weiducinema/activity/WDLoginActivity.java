@@ -17,7 +17,7 @@ import com.bw.movie.R;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.encrypt.EncryptUtil;
-import com.example.weiducinema.base.BaseActivity;
+import com.example.weiducinema.base.WDBaseActivity;
 import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.core.exception.ApiException;
 
@@ -27,7 +27,7 @@ import com.example.weiducinema.precener.LoginPersent;
 import java.sql.SQLException;
 
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class WDLoginActivity extends WDBaseActivity implements View.OnClickListener {
 
     private EditText edittext_phone;
     private EditText edittext_pwd;
@@ -75,7 +75,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 submit();
                 break;
             case R.id.textview_register:
-                startActivity(new Intent(getBaseContext(), RegionActivity.class));
+                startActivity(new Intent(getBaseContext(), WDRegionActivity.class));
                 break;
             case R.id.imageview_click:
                 if (!edittext_pwd.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
