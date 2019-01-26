@@ -56,7 +56,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
-
+        <activity android:name="com.example.weiducinema.activity.SchedulingActivity"/>
         <activity android:name="com.example.weiducinema.activity.my.My_Message_Activity" />
         <activity android:name="com.example.weiducinema.activity.my.MyAttentionActivity" />
         <activity android:name="com.example.weiducinema.activity.my.MyTrackerActivity" />

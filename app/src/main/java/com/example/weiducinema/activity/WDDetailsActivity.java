@@ -74,7 +74,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
         movier_sim = findViewById(R.id.movier_sim);
         detailsPrencenter = new DetailsPrencenter(new Details());
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         moverid = intent.getStringExtra("mid");
         detailsPrencenter.reqeust(moverid);
         fanhui = findViewById(R.id.fanhui);
@@ -90,6 +90,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 Intent intent1 = new Intent(WDDetailsActivity.this,AppropriateActivity.class);
                 intent1.putExtra("movieid",li.getId()+"");
                 intent1.putExtra("moviename",li.getName());
+                intent1.putExtra("imageuri",li.getImageUrl());
                 startActivity(intent1);
             }
         });

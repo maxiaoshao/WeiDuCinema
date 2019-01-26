@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.weiducinema.activity.cinema.CinemaDetailsActivity">
+
+
+
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="30dp"
+
+                android:textSize="11sp"
+                android:text="CGV影城"
+                />
+
+            <TextView
+                android:id="@+id/txt_site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_title"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="24dp"
+                android:textSize="9sp"
+                android:text="海淀区清河正中街68号华润五彩城购物中心东区7层"
+                />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/com_icon_navigation_default"
+                android:layout_alignParentRight="true"
+                />
+            <RelativeLayout
+                android:id="@+id/aly"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/txt_site"
+                android:layout_width="312dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/yingcheng"
+                android:layout_height="142dp">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/ying_sim"
+                    android:layout_width="103dp"
+                    app:placeholderImage="@drawable/baobei"
+                    android:layout_margin="10dp"
+                    android:layout_height="130dp" />
+                <TextView
+                    android:id="@+id/ying_name"
+                    android:text="宝贝儿"
+                    android:textSize="20sp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/ying_sim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                android:id="@+id/ying_lei"
+                android:text="宝贝儿asdas"
+                    android:textSize="12sp"
+                android:textColor="#fff"
+                android:layout_below="@id/ying_name"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/ying_sim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/ying_dao"
+                    android:text="宝贝儿asasddas"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:layout_below="@id/ying_lei"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/ying_sim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/ying_chang"
+                    android:text="宝贝儿asasddas"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:layout_below="@id/ying_dao"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/ying_sim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/ying_di"
+                    android:textSize="12sp"
+                    android:text="宝贝儿asasddas"
+                    android:textColor="#fff"
+                    android:layout_below="@id/ying_chang"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/ying_sim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ying_recy"
+        android:layout_below="@id/aly"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/img_return"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/com_icon_my_default_" />
+
+</RelativeLayout>

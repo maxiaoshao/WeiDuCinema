@@ -40,9 +40,10 @@ public class AppropriateActivity extends WDBaseActivity {
 
     private void initData() {
         querePrencenter = new QuerePrencenter(new Query());
-        Intent intent = getIntent();
-        String movieid = intent.getStringExtra("movieid");
+        final Intent intent = getIntent();
+        final String movieid = intent.getStringExtra("movieid");
         String moviename = intent.getStringExtra("moviename");
+        final String imageuri = intent.getStringExtra("imageuri");
         tname.setText(moviename);
         querePrencenter.reqeust(movieid);
         appropriateAdapter = new AppropriateAdapter(this);
@@ -50,6 +51,18 @@ public class AppropriateActivity extends WDBaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new SpacesItemDecoration(20));
         recyclerView.setAdapter(appropriateAdapter);
+        appropriateAdapter.setOnItemClick(new AppropriateAdapter.onItemClick() {
+            @Override
+            public void tiao(String json, String adress,String id) {
+                Intent intent1 = new Intent(AppropriateActivity.this,SchedulingActivity.class);
+                intent1.putExtra("name",json);
+                intent1.putExtra("adress",adress);
+                intent1.putExtra("movieid",movieid);
+                intent1.putExtra("imageuri",imageuri);
+                intent1.putExtra("yingid",id);
+                startActivity(intent1);
+            }
+        });
     }
 
     @Override

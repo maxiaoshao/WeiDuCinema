@@ -37,12 +37,18 @@ public class AppropriateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHelow1 viewHelow1 = (ViewHelow1) viewHolder;
         viewHelow1.sim.setImageURI(li.get(i).getLogo());
         viewHelow1.name.setText(li.get(i).getName());
         viewHelow1.jie.setText(li.get(i).getAddress());
         viewHelow1.ju.setText(li.get(i).getDistance()+"");
+        viewHelow1.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.tiao(li.get(i).getName(),li.get(i).getAddress(),li.get(i).getId()+"");
+            }
+        });
     }
 
     @Override
@@ -61,7 +67,7 @@ public class AppropriateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
     public interface onItemClick{
-        void tiao(String json);
+        void tiao(String json,String adress,String movideid);
     }
     private onItemClick onItemClick;
     public void setOnItemClick(onItemClick onItemClick) {

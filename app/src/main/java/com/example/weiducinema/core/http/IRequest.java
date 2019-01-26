@@ -3,6 +3,7 @@ package com.example.weiducinema.core.http;
 import com.example.weiducinema.bean.FilmTimeBean;
 import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.QueryBean;
+import com.example.weiducinema.bean.QueryPaiBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.ScheduleBean;
@@ -177,6 +178,17 @@ public interface IRequest {
      */
     @GET("movieApi/movie/v1/findCinemasListByMovieId")
     Observable<Result<List<QueryBean>>> getQuery(
+            @Query("movieId") String movieId);
+
+    /**
+     * 根据电影和影城查询排期
+     * @param cinemasId
+     * @param movieId
+     * @return
+     */
+    @GET("movieApi/movie/v1/findMovieScheduleList")
+    Observable<Result<List<QueryPaiBean>>> getQueryPai(
+            @Query("cinemasId") String cinemasId,
             @Query("movieId") String movieId);
 
 }
