@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/particulars_popwinw">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="影评"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="3dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/redio_cinema_recommend" />
+    </LinearLayout>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/pratticulars_filmreview_xs"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="20dp"
+        app:placeholderImage="@drawable/com_icon_down_default_" />
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/pratticulars_filmreview_rec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/pratticulars_filmreview_fh"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:src="@drawable/com_icon_my_default_" />
+
+        <ImageView
+            android:id="@+id/pratticulars_filmreview_while"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/com_icon_publish_default_" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/film_item_pratticulars_filmreview_pl_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="50dp"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/film_item_pratticulars_filmreview_pl_edit"
+            android:layout_width="match_parent"
+            android:layout_toLeftOf="@+id/film_item_pratticulars_filmreview_pl_text"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true" />
+
+        <TextView
+            android:id="@+id/film_item_pratticulars_filmreview_pl_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:layout_alignParentRight="true"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</RelativeLayout>

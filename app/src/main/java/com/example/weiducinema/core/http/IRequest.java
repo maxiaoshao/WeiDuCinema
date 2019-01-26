@@ -1,6 +1,7 @@
 package com.example.weiducinema.core.http;
 
 import com.example.weiducinema.bean.DetailsBean;
+import com.example.weiducinema.bean.QueryBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.YuantuiBean;
@@ -125,7 +126,23 @@ public interface IRequest {
             @Query("latitude") String latitude,
             @Query("page") String page ,
             @Query("count") String count);
+
+    /**
+     * 影片详情
+     * @param movieId
+     * @return
+     */
     @GET("movieApi/movie/v1/findMoviesDetail")
     Observable<Result<DetailsBean>> getDetails(
             @Query("movieId") String movieId);
+
+    /**
+     * 根据影片查询影院
+     * @param movieId
+     * @return
+     */
+    @GET("movieApi/movie/v1/findCinemasListByMovieId")
+    Observable<Result<List<QueryBean>>> getQuery(
+            @Query("movieId") String movieId);
+
 }

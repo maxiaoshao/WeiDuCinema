@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.bw.movie.R;
+import com.example.weiducinema.activity.WDDetailsActivity;
 import com.example.weiducinema.activity.WDShowmoiver;
 import com.example.weiducinema.adapter.RecycleHotAdapter;
 import com.example.weiducinema.adapter.RecycleHotShowAdapter;
@@ -85,6 +86,42 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
         adapter2 = new RecycleHotShowAdapter(getActivity());
         adapter3 = new RecycleUpComeAdapter(getActivity());
         adapter4 = new RecycleFilmDetailsAdapter(getActivity());
+        adapter1.setOnItemClick(new RecycleHotAdapter.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
+                intent.putExtra("mid",json);
+                startActivity(intent);
+
+            }
+        });
+        adapter2.setOnItemClick(new RecycleHotShowAdapter.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
+                intent.putExtra("mid",json);
+                startActivity(intent);
+
+            }
+        });
+        adapter3.setOnItemClick(new RecycleUpComeAdapter.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
+                intent.putExtra("mid",json);
+                startActivity(intent);
+
+            }
+        });
+        adapter4.setOnItemClick(new RecycleFilmDetailsAdapter.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
+                intent.putExtra("mid",json);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

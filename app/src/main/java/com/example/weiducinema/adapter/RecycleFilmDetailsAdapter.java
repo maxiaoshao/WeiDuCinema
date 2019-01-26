@@ -41,9 +41,15 @@ public class RecycleFilmDetailsAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.sim.setImageURI(li.get(i).getImageUrl());
+        viewHolder1.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.tiao(li.get(i).getId()+"");
+            }
+        });
     }
 
     @Override
@@ -58,4 +64,12 @@ public class RecycleFilmDetailsAdapter extends RecyclerView.Adapter<RecyclerView
             sim = itemView.findViewById(R.id.simm);
         }
     }
+    public interface onItemClick{
+        void tiao(String json);
+    }
+    private onItemClick onItemClick;
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 }
+

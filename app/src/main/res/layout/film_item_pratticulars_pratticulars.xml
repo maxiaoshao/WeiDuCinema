@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/particulars_popwinw"
+    >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/pratticulars_pratticulars_sim"
+            android:layout_width="111dp"
+            android:layout_height="149dp"
+            android:layout_marginLeft="24dp"
+            android:padding="5dp"
+            app:roundedCornerRadius="8dp"
+            />
+    <RelativeLayout
+        android:layout_toRightOf="@id/pratticulars_pratticulars_sim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="类型："
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/pratticulars_pratticulars_lx_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="导演："
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/pratticulars_pratticulars_dy_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时长："
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/pratticulars_pratticulars_sc_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="产地："
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/pratticulars_pratticulars_cd_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/pratticulars_pratticulars_qx_sim"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:placeholderImage="@drawable/com_icon_down_default_" />
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/pratticulars_pratticulars_relative1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="150dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+               android:layout_height="100dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="剧情简介"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/redio_cinema_recommend" />
+
+                <TextView
+                 android:id="@+id/jianjie_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:maxLines="4"
+                    android:enabled="true"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/yzry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pratticulars_pratticulars_relative1"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="20dp"
+            android:text="演职人员"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/yzry_views"
+            android:layout_width="30dp"
+            android:layout_height="3dp"
+            android:layout_below="@id/yzry"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/redio_cinema_recommend" />
+
+        <RelativeLayout
+            android:id="@+id/pratticulars_pratticulars_relative2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/yzry_views"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/yymz"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="演员名字"
+                android:textColor="#FFFFFFFF" />
+
+            <TextView
+                android:id="@+id/jznc"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="剧中昵称"
+                android:textColor="#FFFFFFFF" />
+        </RelativeLayout>
+
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/pratticulars_pratticulars_recview"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/pratticulars_pratticulars_relative2"
+           android:layout_marginLeft="24dp"
+           android:layout_marginRight="24dp"
+           android:layout_marginTop="10dp"
+           >
+       </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+</RelativeLayout>
