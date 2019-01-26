@@ -1,10 +1,13 @@
 package com.example.weiducinema.core.http;
 
+import com.example.weiducinema.bean.FilmTimeBean;
 import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.QueryBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
+import com.example.weiducinema.bean.ScheduleBean;
 import com.example.weiducinema.bean.YuantuiBean;
+import com.example.weiducinema.bean.encrypt.FindUserBean;
 import com.example.weiducinema.bean.encrypt.UserInfo;
 
 import java.util.List;
@@ -128,6 +131,12 @@ public interface IRequest {
             @Query("count") String count);
 
     /**
+     * 查询影院
+     * @param movieId
+     * @return
+     */
+
+    /**
      * 影片详情
      * @param movieId
      * @return
@@ -135,6 +144,31 @@ public interface IRequest {
     @GET("movieApi/movie/v1/findMoviesDetail")
     Observable<Result<DetailsBean>> getDetails(
             @Query("movieId") String movieId);
+    /**
+     * 根据用户Id查询用户信息
+     *
+     */
+    @GET("movieApi/user/v1/verify/getUserInfoByUserId")
+    Observable<Result<FindUserBean>> getFindUser(
+            @Header("userId") int userid,
+            @Header("sessionId") String sessid
+    );
+
+    /**
+     *影院排期
+     */
+    @GET("movieApi/movie/v1/findMovieListByCinemaId")
+    Observable<Result<List<ScheduleBean>>> getSchedule(
+            @Query("cinemaId") String cinemaId
+    );
+    /**
+     * 电影时间排期
+     */
+    @GET("movieApi/movie/v1/findMovieScheduleList")
+    Observable<Result<List<FilmTimeBean>>> getFilmTime(
+            @Query("cinemasId") String cinemasId,
+            @Query("movieId") int movieId
+    );
 
     /**
      * 根据影片查询影院

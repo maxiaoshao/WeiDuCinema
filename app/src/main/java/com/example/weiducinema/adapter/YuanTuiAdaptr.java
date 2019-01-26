@@ -46,7 +46,9 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHelow1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClick.tiao(li.get(i).getId()+"");
+                onItemClick.tiao(li.get(i).getId()+"",li.get(i).getLogo(),li.get(i).getName()
+                ,li.get(i).getAddress()
+                );
             }
         });
     }
@@ -67,7 +69,7 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
       }
   }
     public interface onItemClick{
-        void tiao(String json);
+        void tiao(String cinameId,String imgPic,String cinameName,String address);
     }
     private onItemClick onItemClick;
     public void setOnItemClick(onItemClick onItemClick) {

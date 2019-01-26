@@ -50,7 +50,7 @@
             android:padding="0dp"
             android:text="推荐影院"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/radio"
+            android:background="@drawable/btn_gradient"
             android:layout_width="83dp"
             android:layout_height="25dp" />
         <Button
@@ -60,7 +60,7 @@
             android:layout_toRightOf="@+id/tui"
             android:layout_marginLeft="30dp"
             android:text="附近影院"
-            android:background="@drawable/radio"
+            android:background="@drawable/btn_wu"
             android:layout_width="83dp"
             android:layout_height="25dp" />
     </RelativeLayout>
