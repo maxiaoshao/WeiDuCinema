@@ -4,12 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.bw.movie.R;
+import com.example.weiducinema.base.WDBaseActivity;
 
-public class MyOpinionActivity extends AppCompatActivity {
+public class MyOpinionActivity extends WDBaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my__opinion_);
+    protected int getLayoutId() {
+        return R.layout.activity_my__opinion_;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void destoryData() {
+
     }
 }

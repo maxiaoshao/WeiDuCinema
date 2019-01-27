@@ -7,6 +7,7 @@ import com.example.weiducinema.bean.QueryPaiBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.ScheduleBean;
+import com.example.weiducinema.bean.UserAttenBean;
 import com.example.weiducinema.bean.YuantuiBean;
 import com.example.weiducinema.bean.encrypt.FindUserBean;
 import com.example.weiducinema.bean.encrypt.UserInfo;
@@ -191,4 +192,33 @@ public interface IRequest {
             @Query("cinemasId") String cinemasId,
             @Query("movieId") String movieId);
 
+    /**
+     * 根据用户关注影片，进行查询
+     * @param userId
+     * @param sessionId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("movieApi/movie/v1/verify/findMoviePageList")
+    Observable<Result<List<UserAttenBean>>> getUserPai(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
+            @Query("page") String page,
+            @Query("count") String count);
+
+    /**
+     * 根据用户关注影城，进行查询
+     * @param userId
+     * @param sessionId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("movieApi/cinema/v1/verify/findCinemaPageList")
+    Observable<Result<List<UserAttenBean>>> getUserChang(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
+            @Query("page") String page,
+            @Query("count") String count);
 }
