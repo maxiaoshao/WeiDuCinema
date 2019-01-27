@@ -67,7 +67,7 @@
         <activity android:name="com.example.weiducinema.activity.cinema.CinemaDetailsActivity" />
         <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity" />
         <activity android:name="com.example.weiducinema.activity.my.MyChangePasswordActivity"></activity>
-        <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity"></activity>
+        
         <activity
             android:name="com.bw.movie.wxapi.WXPayEntryActivity"
             android:exported="true"
