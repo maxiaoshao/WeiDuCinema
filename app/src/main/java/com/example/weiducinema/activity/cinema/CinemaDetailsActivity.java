@@ -1,5 +1,6 @@
 package com.example.weiducinema.activity.cinema;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.base.WDBaseActivity;
 import com.example.weiducinema.bean.EventMessage;
 import com.example.weiducinema.bean.FilmTimeBean;
+import com.example.weiducinema.bean.MessageBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.ScheduleBean;
 import com.example.weiducinema.bean.encrypt.UserInfo;
@@ -32,7 +34,7 @@ import java.util.List;
 
 import recycler.coverflow.RecyclerCoverFlow;
 
-public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCinemaDetailsAdapter.ByValue {
+public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCinemaDetailsAdapter.ByValue, CinemaTimeAdapter.onItemClick {
 
     private SimpleDraweeView sdv_cinema_head;
     private TextView txt_title;
@@ -98,6 +100,7 @@ public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCine
          persent.reqeust(cinemaId);
          filmTimePersent = new FilmTimePersent(new FilmTimeCall());
          timeAdapter = new CinemaTimeAdapter(this);
+         timeAdapter.setOnItemClick(this);
          rv_time.setAdapter(timeAdapter);
          rv_time.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
@@ -107,6 +110,12 @@ public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCine
     public void Cid(int id) {
         System.out.println("XXXXXXX"+id);
         filmTimePersent.reqeust(cinemaId,id);
+    }
+
+    @Override
+    public void byValue(String name,int price) {
+        EventBus.getDefault().postSticky(new MessageBean(name,price));
+        startActivity(new Intent(this,CinemaChooseActivity.class));
     }
 
 

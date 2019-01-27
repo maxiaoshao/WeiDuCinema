@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.example.weiducinema.activity.cinema.CinemaChooseActivity;
 import com.example.weiducinema.bean.FilmTimeBean;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 
 
 /**
- * Created by 申雨轩
+ * Created by 邵新轩
  * 影院影片排期时间
  */
 
@@ -39,11 +40,17 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
-        FilmTimeBean filmTimeBean = mList.get(i);
+        final FilmTimeBean filmTimeBean = mList.get(i);
         myHolder.title.setText(filmTimeBean.getScreeningHall());
        myHolder.begintime.setText(filmTimeBean.getBeginTime());
        myHolder.overtime.setText(filmTimeBean.getEndTime());
        myHolder.element.setText(""+filmTimeBean.getSeatsTotal());
+       myHolder.img_next.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               onItemClick.byValue(filmTimeBean.getScreeningHall(),filmTimeBean.getSeatsTotal());
+           }
+       });
        //myHolder.begintime.setText(mList.get(i).);
         /**
          * 跳转到选座页面
@@ -89,5 +96,11 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
             img_next=itemView.findViewById(R.id.img_next);
         }
     }
-
+    public interface onItemClick{
+        void byValue(String name,int price);
+    }
+    private onItemClick onItemClick;
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 }

@@ -66,4 +66,5 @@
         <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity"></activity>
     </application>
 
+
 </manifest>
