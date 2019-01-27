@@ -80,8 +80,8 @@ public class SchedulingActivity extends WDBaseActivity implements QueryPaiAdapte
 
 
     @Override
-    public void byValue(String name, int price) {
-        EventBus.getDefault().postSticky(new MessageBean(name,price));
+    public void byValue(String name, int price,String pid) {
+        EventBus.getDefault().postSticky(new MessageBean(name,price,pid));
         startActivity(new Intent(this,CinemaChooseActivity.class));
     }
 
