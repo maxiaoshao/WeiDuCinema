@@ -69,6 +69,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
         persent = new FindUserPersent(new FindUserCall());
         img_back.setOnClickListener(this);
         img_pic.setOnClickListener(this);
+        img_reset.setOnClickListener(this);
     }
 
     private void creatediog() {
@@ -138,6 +139,9 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
                 intent2.setType("image/*");
                 startActivityForResult(intent2, 99);
                 alertDialog.dismiss();
+                break;
+            case R.id.img_reset:
+                startActivity(new Intent(this,MyChangePasswordActivity.class));
                 break;
         }
     }

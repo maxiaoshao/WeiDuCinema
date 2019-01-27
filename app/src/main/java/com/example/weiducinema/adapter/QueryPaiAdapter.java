@@ -43,12 +43,19 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.title.setText(li.get(i).getScreeningHall());
         viewHolder1.begintime.setText(li.get(i).getBeginTime());
         viewHolder1.overtime.setText(li.get(i).getEndTime());
         viewHolder1.element.setText(li.get(i).getSeatsTotal()+"");
+        viewHolder1.img_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClick.byValue(li.get(i).getScreeningHall(),li.get(i)
+                        .getSeatsTotal());
+            }
+        });
     }
 
     @Override
@@ -73,12 +80,11 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             img_next=itemView.findViewById(R.id.img_next);
         }
     }
-    public interface ByValue{
-        void Cid(int id);
+    public interface onItemClick{
+        void byValue(String name,int price);
     }
-    private ByValue mByValue;
-
-    public void setByvalue(ByValue oByValue) {
-        mByValue = oByValue;
+    private onItemClick mOnItemClick;
+    public void setOnItemClick(onItemClick onItemClick) {
+        mOnItemClick = onItemClick;
     }
 }

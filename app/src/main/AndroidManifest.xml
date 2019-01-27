@@ -26,7 +26,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
@@ -52,19 +51,21 @@
         <activity android:name="com.example.weiducinema.activity.WDShowmoiver" />
         <activity android:name="com.example.weiducinema.activity.WDThreeActivity" />
         <activity android:name="com.example.weiducinema.activity.WDDetailsActivity" />
-        <activity android:name="com.example.weiducinema.activity.AppropriateActivity"/>
+        <activity android:name="com.example.weiducinema.activity.AppropriateActivity" />
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
-        <activity android:name="com.example.weiducinema.activity.SchedulingActivity"/>
+
+        <activity android:name="com.example.weiducinema.activity.SchedulingActivity" />
         <activity android:name="com.example.weiducinema.activity.my.My_Message_Activity" />
         <activity android:name="com.example.weiducinema.activity.my.MyAttentionActivity" />
         <activity android:name="com.example.weiducinema.activity.my.MyTrackerActivity" />
         <activity android:name="com.example.weiducinema.activity.my.MyOpinionActivity" />
         <activity android:name="com.example.weiducinema.activity.my.MyNewVersionsActivity" />
         <activity android:name="com.example.weiducinema.activity.cinema.CinemaDetailsActivity" />
-        <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity"></activity>
+        <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity" />
+        <activity android:name="com.example.weiducinema.activity.my.MyChangePasswordActivity"></activity>
     </application>
-
 
 </manifest>

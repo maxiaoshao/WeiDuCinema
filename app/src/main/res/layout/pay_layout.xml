@@ -9,11 +9,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="#666666"/>
-    <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src=""-->
-        <!--/>-->
+        android:textColor="#666666"
+        android:text="请选择支付"
+        android:layout_marginTop="14dp"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/com_icon_down_default"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="10dp"
+        />
 
 </RelativeLayout>

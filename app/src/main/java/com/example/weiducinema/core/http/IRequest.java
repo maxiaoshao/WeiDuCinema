@@ -221,4 +221,16 @@ public interface IRequest {
             @Header("sessionId")String sessionId,
             @Query("page") String page,
             @Query("count") String count);
+
+    /**
+     * 修改密码
+     * @param userId
+     * @param sessionId
+     * @return
+     */
+    @POST("movieApi/user/v1/verify/modifyUserPwd")
+    Observable<Result> getChangePwd(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId
+    );
 }
