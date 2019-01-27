@@ -8,10 +8,20 @@ package com.example.weiducinema.bean;
 public class MessageBean {
     private String title;
     private int price;
+    private String pid;
 
-    public MessageBean(String title, int price) {
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public MessageBean(String title, int price, String pid) {
         this.title = title;
         this.price = price;
+        this.pid = pid;
     }
 
     public String getTitle() {

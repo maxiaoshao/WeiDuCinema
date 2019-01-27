@@ -48,7 +48,7 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
        myHolder.img_next.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               onItemClick.byValue(filmTimeBean.getScreeningHall(),filmTimeBean.getSeatsTotal());
+               onItemClick.byValue(filmTimeBean.getScreeningHall(),filmTimeBean.getSeatsTotal(),filmTimeBean.getId()+"");
            }
        });
        //myHolder.begintime.setText(mList.get(i).);
@@ -97,7 +97,7 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
         }
     }
     public interface onItemClick{
-        void byValue(String name,int price);
+        void byValue(String name,int price,String paiid);
     }
     private onItemClick onItemClick;
     public void setOnItemClick(onItemClick onItemClick) {

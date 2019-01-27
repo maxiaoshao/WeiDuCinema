@@ -112,9 +112,10 @@ public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCine
         filmTimePersent.reqeust(cinemaId,id);
     }
 
+
     @Override
-    public void byValue(String name,int price) {
-        EventBus.getDefault().postSticky(new MessageBean(name,price));
+    public void byValue(String name, int price, String paiid) {
+        EventBus.getDefault().postSticky(new MessageBean(name,price,paiid));
         startActivity(new Intent(this,CinemaChooseActivity.class));
     }
 
