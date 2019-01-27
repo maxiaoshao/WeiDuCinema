@@ -233,4 +233,19 @@ public interface IRequest {
             @Header("userId")String userId,
             @Header("sessionId")String sessionId
     );
+
+    @POST("movieApi/movie/v1/verify/buyMovieTicket")
+    @FormUrlEncoded
+    Observable<Result> getOrder(@Header("userId")String userId,
+                                @Header("sessionId")String sessionId,
+                                @Field("scheduleId") String scheduleId,
+                                  @Field("amount") String amount,
+                                  @Field("sign") String sign);
+
+    @POST("movieApi/movie/v1/verify/pay")
+    @FormUrlEncoded
+    Observable<PayBean> pay(@Header("userId")String userId,
+                            @Header("sessionId")String sessionId,
+                            @Field("payType") String payType,
+                            @Field("orderId") String orderId);
 }

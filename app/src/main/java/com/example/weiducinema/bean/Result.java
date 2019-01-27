@@ -8,6 +8,15 @@ public class Result<T> {
     private T result;
     private String message;
     private String status;
+    private String orderId;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public T getResult() {
         return result;
