@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bw.movie.R;
@@ -40,16 +42,18 @@ public class ShowMoiverAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull XRecyclerView.ViewHolder viewHolder, final int i) {
-        ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
+        final ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.sim.setImageURI(li.get(i).getImageUrl());
         viewHolder1.name.setText(li.get(i).getName());
         viewHolder1.title.setText("简介："+li.get(i).getSummary());
+
         viewHolder1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemClick.tiao(li.get(i).getId()+"");
             }
         });
+
     }
 
     @Override
@@ -64,6 +68,7 @@ public class ShowMoiverAdapter extends XRecyclerView.Adapter<XRecyclerView.ViewH
             sim = itemView.findViewById(R.id.sims);
           name = itemView.findViewById(R.id.name);
           title = itemView.findViewById(R.id.titles);
+
         }
     }
     public interface onItemClick{

@@ -55,6 +55,7 @@ public abstract class WDBaseActivity extends AppCompatActivity {
             setStatusColor();
             setSystemInvadeBlack();
         }
+
     }
 
     @Override
@@ -62,7 +63,6 @@ public abstract class WDBaseActivity extends AppCompatActivity {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-
     @Override
     public void onPause() {
         super.onPause();
