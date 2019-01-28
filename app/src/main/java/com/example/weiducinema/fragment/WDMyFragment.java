@@ -1,8 +1,11 @@
 package com.example.weiducinema.fragment;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.example.weiducinema.activity.WDLoginActivity;
+import com.example.weiducinema.activity.WDShowActivity;
 import com.example.weiducinema.activity.my.MyAttentionActivity;
 import com.example.weiducinema.activity.my.My_Message_Activity;
 import com.example.weiducinema.activity.my.MyNewVersionsActivity;
@@ -23,6 +27,7 @@ import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.bean.encrypt.UserInfoBean;
 import com.example.weiducinema.db.DBManager;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.j256.ormlite.dao.Dao;
 
 import java.util.List;
 
@@ -47,9 +52,9 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
     private View diogView;
-    private Button btn_paizhao;
-    private Button btn_xiangce;
+
     private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
+    private Dao<UserInfo, String> userDao;
 
     @Override
     public String getPageName() {
@@ -87,12 +92,27 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        my_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(student.size()!=0) {
+                    creatediog();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("1111111");
         //数据库查询
         try {
-            manager = new DBManager(getActivity());
-            student = manager.getStudent();
+            userDao = DBManager.getInstance(getActivity()).getUserDao();
+            student = userDao.queryForAll();
             if(student.size()==0) {
                 Toast.makeText(getActivity(),"没有信息"+student,Toast.LENGTH_SHORT).show();
 
@@ -110,6 +130,36 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         } catch (Exception e1) {
             e1.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //数据库查询
+        try {
+            userDao = DBManager.getInstance(getActivity()).getUserDao();
+            student = userDao.queryForAll();
+            userDao.notifyChanges();
+            if(student.size()==0) {
+                Toast.makeText(getActivity(),"没有信息"+student,Toast.LENGTH_SHORT).show();
+
+            }else {
+                Toast.makeText(getActivity(),"有信息"+student,Toast.LENGTH_SHORT).show();
+                System.out.println("有信息"+student);
+                UserInfo userInfo = student.get(0);
+                UserInfoBean userInfo1 = userInfo.getUserInfo();
+                String pic = userInfo1.getHeadPic();
+                my_pic.setImageURI(pic);
+                String nickName = userInfo1.getNickName();
+                my_name.setText(nickName);
+            }
+
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -135,22 +185,35 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
             case R.id.my_new_versions:
                 startActivity(new Intent(getActivity(), MyNewVersionsActivity.class));
                 break;
-            case R.id.my_finish:
-                if (student.size()!=0){
-                    for(int i = 0;i<student.size();i++){
-                        try {
-                            manager.deleteStudent(student.get(i));
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                    Intent intent5 = new Intent(getActivity(), WDLoginActivity.class);
-                    startActivity(intent5);//跳转登录页
 
-                }
-
-                break;
 
         }
+    }
+    private void creatediog(){
+        // TODO Auto-generated method stub
+        builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("提示").setIcon(R.drawable.my_pic_img);
+        builder.setMessage("确定退出登陆")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        for (int i = 0; i < student.size(); i++) {
+                            try {
+                                userDao.delete(student.get(i));
+                                userDao.notifyChanges();
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+
+                        }
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                builder.create().dismiss();
+            }
+        });
+        builder.create().show();
     }
 }

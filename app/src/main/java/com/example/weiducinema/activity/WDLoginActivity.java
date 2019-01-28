@@ -23,6 +23,14 @@ import com.example.weiducinema.core.exception.ApiException;
 
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.LoginPersent;
+import com.example.weiducinema.uitls.WeiXinUtil;
+import com.j256.ormlite.dao.Dao;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.utils.ILog;
 
 import java.sql.SQLException;
 
@@ -38,7 +46,8 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
     private ImageView login_weixin;
     private LoginPersent persent;
     private ImageView imageview_click;
-    private DBManager manager;
+    private Dao<UserInfo,String> userDao;
+    private IWXAPI api;
 
 
     @Override
@@ -59,11 +68,8 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
         button_login.setOnClickListener(this);
         textview_register.setOnClickListener(this);
         imageview_click.setOnClickListener(this);
-        try {
-            manager = new DBManager(this);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        login_weixin.setOnClickListener(this);
+        userDao = DBManager.getInstance(this).getUserDao();
 
     }
 
@@ -82,6 +88,20 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
                     edittext_pwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 } else {
                     edittext_pwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+
+                break;
+            case R.id.login_weixin:
+                if (!WeiXinUtil.success(this)) {
+                    Toast.makeText(this, "请先安装应用", Toast.LENGTH_SHORT).show();
+                } else {
+                    //  验证
+                    SendAuth.Req req = new SendAuth.Req();
+                    req.scope = "snsapi_userinfo";
+                    req.state = "wechat_sdk_demo_test";
+                    WeiXinUtil.reg(this).sendReq(req);
+
+                    finish();
                 }
 
                 break;
@@ -114,7 +134,6 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
     protected void destoryData() {
 
     }
-
     //获取数据
     class LoginCall implements DataCall<Result<UserInfo>> {
 
@@ -123,8 +142,7 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
             UserInfo result = data.getResult();
             if (data.getStatus().equals("0000")) {
                 try {
-
-                    manager.insertStudent(result);
+                    userDao.createOrUpdate(data.getResult());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -139,4 +157,5 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
             Toast.makeText(getBaseContext(), "异常", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

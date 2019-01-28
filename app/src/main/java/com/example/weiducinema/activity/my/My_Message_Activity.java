@@ -25,6 +25,7 @@ import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.FindUserPersent;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -49,6 +50,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     private Button btn_xiangce;
     private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
     private ImageView img_back;
+    private Dao<UserInfo, String> userDao;
 
 
     @Override
@@ -106,8 +108,8 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     public void onResume() {
         super.onResume();
         try {
-            manager = new DBManager(this);
-            student = manager.getStudent();
+             userDao = DBManager.getInstance(this).getUserDao();
+             student = userDao.queryForAll();
             if (student.size()!=0) {
                 UserInfo info = student.get(0);
                 int userId = info.getUserId();
@@ -141,7 +143,14 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
                 alertDialog.dismiss();
                 break;
             case R.id.img_reset:
-                startActivity(new Intent(this,MyChangePasswordActivity.class));
+                if (student.size()!=0){
+                    startActivity(new Intent(this,MyChangePasswordActivity.class));
+                }else {
+                    Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this,WDLoginActivity.class));
+            }
+
+
                 break;
         }
     }

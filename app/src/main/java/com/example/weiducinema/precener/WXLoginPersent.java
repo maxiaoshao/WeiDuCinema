@@ -12,18 +12,16 @@ import io.reactivex.Observable;
  * function:
  * on 2019/1/24
  */
-public class ChangePwdPersent extends BasePresenter {
+public class WXLoginPersent extends BasePresenter {
 
 
-    public ChangePwdPersent(DataCall dataCall) {
+    public WXLoginPersent(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable observable(Object... args) {
         IRequest iRequest = NetworkManager.instance().create(IRequest.class);
-        return iRequest.getChangePwd((String)args[0],
-                (String)args[1],(String)args[2],(String)args[3],(String)args[4]
-                );
+        return iRequest.getWxLogin((String)args[0]);
     }
 }
