@@ -24,6 +24,7 @@ import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.UserAttenChengPrencenter;
 import com.example.weiducinema.precener.UserAttenPrencenter;
+import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.List;
 public class MyAttentionActivity extends WDBaseActivity {
     RecyclerView recy;
     Button pai,yuan;
-    private DBManager manager;
+    private Dao<UserInfo,String> userDao;
     UserAttenChengPrencenter userAttenChengPrencenter;
     private List<UserInfo> student;
     UserAttenPrencenter userAttenPrencenter;
@@ -53,10 +54,7 @@ public class MyAttentionActivity extends WDBaseActivity {
         userAttenChengPrencenter = new UserAttenChengPrencenter(new UserAttenChang());
 
         try {
-
-            manager = new DBManager(MyAttentionActivity.this);
-
-            student = manager.getStudent();
+            student = userDao.queryForAll();
             if (student.size()==0){
                 startActivity(new Intent(MyAttentionActivity.this,WDLoginActivity.class));
             }else{
@@ -104,7 +102,7 @@ public class MyAttentionActivity extends WDBaseActivity {
             }else{
                 for(int i = 0;i<student.size();i++){
                     try {
-                        manager.deleteStudent(student.get(i));
+                       userDao.delete(student.get(i));
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
@@ -131,7 +129,7 @@ public class MyAttentionActivity extends WDBaseActivity {
             }else{
                 for(int i = 0;i<student.size();i++){
                     try {
-                        manager.deleteStudent(student.get(i));
+                        userDao.delete(student.get(i));
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

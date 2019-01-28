@@ -3,6 +3,7 @@ package com.example.weiducinema.activity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -27,6 +28,7 @@ public class WDShowActivity extends WDBaseActivity implements View.OnClickListen
     private WDCinemaFragment mWDCinema_fragment;
     private WDMyFragment mWDMy_fragment;
     FragmentManager manager;
+    private String name;
 
     @Override
     protected int getLayoutId() {

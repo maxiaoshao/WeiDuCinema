@@ -28,6 +28,7 @@ import com.example.weiducinema.core.md5.MD5Utils;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.OrderPersent;
 import com.example.weiducinema.precener.UserAttenChengPrencenter;
+import com.j256.ormlite.dao.Dao;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -53,7 +54,7 @@ public class CinemaChooseActivity extends WDBaseActivity {
     private ImageView img_abandon;
     private String title;
     private int num = 0;
-    private DBManager manager;
+    private Dao<UserInfo,String> userDao;
     private List<UserInfo> student;
     private int price;
 
@@ -128,9 +129,8 @@ public class CinemaChooseActivity extends WDBaseActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    manager = new DBManager(CinemaChooseActivity.this);
-
-                    student = manager.getStudent();
+                    userDao = DBManager.getInstance(getBaseContext()).getUserDao();
+                    student = userDao.queryForAll();
                 }catch (Exception e){
 
                 }

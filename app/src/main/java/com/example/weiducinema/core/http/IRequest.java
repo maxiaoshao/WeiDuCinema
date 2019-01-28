@@ -232,7 +232,10 @@ public interface IRequest {
     @POST("movieApi/user/v1/verify/modifyUserPwd")
     Observable<Result> getChangePwd(
             @Header("userId")String userId,
-            @Header("sessionId")String sessionId
+            @Header("sessionId")String sessionId,
+            @Field("oldPwd") String oldPwd,
+            @Field("newPwd") String newPwd,
+            @Field("newPwd2") String newPwd2
     );
 
     /**
@@ -266,4 +269,16 @@ public interface IRequest {
                             @Header("sessionId")String sessionId,
                             @Field("payType") String payType,
                             @Field("orderId") String orderId);
+
+    /**
+     * 微信登录
+     * @param code
+     * @return
+     */
+
+    @POST("movieApi/user/v1/weChatBindingLogin")
+    @FormUrlEncoded
+    Observable<Result<UserInfo>> getWxLogin(
+            @Field("code") String code)
+                           ;
 }

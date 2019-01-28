@@ -16,45 +16,26 @@ import java.util.List;
  * on 2019/1/24
  */
 public class DBManager {
-    private Dao<UserInfo,String> dao;
+    private static DBManager sDBManager;
+    private Dao<UserInfo,String> userDao;
 
-    public DBManager(Context context) throws SQLException {
+    private DBManager(Context context) {
         Helper helper = new Helper(context);
-        dao = helper.getDao(UserInfo.class);
+        try {
+            userDao = helper.getDao(UserInfo.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    // 创建数据
-    public void insertStudent(UserInfo student) throws SQLException {
-        //在数据库中创建一条记录，作用与SQLiteDatabase.insert一样
-        dao.createOrUpdate(student);
+    public static DBManager getInstance(Context context){
+        if (sDBManager==null){
+            sDBManager = new DBManager(context);
+        }
+        return sDBManager;
     }
 
-    public void batchInsert(List<UserInfo> user) throws SQLException {
-        dao.create(user);
+    public Dao<UserInfo, String> getUserDao() {
+        return userDao;
     }
-    /**
-     * 查询数据
-     *
-     * @return
-     * @throws SQLException
-     */
-    public List<UserInfo> getStudent() throws SQLException {
-        List<UserInfo> list = dao.queryForAll();
-        return list;
-    }
-
-
-
-    /**
-     * 删除数据
-     *
-     * @param student
-     * @throws SQLException
-     */
-    public void deleteStudent(UserInfo student) throws SQLException {
-        //只看id
-        dao.delete(student);
-    }
-
-
 }

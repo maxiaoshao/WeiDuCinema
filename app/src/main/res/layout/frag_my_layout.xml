@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/my_pic"
-            android:text="冬天来了"
+            android:text="未登录"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:textSize="14sp"
