@@ -53,7 +53,7 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onClick(View v) {
                 mOnItemClick.byValue(li.get(i).getScreeningHall(),li.get(i)
-                        .getSeatsTotal());
+                        .getSeatsTotal(),li.get(i).getId()+"");
             }
         });
     }
@@ -81,7 +81,7 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
     public interface onItemClick{
-        void byValue(String name,int price);
+        void byValue(String name,int price,String pid);
     }
     private onItemClick mOnItemClick;
     public void setOnItemClick(onItemClick onItemClick) {

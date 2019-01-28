@@ -95,11 +95,6 @@ public class MyAttentionActivity extends WDBaseActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     private class UserAtten implements DataCall<Result<List<UserAttenBean>>> {
         @Override
         public void success(Result<List<UserAttenBean>> data) {

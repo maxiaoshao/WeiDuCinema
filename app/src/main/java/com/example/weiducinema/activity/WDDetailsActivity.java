@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.example.weiducinema.adapter.PrevueAdapter;
 import com.example.weiducinema.adapter.StillsAdapter;
+import com.example.weiducinema.app.SpacesItemDecoration;
 import com.example.weiducinema.base.WDBaseActivity;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.DetailsBean;
@@ -168,6 +169,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         adapter2 = new StillsAdapter(this);
         pratticulars_stagephoto_jz = popview.findViewById(R.id.pratticulars_stagephoto_jz);
         pratticulars_stagephoto_jz.setLayoutManager(new GridLayoutManager(this,2));
+        pratticulars_stagephoto_jz.addItemDecoration(new SpacesItemDecoration(10));
         pratticulars_stagephoto_jz.setAdapter(adapter2);
     }
 
@@ -177,6 +179,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         pratticulars_prevue_rec = popview.findViewById(R.id.pratticulars_prevue_rec);
         adapter = new PrevueAdapter(this);
         pratticulars_prevue_rec.setLayoutManager(new LinearLayoutManager(this));
+        pratticulars_prevue_rec.addItemDecoration(new SpacesItemDecoration(10));
         pratticulars_prevue_rec.setAdapter(adapter);
 
     }

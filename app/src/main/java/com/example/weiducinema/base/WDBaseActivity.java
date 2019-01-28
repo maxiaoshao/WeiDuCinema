@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.weiducinema.app.WifiUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 import crossoverone.statuslib.StatusUtil;
@@ -55,6 +56,19 @@ public abstract class WDBaseActivity extends AppCompatActivity {
             setSystemInvadeBlack();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
     protected void setStatusColor() {
         StatusUtil.setUseStatusBarColor(this, Color.parseColor("#00000000"));
     }
@@ -63,8 +77,10 @@ public abstract class WDBaseActivity extends AppCompatActivity {
         // 第二个参数是是否沉浸,第三个参数是状态栏字体是否为黑色。
         StatusUtil.setSystemStatus(this, true, true);
     }
+
     /**
      * 设置layoutId
+     *
      * @return
      */
     protected abstract int getLayoutId();

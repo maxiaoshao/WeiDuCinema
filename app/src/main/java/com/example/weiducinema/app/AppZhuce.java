@@ -7,6 +7,7 @@ import android.support.multidex.MultiDexApplication;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.umeng.analytics.MobclickAgent;
 
 public class AppZhuce extends MultiDexApplication {
     private final static String DATA_BASE_NAME = "ZZZ";
@@ -22,6 +23,14 @@ public class AppZhuce extends MultiDexApplication {
                 .setMainDiskCacheConfig(diskCacheConfig).build();
 
         Fresco.initialize(this,config);
+//        UMConfigure.init(this, "you AppKey", "you channel", UMConfigure.DEVICE_TYPE_PHONE, null);
+//        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+//
+//        //禁止默认的页面统计功能，这样将不会再自动统计Activity页面。（包含Activity、Fragment或View的应用）
+//        MobclickAgent.openActivityDurationTrack(false);
+//
+//        // 打开统计SDK调试模式（上线时记得关闭）
+//        UMConfigure.setLogEnabled(true);
 //        DaoMaster.DevOpenHelper openHelper = new DaoMaster.DevOpenHelper(this,DATA_BASE_NAME);
 //        SQLiteDatabase db = openHelper.getWritableDatabase();
 //        DaoMaster daoMaster = new DaoMaster(db);

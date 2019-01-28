@@ -103,7 +103,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         try {
             manager = new DBManager(this);

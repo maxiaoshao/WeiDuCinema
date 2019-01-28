@@ -2,6 +2,7 @@ package com.example.weiducinema.core.http;
 
 import com.example.weiducinema.bean.FilmTimeBean;
 import com.example.weiducinema.bean.DetailsBean;
+import com.example.weiducinema.bean.PayBean;
 import com.example.weiducinema.bean.QueryBean;
 import com.example.weiducinema.bean.QueryPaiBean;
 import com.example.weiducinema.bean.Result;
@@ -234,6 +235,15 @@ public interface IRequest {
             @Header("sessionId")String sessionId
     );
 
+    /**
+     * 下单接口
+     * @param userId
+     * @param sessionId
+     * @param scheduleId
+     * @param amount
+     * @param sign
+     * @return
+     */
     @POST("movieApi/movie/v1/verify/buyMovieTicket")
     @FormUrlEncoded
     Observable<Result> getOrder(@Header("userId")String userId,
@@ -242,6 +252,14 @@ public interface IRequest {
                                   @Field("amount") String amount,
                                   @Field("sign") String sign);
 
+    /**
+     * 支付接口
+     * @param userId
+     * @param sessionId
+     * @param payType
+     * @param orderId
+     * @return
+     */
     @POST("movieApi/movie/v1/verify/pay")
     @FormUrlEncoded
     Observable<PayBean> pay(@Header("userId")String userId,
