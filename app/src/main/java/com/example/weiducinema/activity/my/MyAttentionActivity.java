@@ -54,30 +54,31 @@ public class MyAttentionActivity extends WDBaseActivity {
         userAttenChengPrencenter = new UserAttenChengPrencenter(new UserAttenChang());
 
         try {
+           userDao= DBManager.getInstance(this).getUserDao();
             student = userDao.queryForAll();
             if (student.size()==0){
                 startActivity(new Intent(MyAttentionActivity.this,WDLoginActivity.class));
             }else{
-                pai.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userAttenPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
-                    }
-                });
-                yuan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userAttenChengPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
 
-                    }
-                });
             }
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        pai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userAttenPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
+            }
+        });
+        yuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userAttenChengPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
 
+            }
+        });
             userAttenPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
             attenAdaptet = new UserAttenAdaptet(this);
             attenAdaptets = new UserAttenChangAdaptet(this);
@@ -99,6 +100,9 @@ public class MyAttentionActivity extends WDBaseActivity {
             if (data.getStatus().equals("0000")){
                 attenAdaptet.setData(data.getResult());
                 attenAdaptet.notifyDataSetChanged();
+                recy.addItemDecoration(new SpacesItemDecoration(20));
+                recy.setLayoutManager(new LinearLayoutManager(MyAttentionActivity.this));
+                recy.setAdapter(attenAdaptet);
             }else{
                 for(int i = 0;i<student.size();i++){
                     try {
@@ -126,6 +130,9 @@ public class MyAttentionActivity extends WDBaseActivity {
             if (data.getStatus().equals("0000")){
                 attenAdaptets.setData(data.getResult());
                 attenAdaptets.notifyDataSetChanged();
+                recy.addItemDecoration(new SpacesItemDecoration(20));
+                recy.setLayoutManager(new LinearLayoutManager(MyAttentionActivity.this));
+                recy.setAdapter(attenAdaptets);
             }else{
                 for(int i = 0;i<student.size();i++){
                     try {

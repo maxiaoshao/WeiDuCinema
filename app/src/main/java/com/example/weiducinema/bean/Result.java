@@ -9,6 +9,15 @@ public class Result<T> {
     private String message;
     private String status;
     private String orderId;
+    private Object[] args;
+
+    public Object[] getArgs() {
+        return args;
+    }
+
+    public void setArgs(Object[] args) {
+        this.args = args;
+    }
 
     public String getOrderId() {
         return orderId;

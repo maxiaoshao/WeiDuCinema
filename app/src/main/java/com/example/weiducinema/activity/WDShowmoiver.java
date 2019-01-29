@@ -16,14 +16,23 @@ import com.example.weiducinema.base.WDBaseActivity;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
+import com.example.weiducinema.bean.encrypt.FindUserBean;
+import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.core.exception.ApiException;
+import com.example.weiducinema.db.DBManager;
+import com.example.weiducinema.precener.GuanPwdPersent;
 import com.example.weiducinema.precener.HotFilmPopulPresenter;
+import com.example.weiducinema.precener.HotShowPopulPresenter;
+import com.example.weiducinema.precener.QGuanPwdPersent;
+import com.example.weiducinema.precener.UpComePopulPresenter;
+import com.j256.ormlite.dao.Dao;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -37,9 +46,13 @@ public class WDShowmoiver extends WDBaseActivity {
     RadioGroup group;
     ImageView fanhui;
     ShowMoiverAdapter adapter;
+    Dao<UserInfo, String> userDao;
+    List<UserInfo> student;
     HotFilmPopulPresenter mHotFilmPopulPresenter;
-    HotFilmPopulPresenter mHotFilmPopulPresenter2;
-    HotFilmPopulPresenter mHotFilmPopulPresenter3;
+    HotShowPopulPresenter mHotFilmPopulPresenter2;
+    UpComePopulPresenter mHotFilmPopulPresenter3;
+    GuanPwdPersent guanPwdPersent;
+    QGuanPwdPersent qGuanPwdPersent;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_show_move;
@@ -53,31 +66,69 @@ public class WDShowmoiver extends WDBaseActivity {
         fanhui = findViewById(R.id.fanhui);
         group = findViewById(R.id.group);
         mHotFilmPopulPresenter = new HotFilmPopulPresenter(new PopulData());
-        mHotFilmPopulPresenter2 = new HotFilmPopulPresenter(new PopulData2());
-        mHotFilmPopulPresenter3 = new HotFilmPopulPresenter(new PopulData3());
+        mHotFilmPopulPresenter2 = new HotShowPopulPresenter(new PopulData2());
+        mHotFilmPopulPresenter3 = new UpComePopulPresenter(new PopulData3());
+        guanPwdPersent = new GuanPwdPersent(new Guanp());
         EventBus.getDefault().register(this);
         xRecyclerView = findViewById(R.id.xrecy);
+        qGuanPwdPersent = new QGuanPwdPersent(new Qguan());
         adapter = new ShowMoiverAdapter(this);
         adapter.setOnItemClick(new ShowMoiverAdapter.onItemClick() {
             @Override
-            public void tiao(String json) {
+            public void tiao(String json,String guan) {
                 Intent intent = new Intent(WDShowmoiver.this,WDDetailsActivity.class);
                 intent .putExtra("mid",json);
+                intent.putExtra("guan",guan);
                 startActivity(intent);
             }
+
+
+            @Override
+            public void guan(int position, String id) {
+                userDao = DBManager.getInstance(WDShowmoiver.this).getUserDao();
+                try {
+                    student = userDao.queryForAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if (student.size()==0){
+
+                    startActivity(new Intent(WDShowmoiver.this,WDLoginActivity.class));
+                }else {
+
+                    if (id.equals("2")){
+                        guanPwdPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"",position+"");
+
+                    }else{
+                        qGuanPwdPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"",position+"");
+
+                    }
+                }
+
+            }
         });
+
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.yi:
-                        mHotFilmPopulPresenter.reqeust("1", "10");
+
+                            mHotFilmPopulPresenter.reqeust(0+"","","1", "10");
+
+
                         break;
                     case R.id.er:
-                        mHotFilmPopulPresenter2.reqeust("1", "10");
+
+                            mHotFilmPopulPresenter2.reqeust(0+"","","1", "10");
+
+
                         break;
                     case R.id.san:
-                        mHotFilmPopulPresenter3.reqeust("1", "10");
+
+                            mHotFilmPopulPresenter3.reqeust(0+"","","1", "10");
+
+
                         break;
                 }
             }
@@ -106,17 +157,17 @@ public class WDShowmoiver extends WDBaseActivity {
             yi.setChecked(true);
             er.setChecked(false);
             san.setChecked(false);
-            mHotFilmPopulPresenter.reqeust("1","10");
+            mHotFilmPopulPresenter.reqeust(0+"","","1","10");
         }else if (type.equals("2")){
             yi.setChecked(false);
             er.setChecked(true);
             san.setChecked(false);
-            mHotFilmPopulPresenter2.reqeust("1","10");
+            mHotFilmPopulPresenter2.reqeust(0+"","","1","10");
         }else{
             yi.setChecked(false);
             er.setChecked(false);
             san.setChecked(true);
-            mHotFilmPopulPresenter3.reqeust("1","10");
+            mHotFilmPopulPresenter3.reqeust(0+"","","1","10");
         }
     }
 
@@ -130,6 +181,14 @@ public class WDShowmoiver extends WDBaseActivity {
 
                 adapter.setList(data.getResult());
                 adapter.notifyDataSetChanged();
+            }else{
+                for (int i=0;i<student.size();i++){
+                    try {
+                        userDao.delete(student.get(i));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
@@ -148,6 +207,14 @@ public class WDShowmoiver extends WDBaseActivity {
 
                 adapter.setList(data.getResult());
                 adapter.notifyDataSetChanged();
+            }else {
+                for (int i=0;i<student.size();i++){
+                    try {
+                        userDao.delete(student.get(i));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
@@ -164,6 +231,14 @@ public class WDShowmoiver extends WDBaseActivity {
             if (data.getStatus().equals("0000")){
                 adapter.setList(data.getResult());
                 adapter.notifyDataSetChanged();
+            }else{
+                for (int i=0;i<student.size();i++){
+                    try {
+                        userDao.delete(student.get(i));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
@@ -179,6 +254,56 @@ public class WDShowmoiver extends WDBaseActivity {
 
         if(EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
+        }
+    }
+
+    private class Guanp implements DataCall<Result> {
+        @Override
+        public void success(Result data){
+            if (data.getStatus().equals("0000")){
+                Toast.makeText(WDShowmoiver.this,data.getMessage(),Toast.LENGTH_LONG).show();
+                mHotFilmPopulPresenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1", "10");
+            }else{
+                for (int i=0;i<student.size();i++){
+                    try {
+                        userDao.delete(student.get(i));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WDShowmoiver.this,WDLoginActivity.class));
+            }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class Qguan implements DataCall<Result> {
+        @Override
+        public void success(Result data) {
+            if (data.getStatus().equals("0000")){
+                Toast.makeText(WDShowmoiver.this,data.getMessage(),Toast.LENGTH_LONG).show();
+                mHotFilmPopulPresenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1", "10");
+            }else{
+                for (int i=0;i<student.size();i++){
+                    try {
+                        userDao.delete(student.get(i));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WDShowmoiver.this,WDLoginActivity.class));
+            }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
         }
     }
 }

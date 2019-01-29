@@ -1,5 +1,6 @@
 package com.example.weiducinema.activity.cinema;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import recycler.coverflow.CoverFlowLayoutManger;
 import recycler.coverflow.RecyclerCoverFlow;
 
 public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCinemaDetailsAdapter.ByValue, CinemaTimeAdapter.onItemClick {
@@ -50,7 +52,8 @@ public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCine
     private String address;
     private FilmTimePersent filmTimePersent;
     private CinemaTimeAdapter timeAdapter;
-
+    TextView movie_text_xian,movie_text_dong;
+    int mWidth,mItemCount,mCoun;
 
     @Override
     protected int getLayoutId() {
@@ -71,7 +74,8 @@ public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCine
                 finish();
             }
         });
-
+        movie_text_dong =findViewById(R.id.movie_text_dong);
+        movie_text_xian = findViewById(R.id.movie_text_xian);
         if(!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
@@ -129,6 +133,19 @@ public class CinemaDetailsActivity extends WDBaseActivity implements RecycleCine
                 final List<ScheduleBean> result = data.getResult();
                 cinemaDetailsAdapter.setList(result);
                 recy_carousel.setAdapter(cinemaDetailsAdapter);
+                mWidth = movie_text_xian.getWidth();
+                mItemCount = cinemaDetailsAdapter.getItemCount();
+                mCoun = mWidth / mItemCount;
+                recy_carousel.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
+                    @Override
+                    public void onItemSelected(int position) {
+                        int selectedPos = recy_carousel.getSelectedPos();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(movie_text_dong, "translationX", mCoun * (selectedPos));
+                        animator.setDuration(500);
+                        animator.start();
+
+                    }
+                });
             } else {
                 Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
             }

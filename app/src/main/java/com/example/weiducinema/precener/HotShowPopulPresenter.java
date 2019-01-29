@@ -23,7 +23,7 @@ public class HotShowPopulPresenter extends BasePresenter {
     @Override
     protected Observable observable(Object... args) {
         IRequest iRequest = NetworkManager.instance().create(IRequest.class);
-        return iRequest.getPopul2((String) args[0], (String) args[1]);
+        return iRequest.getPopul2((String) args[0], (String) args[1],(String) args[2], (String) args[3]);
     }
 
 

@@ -5,26 +5,23 @@ import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.core.http.IRequest;
 import com.example.weiducinema.core.http.NetworkManager;
 
-
 import io.reactivex.Observable;
 
 /**
- * @author dingtao
- * @date 2018/12/28 11:23
- * qq:1940870847
+ * Created by 邵新轩(轩少)
+ * function:
+ * on 2019/1/24
  */
-public class UpComePopulPresenter extends BasePresenter {
+public class GuanPwdPersent extends BasePresenter {
 
 
-    public UpComePopulPresenter(DataCall dataCall) {
+    public GuanPwdPersent(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable observable(Object... args) {
         IRequest iRequest = NetworkManager.instance().create(IRequest.class);
-        return iRequest.getPopul3((String) args[0], (String) args[1],(String) args[2], (String) args[3]);
+        return iRequest.getGuan((String)args[0],(String)args[1],(String)args[2]);
     }
-
-
 }

@@ -15,7 +15,6 @@
             android:id="@+id/yi"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/com_icon_movie_default_"
             />
         <TextView
             android:textSize="14sp"
@@ -31,6 +30,7 @@
             android:layout_marginRight="24dp"
             android:src="@drawable/com_icon_collection_default_"
             android:layout_width="24dp"
+            android:id="@+id/guan"
             android:layout_height="24dp" />
     </RelativeLayout>
     <TextView

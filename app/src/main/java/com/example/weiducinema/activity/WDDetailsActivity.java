@@ -10,21 +10,25 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.example.weiducinema.adapter.ExAdapter;
 import com.example.weiducinema.adapter.PrevueAdapter;
 import com.example.weiducinema.adapter.StillsAdapter;
 import com.example.weiducinema.app.SpacesItemDecoration;
 import com.example.weiducinema.base.WDBaseActivity;
 import com.example.weiducinema.base.DataCall;
+import com.example.weiducinema.bean.CommentBean;
 import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.custom.WDSelectPicPopupWindow;
+import com.example.weiducinema.precener.CommentPrencenter;
 import com.example.weiducinema.precener.DetailsPrencenter;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -48,9 +52,12 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     private View popview;
     String moverid;
     private int height;
+    ImageView guan;
     StillsAdapter adapter2;
     private PopupWindow popupWindow;
     PrevueAdapter adapter;
+    ExpandableListView ex;
+    ExAdapter adapter4;
     SimpleDraweeView pratticulars_pratticulars_sim,pratticulars_pratticulars_qx_sim;
     TextView pratticulars_pratticulars_lx_txt,pratticulars_pratticulars_dy_txt,pratticulars_pratticulars_sc_txt,pratticulars_pratticulars_cd_txt,jianjie_txt;
     RecyclerView pratticulars_pratticulars_recview,pratticulars_prevue_rec,pratticulars_stagephoto_jz;
@@ -61,6 +68,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
     @Override
     protected void initView() {
+        guan = findViewById(R.id.guan);
         details_txt_details = findViewById(R.id.details_txt_details);
         details_txt_prediction = findViewById(R.id.details_txt_prediction);
         details_txt_stills = findViewById(R.id.details_txt_stills);
@@ -76,6 +84,12 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         movier_sim = findViewById(R.id.movier_sim);
         detailsPrencenter = new DetailsPrencenter(new Details());
         final Intent intent = getIntent();
+        String guans = intent.getStringExtra("guan");
+        if (guans.equals("1")){
+            guan.setImageResource(R.drawable.com_icon_collection_selected_);
+        }else{
+            guan.setImageResource(R.drawable.com_icon_collection_default_);
+        }
         moverid = intent.getStringExtra("mid");
         detailsPrencenter.reqeust(moverid);
         fanhui = findViewById(R.id.fanhui);
@@ -160,7 +174,11 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     }
 
     private void initReview(View popview) {
-
+        ex = popview.findViewById(R.id.ex);
+        CommentPrencenter commentPrencenter = new CommentPrencenter(new Coment());
+        adapter4 = new ExAdapter(this);
+        commentPrencenter.reqeust(li.getId()+"","1","10");
+        ex.setAdapter(adapter4);
     }
 
     private void initStills(View popview) {
@@ -262,6 +280,21 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         public void success(Result<DetailsBean> data) {
             adapter2.setData(data.getResult().getPosterList());
             adapter2.notifyDataSetChanged();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class Coment implements DataCall<Result<List<CommentBean>>> {
+
+
+        @Override
+        public void success(Result<List<CommentBean>> data) {
+            adapter4.setData(data.getResult());
+            adapter4.notifyDataSetChanged();
         }
 
         @Override

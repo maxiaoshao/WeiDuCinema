@@ -31,7 +31,7 @@ public class AppZhuce extends MultiDexApplication {
 //
 //        // 打开统计SDK调试模式（上线时记得关闭）
 //        UMConfigure.setLogEnabled(true);
-//        DaoMaster.DevOpenHelper openHelper = new DaoMaster.DevOpenHelper(this,DATA_BASE_NAME);
+//        0.DevOpenHelper openHelper = new DaoMaster.DevOpenHelper(this,DATA_BASE_NAME);
 //        SQLiteDatabase db = openHelper.getWritableDatabase();
 //        DaoMaster daoMaster = new DaoMaster(db);
 //        mdaoSession = daoMaster.newSession();

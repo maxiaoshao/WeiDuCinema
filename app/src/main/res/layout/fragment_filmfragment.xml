@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RelativeLayout
+                android:id="@+id/resc"
                 android:background="@drawable/pupol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -61,6 +62,36 @@
                     android:layout_width="312dp"
                     android:layout_centerHorizontal="true"
                     android:layout_height="200dp"></recycler.coverflow.RecyclerCoverFlow>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_below="@id/resc"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/shadow">
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/movie_text_xian"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="80dp"
+
+                    android:layout_marginRight="80dp" />
+                <TextView
+                    android:id="@+id/movie_text_dong"
+                    android:layout_width="35dp"
+                    android:layout_height="3dp"
+                    android:layout_centerHorizontal="false"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/moviefragment_shu" />
             </RelativeLayout>
 
 
