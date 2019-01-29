@@ -41,6 +41,8 @@ public interface IRequest {
      */
     @GET("movieApi/movie/v1/findHotMovieList")
     Observable<Result<List<PopularBean>>> getPopul(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
             @Query("page") String page ,
             @Query("count") String count);
     /**
@@ -51,6 +53,8 @@ public interface IRequest {
      */
     @GET("movieApi/movie/v1/findReleaseMovieList")
     Observable<Result<List<PopularBean>>> getPopul2(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
             @Query("page") String page ,
             @Query("count") String count);
     /**
@@ -61,6 +65,8 @@ public interface IRequest {
      */
     @GET("movieApi/movie/v1/findComingSoonMovieList")
     Observable<Result<List<PopularBean>>> getPopul3(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
             @Query("page") String page ,
             @Query("count") String count);
 
@@ -303,7 +309,6 @@ public interface IRequest {
             @Query("page") int page,
             @Query("count") int count,
             @Query("status") int status);
-            @Field("code") String code);
 
     /**
      * 查看评论接口

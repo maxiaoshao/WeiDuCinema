@@ -35,8 +35,7 @@ android {
         kuan {}
         xiaomi{}
         qh360 {}
-        baidu {}
-        wandoujia {}
+
     }
 
     productFlavors.all {
