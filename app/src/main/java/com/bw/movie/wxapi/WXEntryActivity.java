@@ -32,6 +32,7 @@ import java.sql.SQLException;
  */
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     private IWXAPI api;
+
     private WXLoginPersent wxLoginPersent  = new WXLoginPersent(new WXCall());;
     private DBManager manager;
     private Dao<UserInfo, String> userDao;
