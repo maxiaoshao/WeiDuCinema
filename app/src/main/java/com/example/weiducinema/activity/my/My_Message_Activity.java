@@ -2,8 +2,10 @@ package com.example.weiducinema.activity.my;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,6 +26,7 @@ import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.FindUserPersent;
+import com.example.weiducinema.precener.HeardPicPersent;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.j256.ormlite.dao.Dao;
 
@@ -51,6 +54,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
     private ImageView img_back;
     private Dao<UserInfo, String> userDao;
+    private HeardPicPersent heardPicPersent;
 
 
     @Override
@@ -72,6 +76,16 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
         img_back.setOnClickListener(this);
         img_pic.setOnClickListener(this);
         img_reset.setOnClickListener(this);
+
+        try {
+            userDao = DBManager.getInstance(this).getUserDao();
+            student = userDao.queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        heardPicPersent = new HeardPicPersent(new HeardCall());
+
     }
 
     private void creatediog() {
@@ -100,7 +114,9 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
             Crop(data.getData());
         }
         if (requestCode == 100&& resultCode == RESULT_OK) {
-            img_pic.setImageBitmap((Bitmap) data.getParcelableExtra("data"));
+            Bitmap bitmap = (Bitmap) data.getParcelableExtra("data");
+            img_pic.setImageBitmap(bitmap);
+          //  heardPicPersent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId(),);
         }
     }
 
@@ -199,5 +215,20 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     @Override
     protected void destoryData() {
 
+    }
+    //获取数据
+    class HeardCall implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+
+        Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void fail(ApiException e) {
+            Toast.makeText(getBaseContext(), "异常", Toast.LENGTH_SHORT).show();
+        }
     }
 }

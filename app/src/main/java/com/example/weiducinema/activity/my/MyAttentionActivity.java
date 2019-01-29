@@ -54,8 +54,11 @@ public class MyAttentionActivity extends WDBaseActivity {
         userAttenChengPrencenter = new UserAttenChengPrencenter(new UserAttenChang());
 
         try {
-            student = userDao.queryForAll();
+            userDao = DBManager.getInstance(this).getUserDao();
+            student = this.userDao.queryForAll();
             if (student.size()==0){
+                startActivity(new Intent(MyAttentionActivity.this,WDLoginActivity.class));
+            }if (student.size()==0){
                 startActivity(new Intent(MyAttentionActivity.this,WDLoginActivity.class));
             }else{
                 pai.setOnClickListener(new View.OnClickListener() {

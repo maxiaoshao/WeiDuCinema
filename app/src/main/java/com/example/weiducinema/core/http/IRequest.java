@@ -8,6 +8,7 @@ import com.example.weiducinema.bean.QueryPaiBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.ScheduleBean;
+import com.example.weiducinema.bean.TicketBean;
 import com.example.weiducinema.bean.UserAttenBean;
 import com.example.weiducinema.bean.YuantuiBean;
 import com.example.weiducinema.bean.encrypt.FindUserBean;
@@ -16,6 +17,8 @@ import com.example.weiducinema.bean.encrypt.UserInfo;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -279,6 +282,24 @@ public interface IRequest {
     @POST("movieApi/user/v1/weChatBindingLogin")
     @FormUrlEncoded
     Observable<Result<UserInfo>> getWxLogin(
-            @Field("code") String code)
-                           ;
+            @Field("code") String code);
+
+    /**
+     * 切换头像
+     */
+    @POST("movieApi/user/v1/verify/uploadHeadPic")
+    Observable<Result> headPic(@Header("userId")String userId,
+                               @Header("sessionId")String sessionId,
+                               @Body MultipartBody image);
+    /**
+     * movieApi/user/v1/verify/findUserBuyTicketRecordList
+     * 查询购票记录
+     */
+    @GET("movieApi/user/v1/verify/findUserBuyTicketRecordList")
+    Observable<Result<List<TicketBean>>> getTicketBean(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
+            @Query("page") int page,
+            @Query("count") int count,
+            @Query("status") int status);
 }

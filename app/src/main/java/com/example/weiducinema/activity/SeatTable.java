@@ -35,7 +35,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by baoyunlong on 16/6/16.
+ * Created by
+ *   邵新轩
+ * Data 16/6/16.
  */
 public class SeatTable extends View {
     private final boolean DBG = false;

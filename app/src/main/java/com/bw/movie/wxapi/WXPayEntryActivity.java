@@ -66,6 +66,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
             }
             Toast.makeText(this,result+"",Toast.LENGTH_LONG).show();
             payResult.setText(result);
+            finish();
         }
         Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }

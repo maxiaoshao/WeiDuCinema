@@ -9,6 +9,7 @@ public class Result<T> {
     private String message;
     private String status;
     private String orderId;
+    private String headPath;
 
     public String getOrderId() {
         return orderId;
@@ -40,5 +41,13 @@ public class Result<T> {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getHeadPath() {
+        return headPath;
+    }
+
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
     }
 }

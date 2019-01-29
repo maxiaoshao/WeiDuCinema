@@ -153,6 +153,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 my_pic.setImageURI(pic);
                 String nickName = userInfo1.getNickName();
                 my_name.setText(nickName);
+                //签到
             }
 
         } catch (Exception e1) {
@@ -198,15 +199,17 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        for (int i = 0; i < student.size(); i++) {
                             try {
-                                userDao.delete(student.get(i));
-                                userDao.notifyChanges();
+                                userDao.deleteBuilder().delete();//删除全部数据
+                                //userDao.notifyChanges();
+                                student.clear();//清空对象
+                                my_name.setText("未登录");
+                                my_pic.setImageResource(R.drawable.my_pic_img);
+                                my_sign.setText("签到");
                             } catch (Exception e1) {
                                 e1.printStackTrace();
                             }
 
-                        }
                     }
                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
