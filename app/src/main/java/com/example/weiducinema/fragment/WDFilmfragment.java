@@ -1,6 +1,7 @@
 package com.example.weiducinema.fragment;
 
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.example.weiducinema.activity.WDDetailsActivity;
@@ -29,6 +31,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import recycler.coverflow.CoverFlowLayoutManger;
 import recycler.coverflow.RecyclerCoverFlow;
 
 /**
@@ -45,9 +48,9 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
     RecycleFilmDetailsAdapter adapter4;
     RecyclerCoverFlow rcf_cinema_flow;
     RelativeLayout remen,zhengzai,jijiang;
-
+    TextView movie_text_xian,movie_text_dong;
     FragmentManager manager;
-
+    int mWidth,mItemCount,mCoun;
     @Override
     public String getPageName() {
         return null;
@@ -68,10 +71,11 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
         mHotFilmPopulPresenter = new HotFilmPopulPresenter(new PopulData());
         mHotShowPopulPresenter = new HotShowPopulPresenter(new PopulData2());
         mUpComePopulPresenter = new UpComePopulPresenter(new PopulData3());
-
-        mHotFilmPopulPresenter.reqeust("1","10");
-        mHotShowPopulPresenter.reqeust("1","10");
-        mUpComePopulPresenter.reqeust("1","10");
+        movie_text_dong = view.findViewById(R.id.movie_text_dong);
+        movie_text_xian = view.findViewById(R.id.movie_text_xian);
+        mHotFilmPopulPresenter.reqeust(0+"","","1","10");
+        mHotShowPopulPresenter.reqeust(0+"","","1","10");
+        mUpComePopulPresenter.reqeust(0+"","","1","10");
         remen = view.findViewById(R.id.remen);
         zhengzai = view.findViewById(R.id.zhengzai);
         jijiang = view.findViewById(R.id.jijiang);
@@ -153,10 +157,21 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView1.setLayoutManager(layoutManager);
                 recyclerView1.setAdapter(adapter1);
-
                 adapter4.setList(data.getResult());
                 adapter1.setList(data.getResult());
+                mWidth = movie_text_xian.getWidth();
+                mItemCount = adapter4.getItemCount();
+                mCoun = mWidth / mItemCount;
+                rcf_cinema_flow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
+                    @Override
+                    public void onItemSelected(int position) {
+                        int selectedPos = rcf_cinema_flow.getSelectedPos();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(movie_text_dong, "translationX", mCoun * (selectedPos));
+                        animator.setDuration(500);
+                        animator.start();
 
+                    }
+                });
                 rcf_cinema_flow.setAdapter(adapter4);
                 rcf_cinema_flow.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -186,6 +201,7 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
                 recyclerView2.setAdapter(adapter2);
                 adapter2.setList(data.getResult());
                 adapter2.notifyDataSetChanged();
+
             }
         }
 

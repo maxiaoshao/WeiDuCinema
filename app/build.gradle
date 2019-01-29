@@ -30,6 +30,18 @@ android {
             signingConfig signingConfigs.config
         }
     }
+    flavorDimensions "versionCode"
+    productFlavors {
+        kuan {}
+        xiaomi{}
+        qh360 {}
+        baidu {}
+        wandoujia {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
     sourceSets {
         main {
             jniLibs.srcDir 'libs'

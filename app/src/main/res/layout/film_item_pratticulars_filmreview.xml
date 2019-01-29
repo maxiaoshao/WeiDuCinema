@@ -35,17 +35,12 @@
         android:layout_marginTop="20dp"
         app:placeholderImage="@drawable/com_icon_down_default_" />
 
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/pratticulars_filmreview_rec"
+    <ExpandableListView
+        android:id="@+id/ex"
+        android:layout_below="@id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp">
+        android:layout_height="wrap_content"></ExpandableListView>
 
-    </com.jcodecraeer.xrecyclerview.XRecyclerView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,4 +90,5 @@
             android:layout_alignParentRight="true"
             android:textSize="15sp" />
     </RelativeLayout>
+
 </RelativeLayout>

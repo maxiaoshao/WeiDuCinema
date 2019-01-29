@@ -11,12 +11,14 @@
         android:layout_width="match_parent"
         android:clipChildren="false"
         android:layout_height="140dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@drawable/yingpian"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="129dp"
@@ -46,13 +48,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
-                    android:background="@drawable/com_icon_collection_selected_"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" />
+
                 <TextView
                     android:id="@+id/titles"
                     android:textSize="12sp"
@@ -70,6 +66,13 @@
             </RelativeLayout>
 
         </LinearLayout>
+        <ImageView
+            android:id="@+id/guan"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.weiducinema.core.http;
 
+import com.example.weiducinema.bean.CommentBean;
 import com.example.weiducinema.bean.FilmTimeBean;
 import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.PayBean;
@@ -302,4 +303,44 @@ public interface IRequest {
             @Query("page") int page,
             @Query("count") int count,
             @Query("status") int status);
+            @Field("code") String code);
+
+    /**
+     * 查看评论接口
+     * @param movieId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("movieApi/movie/v1/findAllMovieComment")
+    Observable<Result<List<CommentBean>>> getcomment(
+            @Query("movieId") String movieId,
+            @Query("page") String page,
+            @Query("count") String count);
+
+    /**
+     * 关注影片
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @return
+     */
+    @GET("movieApi/movie/v1/verify/followMovie")
+    Observable<Result> getGuan(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
+            @Query("movieId") String movieId);
+
+    /**
+     * 取消关注
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @return
+     */
+    @GET(" movieApi/movie/v1/verify/cancelFollowMovie")
+    Observable<Result> getQGuan(
+            @Header("userId")String userId,
+            @Header("sessionId")String sessionId,
+            @Query("movieId") String movieId);
 }

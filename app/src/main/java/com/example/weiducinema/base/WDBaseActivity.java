@@ -47,6 +47,9 @@ public abstract class WDBaseActivity extends AppCompatActivity {
         if (type == -1) {
             Toast.makeText(this, "没有网络", Toast.LENGTH_LONG).show();
         } else {
+            MobclickAgent.onPageStart(getClass().getName());
+            //session的统计
+            MobclickAgent.onResume(this);  //统计时长
 
 
             setContentView(getLayoutId());
@@ -55,6 +58,7 @@ public abstract class WDBaseActivity extends AppCompatActivity {
             setStatusColor();
             setSystemInvadeBlack();
         }
+
     }
 
     @Override
@@ -62,11 +66,11 @@ public abstract class WDBaseActivity extends AppCompatActivity {
         super.onResume();
         MobclickAgent.onResume(this);
     }
-
     @Override
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+        MobclickAgent.onPageEnd(getClass().getName());
     }
 
     protected void setStatusColor() {
@@ -136,6 +140,8 @@ public abstract class WDBaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         destoryData();
+        System.gc();
+
     }
 
     //取消操作：请求或者其他

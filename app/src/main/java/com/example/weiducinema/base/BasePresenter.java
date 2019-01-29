@@ -35,7 +35,7 @@ public abstract class BasePresenter {
 
 
 
-        public void reqeust(Object... args) {
+        public void reqeust(final Object... args) {
             if (running) {
                 return;
             }
@@ -68,6 +68,7 @@ public abstract class BasePresenter {
 
                         public void accept(Result result) throws Exception {
                             running = false;
+                            result.setArgs(args);
                             dataCall.success(result);
 
                         }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.weiducinema.app.WifiUtils;
 import com.google.gson.Gson;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -58,20 +59,18 @@ public abstract class WDBaseFragment extends Fragment {
 		StatusUtil.setSystemStatus(getActivity(), true, true);
 	}
 
-	//	@Override
-//	public void onResume() {
-//		super.onResume();
-//		if (!MTStringUtils.isEmpty(getPageName()))
-//			MobclickAgent.onPageStart(getPageName()); // 统计页面
-//	}
-//
-//	@Override
-//	public void onPause() {
-//		super.onPause();
-//		if (!MTStringUtils.isEmpty(getPageName()))
-//			MobclickAgent.onPageEnd(getPageName());// 统计页面
-//	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onPageStart(getClass().getName());
+	}
 
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPageEnd(getClass().getName());
+	}
 	/**
 	 * 设置页面名字 用于友盟统计
 	 */

@@ -28,6 +28,7 @@ public class UserAttenChangAdaptet extends RecyclerView.Adapter<RecyclerView.Vie
         li = new ArrayList<>();
     }
     public void setData(List<UserAttentionCheng> result) {
+        li.clear();
         li = result;
     }
     @NonNull
