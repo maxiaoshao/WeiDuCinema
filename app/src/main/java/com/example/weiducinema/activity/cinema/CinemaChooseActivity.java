@@ -185,6 +185,7 @@ public class CinemaChooseActivity extends WDBaseActivity {
         if (value.contains(".")) {
             spannableString.setSpan(new RelativeSizeSpan(0.6f), value.indexOf("."), value.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
+
         return spannableString;
     }
 
@@ -192,7 +193,7 @@ public class CinemaChooseActivity extends WDBaseActivity {
         @Override
         public void success(Result data) {
             if (data.getStatus().equals("0000")){
-                Toast.makeText(CinemaChooseActivity.this,"创建订单成功",Toast.LENGTH_LONG).show();
+
                 String orderId = data.getOrderId();
                 IRequest interfacea = NetworkManager.instance().create(IRequest.class);
                 interfacea.pay(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1",orderId).subscribeOn(Schedulers.newThread())

@@ -60,7 +60,7 @@ public class ExAdapter extends BaseExpandableListAdapter {
         }
         groupView.sim.setImageURI(list.get(groupPosition).getCommentHeadPic());
         groupView.seller_cb.setText(list.get(groupPosition).getCommentUserName());
-        groupView.seller_name_tv.setText(list.get(groupPosition).getMovieComment());
+        groupView.seller_name_tv.setText(list.get(groupPosition).getCommentContent());
         return convertView;
     }
 
