@@ -1,6 +1,7 @@
 package com.example.weiducinema.activity.my;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,7 +53,10 @@ public class MyAttentionActivity extends WDBaseActivity {
         recy = findViewById(R.id.ercy);
         userAttenPrencenter = new UserAttenPrencenter(new UserAtten());
         userAttenChengPrencenter = new UserAttenChengPrencenter(new UserAttenChang());
-
+        pai.setBackgroundResource(R.drawable.btn_gradient);
+        pai.setTextColor(Color.WHITE);
+        yuan.setBackgroundResource(R.drawable.btn_wu);
+        yuan.setTextColor(Color.BLACK);
         try {
            userDao= DBManager.getInstance(this).getUserDao();
             student = userDao.queryForAll();
@@ -69,12 +73,20 @@ public class MyAttentionActivity extends WDBaseActivity {
         pai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pai.setBackgroundResource(R.drawable.btn_gradient);
+                pai.setTextColor(Color.WHITE);
+                yuan.setBackgroundResource(R.drawable.btn_wu);
+                yuan.setTextColor(Color.BLACK);
                 userAttenPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
             }
         });
         yuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                yuan.setBackgroundResource(R.drawable.btn_gradient);
+                yuan.setTextColor(Color.WHITE);
+                pai.setBackgroundResource(R.drawable.btn_wu);
+                pai.setTextColor(Color.BLACK);
                 userAttenChengPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
 
             }

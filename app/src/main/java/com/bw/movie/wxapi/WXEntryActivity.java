@@ -100,8 +100,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             UserInfo result = data.getResult();
                 try {
                     userDao.createOrUpdate(result);
-                    Intent intent = new Intent(WXEntryActivity.this, WDShowActivity.class);
-                    startActivity(intent);
                     finish();
                 } catch (Exception e) {
                     e.printStackTrace();
