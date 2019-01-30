@@ -34,44 +34,44 @@ import retrofit2.http.Query;
  */
 public interface IRequest {
     /**
-     *
      * @param page
      * @param count
      * @return
      */
     @GET("movieApi/movie/v1/findHotMovieList")
     Observable<Result<List<PopularBean>>> getPopul(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
-            @Query("page") String page ,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") String page,
             @Query("count") String count);
+
     /**
-     *
      * @param page
      * @param count
      * @return
      */
     @GET("movieApi/movie/v1/findReleaseMovieList")
     Observable<Result<List<PopularBean>>> getPopul2(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
-            @Query("page") String page ,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") String page,
             @Query("count") String count);
+
     /**
-     *
      * @param page
      * @param count
      * @return
      */
     @GET("movieApi/movie/v1/findComingSoonMovieList")
     Observable<Result<List<PopularBean>>> getPopul3(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
-            @Query("page") String page ,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") String page,
             @Query("count") String count);
 
     /**
      * 登录
+     *
      * @param phone
      * @param pwd
      * @return
@@ -83,6 +83,7 @@ public interface IRequest {
 
     /**
      * 注册
+     *
      * @param nickName
      * @param phone
      * @param pwd
@@ -101,19 +102,20 @@ public interface IRequest {
 
     @FormUrlEncoded
     Observable<Result> getRegiest(@Field("nickName") String nickName,
-                               @Field("phone") String phone,
-                               @Field("pwd") String pwd,
-                               @Field("pwd2") String pwd2,
-                               @Field("sex") int sex,
-                               @Field("birthday") String birthday,
-                               @Field("imei") String imei,
-                               @Field("ua") String ua,
-                               @Field("screenSize") String screenSize,
-                               @Field("os") String os,
-                               @Field("email") String email);
+                                  @Field("phone") String phone,
+                                  @Field("pwd") String pwd,
+                                  @Field("pwd2") String pwd2,
+                                  @Field("sex") int sex,
+                                  @Field("birthday") String birthday,
+                                  @Field("imei") String imei,
+                                  @Field("ua") String ua,
+                                  @Field("screenSize") String screenSize,
+                                  @Field("os") String os,
+                                  @Field("email") String email);
 
     /**
      * 推荐影院
+     *
      * @param page
      * @param count
      * @return
@@ -123,11 +125,12 @@ public interface IRequest {
     Observable<Result<List<YuantuiBean>>> getTui(
             @Header("userId") String userid,
             @Header("sessionId") String sessid,
-            @Query("page") String page ,
+            @Query("page") String page,
             @Query("count") String count);
 
     /**
      * 附近影院
+     *
      * @param userid
      * @param sessid
      * @param page
@@ -138,9 +141,9 @@ public interface IRequest {
     Observable<Result<List<YuantuiBean>>> getFu(
             @Header("userId") String userid,
             @Header("sessionId") String sessid,
-            @Query("longitude") String longitude ,
+            @Query("longitude") String longitude,
             @Query("latitude") String latitude,
-            @Query("page") String page ,
+            @Query("page") String page,
             @Query("count") String count);
 
     /**
@@ -151,15 +154,16 @@ public interface IRequest {
 
     /**
      * 影片详情
+     *
      * @param movieId
      * @return
      */
     @GET("movieApi/movie/v1/findMoviesDetail")
     Observable<Result<DetailsBean>> getDetails(
             @Query("movieId") String movieId);
+
     /**
      * 根据用户Id查询用户信息
-     *
      */
     @GET("movieApi/user/v1/verify/getUserInfoByUserId")
     Observable<Result<FindUserBean>> getFindUser(
@@ -168,12 +172,13 @@ public interface IRequest {
     );
 
     /**
-     *影院排期
+     * 影院排期
      */
     @GET("movieApi/movie/v1/findMovieListByCinemaId")
     Observable<Result<List<ScheduleBean>>> getSchedule(
             @Query("cinemaId") String cinemaId
     );
+
     /**
      * 电影时间排期
      */
@@ -185,6 +190,7 @@ public interface IRequest {
 
     /**
      * 根据影片查询影院
+     *
      * @param movieId
      * @return
      */
@@ -194,6 +200,7 @@ public interface IRequest {
 
     /**
      * 根据电影和影城查询排期
+     *
      * @param cinemasId
      * @param movieId
      * @return
@@ -205,6 +212,7 @@ public interface IRequest {
 
     /**
      * 根据用户关注影片，进行查询
+     *
      * @param userId
      * @param sessionId
      * @param page
@@ -213,13 +221,14 @@ public interface IRequest {
      */
     @GET("movieApi/movie/v1/verify/findMoviePageList")
     Observable<Result<List<UserAttenBean>>> getUserPai(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
             @Query("page") String page,
             @Query("count") String count);
 
     /**
      * 根据用户关注影城，进行查询
+     *
      * @param userId
      * @param sessionId
      * @param page
@@ -228,21 +237,22 @@ public interface IRequest {
      */
     @GET("movieApi/cinema/v1/verify/findCinemaPageList")
     Observable<Result<List<UserAttenBean>>> getUserChang(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
             @Query("page") String page,
             @Query("count") String count);
 
     /**
      * 修改密码
+     *
      * @param userId
      * @param sessionId
      * @return
      */
     @POST("movieApi/user/v1/verify/modifyUserPwd")
     Observable<Result> getChangePwd(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
             @Field("oldPwd") String oldPwd,
             @Field("newPwd") String newPwd,
             @Field("newPwd2") String newPwd2
@@ -250,6 +260,7 @@ public interface IRequest {
 
     /**
      * 下单接口
+     *
      * @param userId
      * @param sessionId
      * @param scheduleId
@@ -259,14 +270,15 @@ public interface IRequest {
      */
     @POST("movieApi/movie/v1/verify/buyMovieTicket")
     @FormUrlEncoded
-    Observable<Result> getOrder(@Header("userId")String userId,
-                                @Header("sessionId")String sessionId,
+    Observable<Result> getOrder(@Header("userId") String userId,
+                                @Header("sessionId") String sessionId,
                                 @Field("scheduleId") String scheduleId,
-                                  @Field("amount") String amount,
-                                  @Field("sign") String sign);
+                                @Field("amount") String amount,
+                                @Field("sign") String sign);
 
     /**
      * 支付接口
+     *
      * @param userId
      * @param sessionId
      * @param payType
@@ -275,13 +287,14 @@ public interface IRequest {
      */
     @POST("movieApi/movie/v1/verify/pay")
     @FormUrlEncoded
-    Observable<PayBean> pay(@Header("userId")String userId,
-                            @Header("sessionId")String sessionId,
+    Observable<PayBean> pay(@Header("userId") String userId,
+                            @Header("sessionId") String sessionId,
                             @Field("payType") String payType,
                             @Field("orderId") String orderId);
 
     /**
      * 微信登录
+     *
      * @param code
      * @return
      */
@@ -295,23 +308,25 @@ public interface IRequest {
      * 切换头像
      */
     @POST("movieApi/user/v1/verify/uploadHeadPic")
-    Observable<Result> headPic(@Header("userId")String userId,
-                               @Header("sessionId")String sessionId,
+    Observable<Result> headPic(@Header("userId") String userId,
+                               @Header("sessionId") String sessionId,
                                @Body MultipartBody image);
+
     /**
      * movieApi/user/v1/verify/findUserBuyTicketRecordList
      * 查询购票记录
      */
     @GET("movieApi/user/v1/verify/findUserBuyTicketRecordList")
     Observable<Result<List<TicketBean>>> getTicketBean(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
             @Query("page") int page,
             @Query("count") int count,
             @Query("status") int status);
 
     /**
      * 查看评论接口
+     *
      * @param movieId
      * @param page
      * @param count
@@ -325,6 +340,7 @@ public interface IRequest {
 
     /**
      * 关注影片
+     *
      * @param userId
      * @param sessionId
      * @param movieId
@@ -332,12 +348,13 @@ public interface IRequest {
      */
     @GET("movieApi/movie/v1/verify/followMovie")
     Observable<Result> getGuan(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
             @Query("movieId") String movieId);
 
     /**
      * 取消关注
+     *
      * @param userId
      * @param sessionId
      * @param movieId
@@ -345,7 +362,16 @@ public interface IRequest {
      */
     @GET(" movieApi/movie/v1/verify/cancelFollowMovie")
     Observable<Result> getQGuan(
-            @Header("userId")String userId,
-            @Header("sessionId")String sessionId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
             @Query("movieId") String movieId);
+
+    /**
+     *
+     */
+    @GET("movieApi/user/v1/verify/userSignIn")
+    Observable<Result> getSign(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId);
+
 }

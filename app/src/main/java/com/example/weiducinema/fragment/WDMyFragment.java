@@ -21,11 +21,15 @@ import com.example.weiducinema.activity.my.My_Message_Activity;
 import com.example.weiducinema.activity.my.MyNewVersionsActivity;
 import com.example.weiducinema.activity.my.MyOpinionActivity;
 import com.example.weiducinema.activity.my.MyTrackerActivity;
+import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.base.WDBaseFragment;
 
+import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.bean.encrypt.UserInfoBean;
+import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.db.DBManager;
+import com.example.weiducinema.precener.SignPersent;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.j256.ormlite.dao.Dao;
 
@@ -55,6 +59,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
 
     private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
     private Dao<UserInfo, String> userDao;
+    private SignPersent persent;
 
     @Override
     public String getPageName() {
@@ -85,8 +90,9 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         my_tickling.setOnClickListener(this);
         my_new_versions.setOnClickListener(this);
         my_finish.setOnClickListener(this);
+        my_sign.setOnClickListener(this);
 
-
+        persent = new SignPersent(new SignCall());
 
 
     }
@@ -186,6 +192,10 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
             case R.id.my_new_versions:
                 startActivity(new Intent(getActivity(), MyNewVersionsActivity.class));
                 break;
+            case R.id.my_sign:
+           // persent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"");
+                break;
+
 
 
         }
@@ -218,5 +228,20 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
             }
         });
         builder.create().show();
+    }
+    //获取数据
+    class SignCall implements DataCall<Result<UserInfo>> {
+
+        @Override
+        public void success(Result<UserInfo> data) {
+
+        Toast.makeText(getContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void fail(ApiException e) {
+            Toast.makeText(getContext(), "异常", Toast.LENGTH_SHORT).show();
+        }
     }
 }

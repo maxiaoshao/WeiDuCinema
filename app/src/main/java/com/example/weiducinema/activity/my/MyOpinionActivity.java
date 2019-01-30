@@ -40,6 +40,12 @@ public class MyOpinionActivity extends WDBaseActivity implements View.OnClickLis
         img_back = findViewById(R.id.img_back);
         img_back.setOnClickListener(this);
         btn_sent.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         userDao = DBManager.getInstance(this).getUserDao();
         try {
             student = userDao.queryForAll();
