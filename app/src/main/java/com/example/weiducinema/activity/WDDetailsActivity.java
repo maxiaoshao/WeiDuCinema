@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.example.weiducinema.adapter.ExAdapter;
@@ -58,6 +59,8 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     PrevueAdapter adapter;
     ExpandableListView ex;
     ExAdapter adapter4;
+    boolean equals;
+    ImageView pratticulars_filmreview_while;
     SimpleDraweeView pratticulars_pratticulars_sim,pratticulars_pratticulars_qx_sim;
     TextView pratticulars_pratticulars_lx_txt,pratticulars_pratticulars_dy_txt,pratticulars_pratticulars_sc_txt,pratticulars_pratticulars_cd_txt,jianjie_txt;
     RecyclerView pratticulars_pratticulars_recview,pratticulars_prevue_rec,pratticulars_stagephoto_jz;
@@ -85,7 +88,13 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         detailsPrencenter = new DetailsPrencenter(new Details());
         final Intent intent = getIntent();
         String guans = intent.getStringExtra("guan");
-        if (guans.equals("1")){
+        if (guans==null){
+
+        }else{
+
+            equals = guans.equals("1");
+        }
+        if (equals){
             guan.setImageResource(R.drawable.com_icon_collection_selected_);
         }else{
             guan.setImageResource(R.drawable.com_icon_collection_default_);
@@ -169,16 +178,26 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
                 initReview(popview);
+//                pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
+//                pratticulars_prevue_rec.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(WDDetailsActivity.this,"写评论",Toast.LENGTH_LONG).show();
+//                    }
+//                });
                 break;
         }
     }
 
     private void initReview(View popview) {
+
+
         ex = popview.findViewById(R.id.ex);
         CommentPrencenter commentPrencenter = new CommentPrencenter(new Coment());
         adapter4 = new ExAdapter(this);
         commentPrencenter.reqeust(li.getId()+"","1","10");
         ex.setAdapter(adapter4);
+
     }
 
     private void initStills(View popview) {

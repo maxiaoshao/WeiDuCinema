@@ -5,29 +5,47 @@ package com.example.weiducinema.bean;
  * 2019/1/29 11:40
  */
 public class CommentBean {
+
+
         /**
-         * commentId : 3
-         * commentTime : 1533117674000
+         * commentContent : 电影好看
+         * commentHeadPic : http://172.17.8.100/images/movie/head_pic/bwjy.jpg
+         * commentId : 1962
+         * commentTime : 1547970345000
+         * commentUserId : 4046
+         * commentUserName : dgjrwkpgw
          * greatNum : 0
-         * replyNum : 0
-         * commentHeadPic : http://172.17.8.100/images/head_pic/bwjy.jpg
          * hotComment : 0
-         * isGreat : 1
-         * movieComment : 恐龙界的霸主！
-         * commentUserId : 6
-         * commentUserName : 谁的益达
+         * isGreat : 0
+         * replyNum : 0
          */
 
+        private String commentContent;
+        private String commentHeadPic;
         private int commentId;
         private long commentTime;
-        private int greatNum;
-        private int replyNum;
-        private String commentHeadPic;
-        private int hotComment;
-        private int isGreat;
-        private String movieComment;
         private int commentUserId;
         private String commentUserName;
+        private int greatNum;
+        private int hotComment;
+        private int isGreat;
+        private int replyNum;
+
+        public String getCommentContent() {
+            return commentContent;
+        }
+
+        public void setCommentContent(String commentContent) {
+            this.commentContent = commentContent;
+        }
+
+        public String getCommentHeadPic() {
+            return commentHeadPic;
+        }
+
+        public void setCommentHeadPic(String commentHeadPic) {
+            this.commentHeadPic = commentHeadPic;
+        }
 
         public int getCommentId() {
             return commentId;
@@ -45,28 +63,28 @@ public class CommentBean {
             this.commentTime = commentTime;
         }
 
+        public int getCommentUserId() {
+            return commentUserId;
+        }
+
+        public void setCommentUserId(int commentUserId) {
+            this.commentUserId = commentUserId;
+        }
+
+        public String getCommentUserName() {
+            return commentUserName;
+        }
+
+        public void setCommentUserName(String commentUserName) {
+            this.commentUserName = commentUserName;
+        }
+
         public int getGreatNum() {
             return greatNum;
         }
 
         public void setGreatNum(int greatNum) {
             this.greatNum = greatNum;
-        }
-
-        public int getReplyNum() {
-            return replyNum;
-        }
-
-        public void setReplyNum(int replyNum) {
-            this.replyNum = replyNum;
-        }
-
-        public String getCommentHeadPic() {
-            return commentHeadPic;
-        }
-
-        public void setCommentHeadPic(String commentHeadPic) {
-            this.commentHeadPic = commentHeadPic;
         }
 
         public int getHotComment() {
@@ -85,28 +103,12 @@ public class CommentBean {
             this.isGreat = isGreat;
         }
 
-        public String getMovieComment() {
-            return movieComment;
+        public int getReplyNum() {
+            return replyNum;
         }
 
-        public void setMovieComment(String movieComment) {
-            this.movieComment = movieComment;
-        }
-
-        public int getCommentUserId() {
-            return commentUserId;
-        }
-
-        public void setCommentUserId(int commentUserId) {
-            this.commentUserId = commentUserId;
-        }
-
-        public String getCommentUserName() {
-            return commentUserName;
-        }
-
-        public void setCommentUserName(String commentUserName) {
-            this.commentUserName = commentUserName;
+        public void setReplyNum(int replyNum) {
+            this.replyNum = replyNum;
         }
 
 }
