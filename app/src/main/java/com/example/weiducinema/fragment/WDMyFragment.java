@@ -193,6 +193,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 startActivity(new Intent(getActivity(), MyNewVersionsActivity.class));
                 break;
             case R.id.my_sign:
+                my_sign.setText("已签到");
            // persent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"");
                 break;
 
