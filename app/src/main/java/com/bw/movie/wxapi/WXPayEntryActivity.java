@@ -29,7 +29,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
 
-
+        payResult = findViewById(R.id.fanhui);
         api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516");
         api.handleIntent(getIntent(), this);
     }
@@ -65,10 +65,10 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
                     break;
             }
             Toast.makeText(this,result+"",Toast.LENGTH_LONG).show();
-            payResult.setText(result);
+
             finish();
         }
-        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+        payResult.setText(result);
     }
 
 }

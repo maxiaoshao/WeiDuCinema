@@ -30,6 +30,7 @@ public class RecycleFilmDetailsAdapter extends RecyclerView.Adapter<RecyclerView
 
 
     public void setList(List<PopularBean> result) {
+        li.clear();
         li = result;
     }
     @NonNull

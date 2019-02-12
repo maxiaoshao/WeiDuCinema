@@ -1,6 +1,7 @@
 package com.example.weiducinema.app;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Environment;
 import android.support.multidex.MultiDexApplication;
 
@@ -11,9 +12,13 @@ import com.umeng.analytics.MobclickAgent;
 
 public class AppZhuce extends MultiDexApplication {
     private final static String DATA_BASE_NAME = "ZZZ";
-
     // 定义一个变量，来标识是否退出
     private static boolean isExit = false;
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
 
 
     @Override

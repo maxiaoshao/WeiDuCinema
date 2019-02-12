@@ -2,14 +2,17 @@ package com.example.weiducinema.fragment;
 
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.example.weiducinema.activity.WDDetailsActivity;
@@ -18,17 +21,29 @@ import com.example.weiducinema.adapter.RecycleHotAdapter;
 import com.example.weiducinema.adapter.RecycleHotShowAdapter;
 import com.example.weiducinema.adapter.RecycleUpComeAdapter;
 import com.example.weiducinema.adapter.RecycleFilmDetailsAdapter;
+import com.example.weiducinema.app.WifiUtils;
 import com.example.weiducinema.base.WDBaseFragment;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.core.exception.ApiException;
+import com.example.weiducinema.core.exception.FileUtils;
 import com.example.weiducinema.precener.HotFilmPopulPresenter;
 import com.example.weiducinema.precener.HotShowPopulPresenter;
 import com.example.weiducinema.precener.UpComePopulPresenter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import recycler.coverflow.CoverFlowLayoutManger;
@@ -41,16 +56,17 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
     HotFilmPopulPresenter mHotFilmPopulPresenter;
     HotShowPopulPresenter mHotShowPopulPresenter;
     UpComePopulPresenter mUpComePopulPresenter;
-    RecyclerView recyclerView1,recyclerView2,recyclerView3;
+    RecyclerView recyclerView1, recyclerView2, recyclerView3;
     RecycleHotAdapter adapter1;
     RecycleHotShowAdapter adapter2;
     RecycleUpComeAdapter adapter3;
     RecycleFilmDetailsAdapter adapter4;
     RecyclerCoverFlow rcf_cinema_flow;
-    RelativeLayout remen,zhengzai,jijiang;
-    TextView movie_text_xian,movie_text_dong;
+    RelativeLayout remen, zhengzai, jijiang;
+    TextView movie_text_xian, movie_text_dong;
     FragmentManager manager;
-    int mWidth,mItemCount,mCoun;
+    int mWidth, mItemCount, mCoun;
+
     @Override
     public String getPageName() {
         return null;
@@ -73,9 +89,9 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
         mUpComePopulPresenter = new UpComePopulPresenter(new PopulData3());
         movie_text_dong = view.findViewById(R.id.movie_text_dong);
         movie_text_xian = view.findViewById(R.id.movie_text_xian);
-        mHotFilmPopulPresenter.reqeust(0+"","","1","10");
-        mHotShowPopulPresenter.reqeust(0+"","","1","10");
-        mUpComePopulPresenter.reqeust(0+"","","1","10");
+        mHotFilmPopulPresenter.reqeust(0 + "", "", "1", "10");
+        mHotShowPopulPresenter.reqeust(0 + "", "", "1", "10");
+        mUpComePopulPresenter.reqeust(0 + "", "", "1", "10");
         remen = view.findViewById(R.id.remen);
         zhengzai = view.findViewById(R.id.zhengzai);
         jijiang = view.findViewById(R.id.jijiang);
@@ -94,7 +110,7 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
             @Override
             public void tiao(String json) {
                 Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
-                intent.putExtra("mid",json);
+                intent.putExtra("mid", json);
                 startActivity(intent);
 
             }
@@ -103,7 +119,7 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
             @Override
             public void tiao(String json) {
                 Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
-                intent.putExtra("mid",json);
+                intent.putExtra("mid", json);
                 startActivity(intent);
 
             }
@@ -112,7 +128,7 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
             @Override
             public void tiao(String json) {
                 Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
-                intent.putExtra("mid",json);
+                intent.putExtra("mid", json);
                 startActivity(intent);
 
             }
@@ -121,7 +137,7 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
             @Override
             public void tiao(String json) {
                 Intent intent = new Intent(getActivity(), WDDetailsActivity.class);
-                intent.putExtra("mid",json);
+                intent.putExtra("mid", json);
                 startActivity(intent);
 
             }
@@ -130,7 +146,7 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.remen:
                 startActivity(new Intent(getActivity(), WDShowmoiver.class));
                 EventBus.getDefault().postSticky("1");
@@ -151,17 +167,25 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
 
         @Override
         public void success(Result<List<PopularBean>> data) {
-            if (data.getStatus().equals("0000")){
+            if (data.getStatus().equals("0000")) {
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView1.setLayoutManager(layoutManager);
                 recyclerView1.setAdapter(adapter1);
-                adapter4.setList(data.getResult());
-                adapter1.setList(data.getResult());
+
+                String json = new Gson().toJson(data.getResult());
+                FileUtils.saveDataToFile(getContext(), json, "shouye");
+                String shouye = FileUtils.loadDataFromFile(getContext(), "shouye");
+                Type types = new TypeToken<List<PopularBean>>() {}.getType();
+
+                List<PopularBean> li = new Gson().fromJson(shouye,types);
+                adapter4.setList(li);
+                adapter1.setList(li);
                 mWidth = movie_text_xian.getWidth();
                 mItemCount = adapter4.getItemCount();
                 mCoun = mWidth / mItemCount;
+
                 rcf_cinema_flow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {
                     @Override
                     public void onItemSelected(int position) {
@@ -184,16 +208,31 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
 
         @Override
         public void fail(ApiException e) {
+            int type = WifiUtils.getInstance(getActivity()).getNetype();
+            if (type == -1) {
 
+                String shouye = FileUtils.loadDataFromFile(getContext(), "shouye");
+                Type types = new TypeToken<List<PopularBean>>() {}.getType();
+
+                List<PopularBean> li = new Gson().fromJson(shouye,types);
+                adapter4.setList(li);
+                adapter1.setList(li);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView1.setLayoutManager(layoutManager);
+                recyclerView1.setAdapter(adapter1);
+                adapter4.notifyDataSetChanged();
+            }
         }
     }
 
-    private class PopulData2 implements DataCall<Result<List<PopularBean>>>  {
+    private class PopulData2 implements DataCall<Result<List<PopularBean>>> {
 
 
         @Override
         public void success(Result<List<PopularBean>> data) {
-            if (data.getStatus().equals("0000")){
+            if (data.getStatus().equals("0000")) {
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -211,12 +250,12 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
         }
     }
 
-    private class PopulData3 implements DataCall<Result<List<PopularBean>>>  {
+    private class PopulData3 implements DataCall<Result<List<PopularBean>>> {
 
 
         @Override
         public void success(Result<List<PopularBean>> data) {
-            if (data.getStatus().equals("0000")){
+            if (data.getStatus().equals("0000")) {
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -232,5 +271,6 @@ public class WDFilmfragment extends WDBaseFragment implements View.OnClickListen
 
         }
     }
+
 
 }

@@ -32,7 +32,9 @@ public class RecycleHotAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     public void setList(List<PopularBean> result) {
+        li.clear();
         li = result;
+
     }
     @NonNull
     @Override
