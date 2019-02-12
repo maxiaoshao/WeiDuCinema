@@ -9,11 +9,14 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.example.weiducinema.app.WifiUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -37,6 +40,18 @@ public abstract class WDBaseActivity extends AppCompatActivity {
      */
     private static WDBaseActivity mForegroundActivity = null;
 
+    /**
+     * 点击返回按钮两次退出
+     */
+    private static boolean isExit = false;
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +61,7 @@ public abstract class WDBaseActivity extends AppCompatActivity {
         int type = WifiUtils.getInstance(this).getNetype();
         if (type == -1) {
             Toast.makeText(this, "没有网络", Toast.LENGTH_LONG).show();
+            setContentView(R.layout.no);
         } else {
             MobclickAgent.onPageStart(getClass().getName());
             //session的统计
@@ -188,5 +204,27 @@ public abstract class WDBaseActivity extends AppCompatActivity {
             return img_path;
         }
         return null;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                    Toast.LENGTH_SHORT).show();
+            // 利用handler延迟发送更改状态信息
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+            finish();
+            System.exit(0);
+        }
     }
 }
