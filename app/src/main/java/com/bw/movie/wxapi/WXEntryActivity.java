@@ -98,6 +98,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         @Override
         public void success(Result<UserInfo> data) {
             UserInfo result = data.getResult();
+            result.getUserInfo().setSign("1");
                 try {
                     userDao.createOrUpdate(result);
                     finish();

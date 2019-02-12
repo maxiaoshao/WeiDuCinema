@@ -60,6 +60,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
     private Dao<UserInfo, String> userDao;
     private SignPersent persent;
+    private UserInfoBean userInfo1;
 
     @Override
     public String getPageName() {
@@ -97,47 +98,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
-        my_finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(student.size()!=0) {
-                    creatediog();
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("1111111");
-        //数据库查询
-        try {
-            userDao = DBManager.getInstance(getActivity()).getUserDao();
-            student = userDao.queryForAll();
-            if(student.size()==0) {
-                Toast.makeText(getActivity(),"没有信息"+student,Toast.LENGTH_SHORT).show();
-
-            }else {
-                Toast.makeText(getActivity(),"有信息"+student,Toast.LENGTH_SHORT).show();
-                System.out.println("有信息"+student);
-                UserInfo userInfo = student.get(0);
-                UserInfoBean userInfo1 = userInfo.getUserInfo();
-                String pic = userInfo1.getHeadPic();
-                my_pic.setImageURI(pic);
-                String nickName = userInfo1.getNickName();
-                my_name.setText(nickName);
-            }
-
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-
-    }
 
     @Override
     public void onResume() {
@@ -146,7 +107,6 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         try {
             userDao = DBManager.getInstance(getActivity()).getUserDao();
             student = userDao.queryForAll();
-            userDao.notifyChanges();
             if(student.size()==0) {
                 Toast.makeText(getActivity(),"没有信息"+student,Toast.LENGTH_SHORT).show();
 
@@ -154,12 +114,18 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 Toast.makeText(getActivity(),"有信息"+student,Toast.LENGTH_SHORT).show();
                 System.out.println("有信息"+student);
                 UserInfo userInfo = student.get(0);
-                UserInfoBean userInfo1 = userInfo.getUserInfo();
+                userInfo1 = userInfo.getUserInfo();
                 String pic = userInfo1.getHeadPic();
                 my_pic.setImageURI(pic);
                 String nickName = userInfo1.getNickName();
                 my_name.setText(nickName);
+                String sign = userInfo1.getSign();
                 //签到
+                if (sign.equals("1")){
+                    my_sign.setText("签到");
+                }else if (sign.equals("2")){
+                    my_sign.setText("已签到");
+                }
             }
 
         } catch (Exception e1) {
@@ -193,8 +159,17 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 startActivity(new Intent(getActivity(), MyNewVersionsActivity.class));
                 break;
             case R.id.my_sign:
-                my_sign.setText("已签到");
-           // persent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"");
+                if (student.size()!=0) {
+                    my_sign.setText("已签到");
+                    persent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"");
+                }else {
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.my_finish:
+                if (student.size()!=0) {
+                    creatediog();
+                }
                 break;
 
 
@@ -235,8 +210,8 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
 
         @Override
         public void success(Result<UserInfo> data) {
-
-        Toast.makeText(getContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+         userInfo1.setSign("2");
+         Toast.makeText(getContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
 

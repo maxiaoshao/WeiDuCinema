@@ -140,9 +140,10 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
         @Override
         public void success(Result<UserInfo> data) {
             UserInfo result = data.getResult();
+            result.getUserInfo().setSign("2");
             if (data.getStatus().equals("0000")) {
                 try {
-                    userDao.createOrUpdate(data.getResult());
+                    userDao.createOrUpdate(result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

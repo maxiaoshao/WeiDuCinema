@@ -33,6 +33,8 @@ public class UserInfoBean implements Serializable {
     private String phone;
     @DatabaseField
     private int sex;
+    @DatabaseField
+    private String sign;
 
     public String getHeadPic() {
         return headPic;
@@ -80,5 +82,13 @@ public class UserInfoBean implements Serializable {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 }

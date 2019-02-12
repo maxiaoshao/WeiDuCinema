@@ -59,12 +59,14 @@ public class MyOpinionActivity extends WDBaseActivity implements View.OnClickLis
         if (student.size()!=0) {
             if (!TextUtils.isEmpty(s)) {
                 startActivity(new Intent(MyOpinionActivity.this, SentSeccussActivity.class));
+                finish();
             } else {
                 Toast.makeText(MyOpinionActivity.this, "不能发送空的意见哦!", Toast.LENGTH_SHORT).show();
             }
         }else {
            Toast.makeText(MyOpinionActivity.this,"登陆后才能发表您的评论",Toast.LENGTH_SHORT).show();
            startActivity(new Intent(this,WDLoginActivity.class));
+
         }
     }
     @Override
