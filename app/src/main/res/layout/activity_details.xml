@@ -103,20 +103,20 @@
             android:id="@+id/fanhui"
             android:layout_width="60dp"
             android:layout_height="60dp"
-
             android:src="@drawable/com_icon_my_default_"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
             />
-        <ImageView
+        <Button
+            android:background="@drawable/buy_piao"
             android:id="@+id/goupiao"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-
-            android:src="@drawable/com_icon_my_default_"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="购票"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             />
     </RelativeLayout>
     <LinearLayout

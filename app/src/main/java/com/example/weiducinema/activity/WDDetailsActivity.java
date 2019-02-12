@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -43,7 +44,8 @@ import cn.jzvd.JZVideoPlayerStandard;
  * 2019/1/25 08:47
  */
 public class WDDetailsActivity extends WDBaseActivity implements View.OnClickListener{
-    ImageView fanhui,goupiao;
+    ImageView fanhui;
+    Button goupiao;
     TextView mover_name,details_txt_details,details_txt_prediction,details_txt_stills,details_txt_review;
     DetailsPrencenter detailsPrencenter;
     SimpleDraweeView movier_sim;

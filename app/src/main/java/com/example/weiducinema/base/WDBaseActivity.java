@@ -40,24 +40,14 @@ public abstract class WDBaseActivity extends AppCompatActivity {
      */
     private static WDBaseActivity mForegroundActivity = null;
 
-    /**
-     * 点击返回按钮两次退出
-     */
-    private static boolean isExit = false;
-    Handler mHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            isExit = false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initLoad();
+        setContentView(getLayoutId());
+        ButterKnife.bind(this);//绑定布局
+
         int type = WifiUtils.getInstance(this).getNetype();
         if (type == -1) {
             Toast.makeText(this, "没有网络", Toast.LENGTH_LONG).show();
@@ -66,10 +56,6 @@ public abstract class WDBaseActivity extends AppCompatActivity {
             MobclickAgent.onPageStart(getClass().getName());
             //session的统计
             MobclickAgent.onResume(this);  //统计时长
-
-
-            setContentView(getLayoutId());
-            ButterKnife.bind(this);//绑定布局
             initView();
             setStatusColor();
             setSystemInvadeBlack();
@@ -206,25 +192,5 @@ public abstract class WDBaseActivity extends AppCompatActivity {
         return null;
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exit();
-            return false;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
-    private void exit() {
-        if (!isExit) {
-            isExit = true;
-            Toast.makeText(getApplicationContext(), "再按一次退出程序",
-                    Toast.LENGTH_SHORT).show();
-            // 利用handler延迟发送更改状态信息
-            mHandler.sendEmptyMessageDelayed(0, 2000);
-        } else {
-            finish();
-            System.exit(0);
-        }
-    }
 }

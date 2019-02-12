@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     private Dao<UserInfo, String> userDao;
     private SignPersent persent;
     private UserInfoBean userInfo1;
+    private ImageView systems_message;
 
     @Override
     public String getPageName() {
@@ -83,6 +85,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         my_tickling = view.findViewById(R.id.my_tickling);
         my_new_versions = view.findViewById(R.id.my_new_versions);
         my_finish = view.findViewById(R.id.my_finish);
+        systems_message = view.findViewById(R.id.systems_message);
         //添加点击事件
         my_pic.setOnClickListener(this);
         my_message.setOnClickListener(this);

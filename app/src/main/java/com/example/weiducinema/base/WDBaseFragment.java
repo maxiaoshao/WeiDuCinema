@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bw.movie.R;
 import com.example.weiducinema.app.WifiUtils;
 import com.google.gson.Gson;
 import com.umeng.analytics.MobclickAgent;
@@ -27,7 +28,9 @@ public abstract class WDBaseFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		View view = inflater.inflate(getLayoutId(), container, false);
+		unbinder = ButterKnife.bind(this, view);
+		initView(view);
 
 		// 每次ViewPager要展示该页面时，均会调用该方法获取显示的View
 		long time = System.currentTimeMillis();
@@ -36,9 +39,7 @@ public abstract class WDBaseFragment extends Fragment {
 			Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_LONG).show();
 		}
 
-			View view = inflater.inflate(getLayoutId(), container, false);
-			unbinder = ButterKnife.bind(this, view);
-			initView(view);
+
 		setStatusColor();
 		setSystemInvadeBlack();
 			return view;
