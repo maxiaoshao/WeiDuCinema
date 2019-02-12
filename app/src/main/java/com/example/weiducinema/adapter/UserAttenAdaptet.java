@@ -27,6 +27,7 @@ public class UserAttenAdaptet extends RecyclerView.Adapter<RecyclerView.ViewHold
         li = new ArrayList<>();
     }
     public void setData(List<UserAttenBean> result) {
+        li.clear();
         li = result;
     }
     @NonNull

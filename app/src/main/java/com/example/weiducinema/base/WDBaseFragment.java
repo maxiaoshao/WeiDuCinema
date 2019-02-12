@@ -34,10 +34,7 @@ public abstract class WDBaseFragment extends Fragment {
 
 		// 每次ViewPager要展示该页面时，均会调用该方法获取显示的View
 		long time = System.currentTimeMillis();
-		int type = WifiUtils.getInstance(getActivity()).getNetype();
-		if (type == -1) {
-			Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_LONG).show();
-		}
+
 
 
 		setStatusColor();

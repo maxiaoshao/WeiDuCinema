@@ -180,13 +180,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
                 initReview(popview);
-//                pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
-//                pratticulars_prevue_rec.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(WDDetailsActivity.this,"写评论",Toast.LENGTH_LONG).show();
-//                    }
-//                });
+
                 break;
         }
     }
@@ -195,10 +189,18 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
 
         ex = popview.findViewById(R.id.ex);
+        ex.setGroupIndicator(null);
         CommentPrencenter commentPrencenter = new CommentPrencenter(new Coment());
         adapter4 = new ExAdapter(this);
         commentPrencenter.reqeust(li.getId()+"","1","10");
         ex.setAdapter(adapter4);
+        pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
+        pratticulars_filmreview_while.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(WDDetailsActivity.this,"写评论",Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
