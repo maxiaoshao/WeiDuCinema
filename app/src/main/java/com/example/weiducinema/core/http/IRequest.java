@@ -353,6 +353,19 @@ public interface IRequest {
             @Header("userId") String userId,
             @Header("sessionId") String sessionId,
             @Query("movieId") String movieId);
+    /**
+     * 关注影院
+     *
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @return
+     */
+    @GET("movieApi/cinema/v1/verify/followCinema")
+    Observable<Result> getGuanC(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("movieId") String movieId);
 
     /**
      * 取消关注

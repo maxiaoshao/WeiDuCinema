@@ -46,6 +46,7 @@
                   android:layout_alignParentRight="true"
                   android:orientation="horizontal">
                 <SearchView
+                    android:queryHint="请输入要搜索的影片"
                     android:id="@+id/cinema_search"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
