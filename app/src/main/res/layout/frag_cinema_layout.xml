@@ -33,6 +33,7 @@
             android:background="@drawable/find_shape"
             android:paddingRight="10dp"
             android:layout_gravity="center"
+            android:queryHint="请输入要搜索的影院"
             android:textSize="20sp"
             ></SearchView>
     </LinearLayout>

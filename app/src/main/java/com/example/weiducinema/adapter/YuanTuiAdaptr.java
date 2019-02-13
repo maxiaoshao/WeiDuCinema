@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -43,6 +44,18 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHelow1.name.setText(li.get(i).getName());
         viewHelow1.jie.setText(li.get(i).getAddress());
         viewHelow1.ju.setText(li.get(i).getFollowCinema()+" KM");
+        if (li.get(i).getFollowCinema()==2){
+            viewHelow1.guan.setImageResource(R.drawable.com_icon_collection_selected_);
+
+        }else{
+            viewHelow1.guan.setImageResource(R.drawable.xing);
+        }
+        viewHelow1.guan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.guan(li.get(i).getId(),li.get(i).getFollowCinema()+"");
+            }
+        });
         viewHelow1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,16 +73,19 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
   class ViewHelow1 extends RecyclerView.ViewHolder {
         SimpleDraweeView sim;
         TextView name,jie,ju;
+        ImageView guan;
         public ViewHelow1(@NonNull View itemView) {
           super(itemView);
           sim = itemView.findViewById(R.id.sim);
           name = itemView.findViewById(R.id.name);
             jie = itemView.findViewById(R.id.jie);
             ju = itemView.findViewById(R.id.ju);
+            guan = itemView.findViewById(R.id.guan);
       }
   }
     public interface onItemClick{
         void tiao(String cinameId,String imgPic,String cinameName,String address);
+        void guan(int position,String tr);
     }
     private onItemClick onItemClick;
     public void setOnItemClick(onItemClick onItemClick) {

@@ -17,17 +17,27 @@ import com.example.weiducinema.adapter.MyAdapter;
 import com.example.weiducinema.app.SpacesItemDecoration;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.base.WDBaseActivity;
+import com.example.weiducinema.bean.PayBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.TicketBean;
 import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.bean.encrypt.UserInfoBean;
 import com.example.weiducinema.core.exception.ApiException;
+import com.example.weiducinema.core.http.IRequest;
+import com.example.weiducinema.core.http.NetworkManager;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.BuyTicketMoviePersent;
 import com.j256.ormlite.dao.Dao;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class MyTrackerActivity extends WDBaseActivity implements View.OnClickListener {
 
@@ -41,6 +51,7 @@ public class MyTrackerActivity extends WDBaseActivity implements View.OnClickLis
     private Dao<UserInfo, String> userDao;
     private List<UserInfo> stedent;
 
+    private IWXAPI api;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_my__tracker_;
@@ -52,7 +63,8 @@ public class MyTrackerActivity extends WDBaseActivity implements View.OnClickLis
         ticket_finish = findViewById(R.id.ticket_finish);
         ticket_recy = findViewById(R.id.ticket_recy);
         img_back = findViewById(R.id.img_back);
-
+        api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516");//第二个参数为APPID
+        api.registerApp("wxb3852e6a6b7d9516");
         ticket_wait_money.setOnClickListener(this);
         ticket_finish.setOnClickListener(this);
         img_back.setOnClickListener(this);
@@ -79,7 +91,30 @@ public class MyTrackerActivity extends WDBaseActivity implements View.OnClickLis
             ticket_recy.addItemDecoration(new SpacesItemDecoration(20));
 
         }
-
+        adapter.setOnItemClick(new MyAdapter.onItemClick() {
+            @Override
+            public void tiao(String json) {
+                IRequest interfacea = NetworkManager.instance().create(IRequest.class);
+                interfacea.pay(stedent.get(0).getUserId()+"",stedent.get(0).getSessionId()+"","1",json).subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe( new Consumer<PayBean>() {
+                            @Override
+                            public void accept(PayBean payBean) throws Exception {
+                                PayReq req = new PayReq();
+                                req.appId = payBean.getAppId();
+                                req.partnerId = payBean.getPartnerId();
+                                req.prepayId = payBean.getPrepayId();
+                                req.nonceStr = payBean.getNonceStr();
+                                req.timeStamp = payBean.getTimeStamp();
+                                req.packageValue = payBean.getPackageValue();
+                                req.sign = payBean.getSign();
+                                // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+                                //3.调用微信支付sdk支付方法
+                                api.sendReq(req);
+                            }
+                        });
+            }
+        });
     }
 
     @Override

@@ -54,7 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter{
         switch (itemViewType){
             case 0:
                 MyViewHolder myViewHolder = (MyViewHolder) holder;
-                TicketBean ticketBean = list.get(position);
+                final TicketBean ticketBean = list.get(position);
                 myViewHolder.one_dingdan.setText(ticketBean.getOrderId());
                 myViewHolder.one_film.setText(ticketBean.getCinemaName());
                 myViewHolder.one_count.setText(ticketBean.getAmount()+"");
@@ -62,6 +62,12 @@ public class MyAdapter extends RecyclerView.Adapter{
                 myViewHolder.one_yingting.setText(ticketBean.getScreeningHall());
                 myViewHolder.one_time.setText(ticketBean.getBeginTime());
                 myViewHolder.one_title.setText(ticketBean.getMovieName());
+                myViewHolder.one_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onItemClick.tiao(ticketBean.getOrderId()+"");
+                    }
+                });
                 break;
             case 1:
                 ViewHolder2 holder2 = (ViewHolder2) holder;
@@ -158,6 +164,12 @@ public class MyAdapter extends RecyclerView.Adapter{
     public void setOnLongItmeClickListener(LongClickListener longClickListener){
         this.longClickListener = longClickListener;
     }
-
+    public interface onItemClick{
+        void tiao(String json);
+    }
+    private onItemClick onItemClick;
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 
 }
