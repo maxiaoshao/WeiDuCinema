@@ -9,6 +9,7 @@ import com.example.weiducinema.bean.QueryPaiBean;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.PopularBean;
 import com.example.weiducinema.bean.ScheduleBean;
+import com.example.weiducinema.bean.SystemMassage;
 import com.example.weiducinema.bean.TicketBean;
 import com.example.weiducinema.bean.UserAttenBean;
 import com.example.weiducinema.bean.YuantuiBean;
@@ -360,7 +361,7 @@ public interface IRequest {
      * @param movieId
      * @return
      */
-    @GET(" movieApi/movie/v1/verify/cancelFollowMovie")
+    @GET("movieApi/movie/v1/verify/cancelFollowMovie")
     Observable<Result> getQGuan(
             @Header("userId") String userId,
             @Header("sessionId") String sessionId,
@@ -373,5 +374,16 @@ public interface IRequest {
     Observable<Result> getSign(
             @Header("userId") String userId,
             @Header("sessionId") String sessionId);
+
+    /**
+     * 系统消息
+     */
+    @GET("movieApi/tool/v1/verify/findAllSysMsgList")
+    Observable<Result<List<SystemMassage>>> getSystem(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") int page,
+            @Query("count") int count
+            );
 
 }
