@@ -1,9 +1,11 @@
 package com.example.weiducinema.activity.my;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bw.movie.R;
@@ -51,10 +53,15 @@ public class SystemsActivity extends WDBaseActivity implements View.OnClickListe
             e.printStackTrace();
         }
 
-        adapter = new SysAdapter(getBaseContext());
+        if (student.size()!=0){
+            sys_recycle.setLayoutManager(new LinearLayoutManager(this,LinearLayout.VERTICAL,false));
+            adapter = new SysAdapter(getBaseContext());
+            sys_recycle.setAdapter(adapter);
 
-        persent = new SystemPersent(new SystemCall());
-        persent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId());
+            persent = new SystemPersent(new SystemCall());
+            persent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId());
+        }
+
     }
 
     @Override

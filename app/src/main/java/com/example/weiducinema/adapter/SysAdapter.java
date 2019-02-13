@@ -25,13 +25,15 @@ import java.util.List;
 public class SysAdapter extends XRecyclerView.Adapter<SysAdapter.MyHolder>{
 
     private Context context;
-    private List<SystemMassage>list = new ArrayList<>();
-    private OnClickListen onClickListen;
+    private List<SystemMassage> list;
+    //private OnClickListen onClickListen;
 
 
 
     public SysAdapter(Context context) {
         this.context = context;
+        list = new ArrayList<>();
+
     }
 
     @NonNull
@@ -66,13 +68,13 @@ public class SysAdapter extends XRecyclerView.Adapter<SysAdapter.MyHolder>{
             }
 
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int id = systemMassage.getId();
-                    onClickListen.Onclick(id);
-                }
-            });
+//            holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int id = systemMassage.getId();
+//                    onClickListen.Onclick(id);
+//                }
+//            });
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -110,10 +112,10 @@ public class SysAdapter extends XRecyclerView.Adapter<SysAdapter.MyHolder>{
     }
 
 
-    public interface OnClickListen{
-        void Onclick(int id);
-    }
-    public void setOnClickListen(OnClickListen onClickListen) {
-        this.onClickListen = onClickListen;
-    }
+//    public interface OnClickListen{
+//        void Onclick(int id);
+//    }
+//    public void setOnClickListen(OnClickListen onClickListen) {
+//        this.onClickListen = onClickListen;
+//    }
 }

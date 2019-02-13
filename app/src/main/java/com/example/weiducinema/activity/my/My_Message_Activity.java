@@ -97,7 +97,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
         alertDialog.setView(diogView);
         btn_paizhao = (Button) diogView.findViewById(R.id.paizhao);
         btn_xiangce = (Button) diogView.findViewById(R.id.xiangce);
-        btn_paizhao.setOnClickListener(this);
+
         btn_xiangce.setOnClickListener(this);
         alertDialog.show();
 
@@ -165,7 +165,6 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
                     Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this,WDLoginActivity.class));
             }
-
 
                 break;
         }
