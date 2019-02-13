@@ -22,6 +22,7 @@ import com.example.weiducinema.activity.my.My_Message_Activity;
 import com.example.weiducinema.activity.my.MyNewVersionsActivity;
 import com.example.weiducinema.activity.my.MyOpinionActivity;
 import com.example.weiducinema.activity.my.MyTrackerActivity;
+import com.example.weiducinema.activity.my.SystemsActivity;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.base.WDBaseFragment;
 
@@ -95,6 +96,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         my_new_versions.setOnClickListener(this);
         my_finish.setOnClickListener(this);
         my_sign.setOnClickListener(this);
+        systems_message.setOnClickListener(this);
 
         persent = new SignPersent(new SignCall());
 
@@ -168,6 +170,9 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 }else {
                     Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.systems_message:
+                startActivity(new Intent(getActivity(), SystemsActivity.class));
                 break;
             case R.id.my_finish:
                 if (student.size()!=0) {
