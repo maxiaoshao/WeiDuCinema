@@ -23,14 +23,20 @@
         android:layout_marginRight="24dp"
         android:text="用户信息"
         />
+      <android.support.v7.widget.CardView
+          android:layout_width="312dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="30dp"
+          android:layout_marginLeft="24dp"
+          android:layout_marginRight="24dp"
+          app:cardCornerRadius="5dp"
+          app:cardElevation="4dp"
+          >
     <RelativeLayout
         android:id="@+id/relay1"
         android:layout_width="312dp"
+        android:layout_marginTop="-20dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/tongyi_beijing"
         >
        <TextView
            android:id="@+id/tv_pic"
@@ -56,7 +62,9 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_below="@+id/img_pic"
             android:layout_marginTop="10dp"
             android:background="#999999"
@@ -88,7 +96,9 @@
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_below="@+id/user_name"
             android:layout_marginTop="10dp"
             android:background="#999999"
@@ -120,8 +130,10 @@
 
         <View
             android:id="@+id/view3"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_below="@+id/user_sex"
             android:layout_marginTop="10dp"
             android:background="#999999"
@@ -153,13 +165,20 @@
             android:layout_below="@+id/view3"
             />
     </RelativeLayout>
+      </android.support.v7.widget.CardView>
+      <android.support.v7.widget.CardView
+          android:layout_width="312dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="30dp"
+          android:layout_marginLeft="24dp"
+          android:layout_marginRight="24dp"
+          app:cardCornerRadius="5dp"
+          app:cardElevation="4dp"
+          >
     <RelativeLayout
         android:id="@+id/relay2"
-        android:layout_width="312dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="24dp"
-        android:background="@drawable/tongyi_beijing"
         >
         <TextView
             android:id="@+id/tv_phone"
@@ -187,9 +206,11 @@
         <View
             android:id="@+id/view4"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
             android:layout_below="@+id/user_phone"
             android:layout_marginTop="10dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="#999999"
             />
         <TextView
@@ -219,14 +240,21 @@
             android:layout_marginBottom="20dp"
             />
     </RelativeLayout>
+      </android.support.v7.widget.CardView>
+      <android.support.v7.widget.CardView
+          android:layout_width="312dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="30dp"
+          android:layout_marginLeft="24dp"
+          android:layout_marginRight="24dp"
+          app:cardCornerRadius="5dp"
+          app:cardElevation="4dp"
+          >
     <RelativeLayout
         android:id="@+id/relay3"
-        android:layout_width="312dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/tongyi_beijing"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -235,7 +263,6 @@
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             />
         <ImageView
@@ -243,11 +270,11 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/com_icon_next_default_"
             />
     </RelativeLayout>
+      </android.support.v7.widget.CardView>
   </LinearLayout>
     <ImageView
         android:id="@+id/img_back"

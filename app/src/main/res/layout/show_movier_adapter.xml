@@ -27,6 +27,7 @@
                 >
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/sims"
+
                     fresco:roundTopLeft="true"
                     fresco:roundTopRight="true"
                     fresco:roundBottomLeft="true"

@@ -31,7 +31,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MyAttentionActivity extends WDBaseActivity {
-    RecyclerView recy;
+    RecyclerView recy,cecy;
     Button pai,yuan;
     private Dao<UserInfo,String> userDao;
     UserAttenChengPrencenter userAttenChengPrencenter;
@@ -49,7 +49,7 @@ public class MyAttentionActivity extends WDBaseActivity {
         recy = findViewById(R.id.recy);
         pai = findViewById(R.id.bt_pian);
         yuan = findViewById(R.id.bt_cheng);
-
+        cecy = findViewById(R.id.crcy);
         recy = findViewById(R.id.ercy);
         userAttenPrencenter = new UserAttenPrencenter(new UserAtten());
         userAttenChengPrencenter = new UserAttenChengPrencenter(new UserAttenChang());
@@ -94,9 +94,7 @@ public class MyAttentionActivity extends WDBaseActivity {
             userAttenPrencenter.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1","10");
             attenAdaptet = new UserAttenAdaptet(this);
             attenAdaptets = new UserAttenChangAdaptet(this);
-            recy.addItemDecoration(new SpacesItemDecoration(20));
-            recy.setLayoutManager(new LinearLayoutManager(this));
-            recy.setAdapter(attenAdaptet);
+
 
 
     }
@@ -115,6 +113,8 @@ public class MyAttentionActivity extends WDBaseActivity {
                 recy.addItemDecoration(new SpacesItemDecoration(20));
                 recy.setLayoutManager(new LinearLayoutManager(MyAttentionActivity.this));
                 recy.setAdapter(attenAdaptet);
+                cecy.setVisibility(View.GONE);
+                recy.setVisibility(View.VISIBLE);
             }else{
                 for(int i = 0;i<student.size();i++){
                     try {
@@ -142,9 +142,11 @@ public class MyAttentionActivity extends WDBaseActivity {
             if (data.getStatus().equals("0000")){
                 attenAdaptets.setData(data.getResult());
                 attenAdaptets.notifyDataSetChanged();
-                recy.addItemDecoration(new SpacesItemDecoration(20));
-                recy.setLayoutManager(new LinearLayoutManager(MyAttentionActivity.this));
-                recy.setAdapter(attenAdaptets);
+                cecy.addItemDecoration(new SpacesItemDecoration(20));
+                cecy.setLayoutManager(new LinearLayoutManager(MyAttentionActivity.this));
+                cecy.setAdapter(attenAdaptets);
+                recy.setVisibility(View.GONE);
+                cecy.setVisibility(View.VISIBLE);
             }else{
                 for(int i = 0;i<student.size();i++){
                     try {

@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/sims"
+        fresco:roundedCornerRadius="8dp"
         android:layout_marginRight="20dp"
-        app:placeholderImage="@drawable/baobei"
         android:layout_width="126dp"
         android:layout_height="164dp" />
    <RelativeLayout

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/simm"
     android:layout_width="158dp"
+
+    fresco:roundedCornerRadius="8dp"
+    android:layout_marginRight="20dp"
     android:layout_height="223dp"
-    tools:ignore="MissingConstraints" />
-</android.support.constraint.ConstraintLayout>
+     />
+</RelativeLayout>

@@ -96,7 +96,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#50ffffff"
+        android:background="@drawable/touming"
         android:layout_alignParentBottom="true"
         >
         <ImageView
