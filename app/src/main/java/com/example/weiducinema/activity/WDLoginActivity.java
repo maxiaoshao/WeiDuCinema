@@ -1,6 +1,7 @@
 package com.example.weiducinema.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -48,6 +49,9 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
     private ImageView imageview_click;
     private Dao<UserInfo,String> userDao;
     private IWXAPI api;
+    private SharedPreferences sp;
+    private String phone;
+    private String pwd;
 
 
     @Override
@@ -70,6 +74,18 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
         imageview_click.setOnClickListener(this);
         login_weixin.setOnClickListener(this);
         userDao = DBManager.getInstance(this).getUserDao();
+
+        //
+        sp = getSharedPreferences("sxx", MODE_PRIVATE);
+        boolean jz = sp.getBoolean("jz", false);
+        //判断是否记住密码
+        if (jz == true) {
+            String phone_name = sp.getString("phone", "");
+            String phone_pwd = sp.getString("pwd", "");
+            edittext_phone.setText(phone_name);
+            edittext_pwd.setText(phone_pwd);
+            check_remember.setChecked(true);
+        }
 
     }
 
@@ -110,14 +126,14 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
 
     private void submit() {
         // validate
-        String phone = edittext_phone.getText().toString().trim();
+        phone = edittext_phone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {
             Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
-        String pwd = edittext_pwd.getText().toString().trim();
+        pwd = edittext_pwd.getText().toString().trim();
         if (TextUtils.isEmpty(pwd)) {
             Toast.makeText(this, "登陆密码", Toast.LENGTH_SHORT).show();
             return;
@@ -142,6 +158,26 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
             UserInfo result = data.getResult();
             result.getUserInfo().setSign("2");
             if (data.getStatus().equals("0000")) {
+                SharedPreferences.Editor editor = sp.edit();
+                if (check_remember.isChecked()) {
+                    editor.putString("phone", phone);
+                    editor.putString("pwd", pwd);
+                    editor.putBoolean("jz", true);
+                    editor.commit();
+                } else {
+                    try {
+                        editor.putString("phone", phone);
+                        editor.putString("pwd", pwd);
+                        editor.putBoolean("jz", false);
+                        editor.commit();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
                 try {
                     userDao.createOrUpdate(result);
                 } catch (Exception e) {

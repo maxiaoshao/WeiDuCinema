@@ -251,9 +251,10 @@ public interface IRequest {
      * @param sessionId
      * @return
      */
+    @FormUrlEncoded
     @POST("movieApi/user/v1/verify/modifyUserPwd")
     Observable<Result> getChangePwd(
-            @Header("userId") String userId,
+            @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Field("oldPwd") String oldPwd,
             @Field("newPwd") String newPwd,
@@ -403,6 +404,7 @@ public interface IRequest {
     /**
      * 修改信息
      */
+    @FormUrlEncoded
     @POST("movieApi/user/v1/verify/modifyUserInfo")
     Observable<Result<ChangeMessageBean>> getChangeMessage(
             @Header("userId") int userId,

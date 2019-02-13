@@ -35,8 +35,6 @@ public class MyChangePasswordActivity extends WDBaseActivity implements View.OnC
     private ChangePwdPersent pwdPersent;
     private DBManager manager;
     private List<UserInfo> student;
-    private int userId;
-    private String sessionId;
     private String old_pwd;
     private Button btn_ok;
     private Dao<UserInfo, String> userDao;
@@ -60,24 +58,13 @@ public class MyChangePasswordActivity extends WDBaseActivity implements View.OnC
         try {
             userDao = DBManager.getInstance(this).getUserDao();
             student = userDao.queryForAll();
-            if (student.size()!=0){
-                 userId = student.get(0).getUserId();
-                 sessionId = student.get(0).getSessionId();
-             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        initData();
-
-    }
-   
-    public void initData(){
         pwdPersent = new ChangePwdPersent(new ChangePwdCall());
-        old_pwd = user_older_pwd.getText().toString().trim();
-        new_pwd = user_new_pwd.getText().toString().trim();
-        agin_new_pwd = user_agin_new_pwd.getText().toString().trim();
 
     }
+
     @Override
     protected void destoryData() {
 
@@ -90,7 +77,10 @@ public class MyChangePasswordActivity extends WDBaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.btn_ok:
-                pwdPersent.reqeust(userId, sessionId, EncryptUtil.encrypt(old_pwd), EncryptUtil.encrypt(new_pwd), EncryptUtil.encrypt(agin_new_pwd));
+                old_pwd = user_older_pwd.getText().toString().trim();
+                new_pwd = user_new_pwd.getText().toString().trim();
+                agin_new_pwd = user_agin_new_pwd.getText().toString().trim();
+                pwdPersent.reqeust(student.get(0).getUserId(), student.get(0).getSessionId(), EncryptUtil.encrypt(old_pwd), EncryptUtil.encrypt(new_pwd), EncryptUtil.encrypt(agin_new_pwd));
                 break;
         }
     }
@@ -99,8 +89,9 @@ public class MyChangePasswordActivity extends WDBaseActivity implements View.OnC
 
         @Override
         public void success(Result data) {
+
+            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
             if (data.getStatus().equals("0000")) {
-                Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
                 finish();
             }
 
