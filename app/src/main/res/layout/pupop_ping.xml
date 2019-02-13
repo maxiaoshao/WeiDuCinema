@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/rlay"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.facebook.drawee.view.SimpleDraweeView
@@ -20,7 +20,7 @@
             android:layout_height="40dp" />
 <TextView
     android:layout_toRightOf="@id/ping_sim"
-    android:layout_marginLeft="10dp"
+    android:layout_marginLeft="20dp"
     android:text="Asdasdad"
     android:layout_marginTop="10dp"
     android:id="@+id/ping_name"
@@ -33,5 +33,7 @@
      android:layout_marginTop="10dp"
      android:layout_width="match_parent"
      android:maxLines="3"
+     android:layout_marginLeft="20dp"
+     android:layout_margin="10dp"
      android:layout_height="wrap_content" />
 </RelativeLayout>

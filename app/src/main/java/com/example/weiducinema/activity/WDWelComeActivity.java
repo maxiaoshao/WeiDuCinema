@@ -1,6 +1,7 @@
 package com.example.weiducinema.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.bw.movie.R;
 import com.example.weiducinema.base.WDBaseActivity;
+
+import crossoverone.statuslib.StatusUtil;
 
 public class WDWelComeActivity extends AppCompatActivity {
 
@@ -22,7 +25,8 @@ public class WDWelComeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setBackgroundResource(R.drawable.rectangle);
         setContentView(R.layout.activity_main);
-
+        setStatusColor();
+        setSystemInvadeBlack();
         handler  = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -40,7 +44,14 @@ public class WDWelComeActivity extends AppCompatActivity {
 
     }
 
+    protected void setStatusColor() {
+        StatusUtil.setUseStatusBarColor(this, Color.parseColor("#00000000"));
+    }
 
+    protected void setSystemInvadeBlack() {
+        // 第二个参数是是否沉浸,第三个参数是状态栏字体是否为黑色。
+        StatusUtil.setSystemStatus(this, true, true);
+    }
 
 
 
