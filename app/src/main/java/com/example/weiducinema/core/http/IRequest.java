@@ -1,5 +1,6 @@
 package com.example.weiducinema.core.http;
 
+import com.example.weiducinema.bean.ChangeMessageBean;
 import com.example.weiducinema.bean.CommentBean;
 import com.example.weiducinema.bean.FilmTimeBean;
 import com.example.weiducinema.bean.DetailsBean;
@@ -393,10 +394,21 @@ public interface IRequest {
      */
     @GET("movieApi/tool/v1/verify/findAllSysMsgList")
     Observable<Result<List<SystemMassage>>> getSystem(
-            @Header("userId") String userId,
+            @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Query("page") int page,
             @Query("count") int count
             );
 
+    /**
+     * 修改信息
+     */
+    @POST("movieApi/user/v1/verify/modifyUserInfo")
+    Observable<Result<ChangeMessageBean>> getChangeMessage(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Field("nickName") String nickName,
+            @Field("sex") int sex,
+            @Field("email") String email
+    );
 }

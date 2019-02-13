@@ -12,6 +12,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          >
     <TextView
         android:id="@+id/tv_my_message"
         android:layout_width="wrap_content"
@@ -37,6 +41,26 @@
         android:layout_width="312dp"
         android:layout_marginTop="-20dp"
         android:layout_height="wrap_content"
+      <TextView
+          android:id="@+id/change_message"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="编辑信息"
+          android:textSize="14sp"
+          android:textColor="#f11010"
+          android:layout_marginTop="30dp"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="24dp"
+          />
+      </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relay1"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/tongyi_beijing"
         >
        <TextView
            android:id="@+id/tv_pic"
@@ -263,6 +287,7 @@
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             />
         <ImageView

@@ -90,9 +90,7 @@ public class MyChangePasswordActivity extends WDBaseActivity implements View.OnC
                 finish();
                 break;
             case R.id.btn_ok:
-
                 pwdPersent.reqeust(userId, sessionId, EncryptUtil.encrypt(old_pwd), EncryptUtil.encrypt(new_pwd), EncryptUtil.encrypt(agin_new_pwd));
-
                 break;
         }
     }
@@ -102,9 +100,10 @@ public class MyChangePasswordActivity extends WDBaseActivity implements View.OnC
         @Override
         public void success(Result data) {
             if (data.getStatus().equals("0000")) {
+                Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
                 finish();
             }
-            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
+
         }
         @Override
         public void fail(ApiException e) {
