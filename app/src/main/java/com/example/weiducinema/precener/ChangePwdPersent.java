@@ -22,7 +22,7 @@ public class ChangePwdPersent extends BasePresenter {
     @Override
     protected Observable observable(Object... args) {
         IRequest iRequest = NetworkManager.instance().create(IRequest.class);
-        return iRequest.getChangePwd((String)args[0],
+        return iRequest.getChangePwd((int)args[0],
                 (String)args[1],(String)args[2],(String)args[3],(String)args[4]
                 );
     }

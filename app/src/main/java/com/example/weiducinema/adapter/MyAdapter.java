@@ -55,12 +55,12 @@ public class MyAdapter extends RecyclerView.Adapter{
             case 0:
                 MyViewHolder myViewHolder = (MyViewHolder) holder;
                 final TicketBean ticketBean = list.get(position);
-                myViewHolder.one_dingdan.setText(ticketBean.getOrderId());
-                myViewHolder.one_film.setText(ticketBean.getCinemaName());
-                myViewHolder.one_count.setText(ticketBean.getAmount()+"");
-                myViewHolder.one_money.setText(ticketBean.getPrice()+"");
-                myViewHolder.one_yingting.setText(ticketBean.getScreeningHall());
-                myViewHolder.one_time.setText(ticketBean.getBeginTime());
+                myViewHolder.one_dingdan.setText("订单号:"+ticketBean.getOrderId());
+                myViewHolder.one_film.setText("影院:"+ticketBean.getCinemaName());
+                myViewHolder.one_count.setText("数量:"+ticketBean.getAmount()+"张");
+                myViewHolder.one_money.setText("金额:"+ticketBean.getPrice()+"元");
+                myViewHolder.one_yingting.setText("影厅:"+ticketBean.getScreeningHall());
+                myViewHolder.one_time.setText("时间:"+ticketBean.getBeginTime());
                 myViewHolder.one_title.setText(ticketBean.getMovieName());
                 myViewHolder.one_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -72,12 +72,12 @@ public class MyAdapter extends RecyclerView.Adapter{
             case 1:
                 ViewHolder2 holder2 = (ViewHolder2) holder;
                 TicketBean ticketBean2 = list.get(position);
-                holder2.two_dingdan.setText(ticketBean2.getOrderId());
-                holder2.two_film.setText(ticketBean2.getCinemaName());
-                holder2.two_count.setText(ticketBean2.getAmount()+"");
-                holder2.two_money.setText(ticketBean2.getPrice()+"");
-                holder2.two_yingting.setText(ticketBean2.getScreeningHall());
-                holder2.two_time.setText(ticketBean2.getBeginTime());
+                holder2.two_dingdan.setText("订单号:"+ticketBean2.getOrderId());
+                holder2.two_film.setText("影院:"+ticketBean2.getCinemaName());
+                holder2.two_count.setText("数量:"+ticketBean2.getAmount()+"张");
+                holder2.two_money.setText("金额:"+ticketBean2.getPrice()+"元");
+                holder2.two_yingting.setText("影厅:"+ticketBean2.getScreeningHall());
+                holder2.two_time.setText("时间:"+ticketBean2.getBeginTime());
                 holder2.two_title.setText(ticketBean2.getMovieName());
                 break;
         }
