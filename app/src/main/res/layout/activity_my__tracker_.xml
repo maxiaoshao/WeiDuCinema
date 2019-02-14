@@ -40,6 +40,7 @@
                     android:layout_height="25dp" />
 
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/ticket_recy"
                 android:layout_marginLeft="24dp"

@@ -125,6 +125,9 @@ public class MyTrackerActivity extends WDBaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_back:
+                finish();
+                break;
             case R.id.ticket_wait_money:
                 id = 1;
                 adapter.clearIteam();

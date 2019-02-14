@@ -272,7 +272,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
 
             android:layout_marginBottom="20dp"
             android:src="@drawable/com_icon_next_default_"
