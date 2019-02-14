@@ -126,7 +126,7 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
             startActivity(new Intent(getActivity(), WDLoginActivity.class));
         }else {
 
-            if (tr.equals("2")){
+            if (tr.equals("1")){
                 guanCinmearPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"",position+"");
 
             }else{
