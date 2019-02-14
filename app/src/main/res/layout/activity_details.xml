@@ -42,101 +42,90 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/movier_sim"
         android:layout_width="259dp"
+        android:layout_height="360dp"
         android:layout_below="@id/movier_name"
-        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        app:placeholderImage="@drawable/baobei"
-        android:layout_height="360dp" />
-    <RelativeLayout
+        android:layout_marginTop="6dp"
+        app:placeholderImage="@drawable/baobei" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/movier_sim"
-        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
         android:orientation="horizontal">
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:button="@null"
-                android:layout_gravity="center"
+
+            <Button
                 android:id="@+id/details_txt_details"
                 android:layout_width="58dp"
                 android:layout_height="32dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_tuo"
                 android:text="详情"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="#fff"/>
-            <RadioButton
-                android:button="@null"
-                android:layout_gravity="center"
+                android:textColor="#ffffff" />
+
+            <Button
                 android:id="@+id/details_txt_prediction"
                 android:layout_width="58dp"
                 android:layout_height="32dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_tuo"
                 android:text="预告"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="#fff"/>
-            <RadioButton
-                android:button="@null"
-                android:layout_gravity="center"
+                android:textColor="#ffffff" /> />
+
+            <Button
                 android:id="@+id/details_txt_stills"
                 android:layout_width="58dp"
                 android:layout_height="32dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_tuo"
                 android:text="剧照"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="#fff"/>
-            <RadioButton
-                android:button="@null"
-                android:layout_gravity="center"
+                android:textColor="#ffffff" />/>
+
+            <Button
                 android:id="@+id/details_txt_review"
                 android:layout_width="58dp"
                 android:layout_height="32dp"
+                android:background="@drawable/ic_tuo"
                 android:text="影评"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:textColor="#fff"/>
-        </RadioGroup>
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
 
-    </RelativeLayout>
+
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/touming"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        >
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/touming">
+
         <ImageView
             android:id="@+id/fanhui"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/com_icon_my_default_"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
-            />
+            android:src="@drawable/com_icon_my_default_" />
+
         <Button
-            android:background="@drawable/buy_piao"
             android:id="@+id/goupiao"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="购票"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            />
+            android:background="@drawable/buy_piao"
+            android:text="购票" />
     </RelativeLayout>
-    <LinearLayout
-    android:id="@+id/rela_my_info"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"></LinearLayout>
-
 </RelativeLayout>
