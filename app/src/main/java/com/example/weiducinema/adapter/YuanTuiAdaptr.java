@@ -44,7 +44,7 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHelow1.name.setText(li.get(i).getName());
         viewHelow1.jie.setText(li.get(i).getAddress());
         viewHelow1.ju.setText(li.get(i).getFollowCinema()+" KM");
-        if (li.get(i).getFollowCinema()==2){
+        if (li.get(i).getFollowCinema()==1){
             viewHelow1.guan.setImageResource(R.drawable.com_icon_collection_selected_);
 
         }else{
