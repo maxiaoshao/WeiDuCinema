@@ -106,7 +106,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/ying_sim"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    />
             </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ying_recy"

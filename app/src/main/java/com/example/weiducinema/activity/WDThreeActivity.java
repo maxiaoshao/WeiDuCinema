@@ -16,7 +16,7 @@ import com.example.weiducinema.fragment.WDFilmfragment;
 import com.example.weiducinema.fragment.WDMyFragment;
 
 /**
- * created by fxb
+ * created by 邵新轩
  * 2019/1/23 19:50
  */
 public class WDThreeActivity extends WDBaseActivity implements View.OnClickListener {

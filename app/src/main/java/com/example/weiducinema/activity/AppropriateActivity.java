@@ -26,6 +26,12 @@ public class AppropriateActivity extends WDBaseActivity {
     RecyclerView recyclerView;
     AppropriateAdapter appropriateAdapter;
     QuerePrencenter querePrencenter;
+    private String daoyan;
+    private String shichang;
+    private String leixing;
+    private String chandi;
+    private String llname;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_appropriate;
@@ -44,6 +50,11 @@ public class AppropriateActivity extends WDBaseActivity {
         final String movieid = intent.getStringExtra("movieid");
         String moviename = intent.getStringExtra("moviename");
         final String imageuri = intent.getStringExtra("imageuri");
+        daoyan = intent.getStringExtra("daoyan");
+        shichang = intent.getStringExtra("shichang");
+        leixing = intent.getStringExtra("leixing");
+        chandi = intent.getStringExtra("chandi");
+        llname = intent.getStringExtra("llname");
         tname.setText(moviename);
         querePrencenter.reqeust(movieid);
         appropriateAdapter = new AppropriateAdapter(this);
@@ -59,7 +70,12 @@ public class AppropriateActivity extends WDBaseActivity {
                 intent1.putExtra("adress",adress);
                 intent1.putExtra("movieid",movieid);
                 intent1.putExtra("imageuri",imageuri);
+                intent1.putExtra("llname",llname);
                 intent1.putExtra("yingid",id);
+                intent1.putExtra("daoyan",daoyan);
+                intent1.putExtra("shichang",shichang);
+                intent1.putExtra("leixing",leixing);
+                intent1.putExtra("chandi",chandi);
                 startActivity(intent1);
             }
         });

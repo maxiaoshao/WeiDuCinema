@@ -117,6 +117,11 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 intent1.putExtra("movieid",li.getId()+"");
                 intent1.putExtra("moviename",li.getName());
                 intent1.putExtra("imageuri",li.getImageUrl());
+                intent1.putExtra("llname",li.getName());
+                intent1.putExtra("daoyan",li.getDirector());
+                intent1.putExtra("shichang",li.getDuration());
+                intent1.putExtra("leixing",li.getMovieTypes());
+                intent1.putExtra("chandi",li.getPlaceOrigin());
                 startActivity(intent1);
             }
         });
