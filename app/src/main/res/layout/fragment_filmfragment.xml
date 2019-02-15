@@ -105,11 +105,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/hot"
                     android:text="热门电影"
                     android:textSize="16sp"
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    />
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:background="@drawable/film_sxx"
+                    android:layout_below="@id/hot"
+                    android:layout_marginTop="4dp"
                     />
                 <ImageView
                     android:src="@drawable/com_icon_next_default_"
@@ -133,11 +141,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/doing"
                     android:text="正在热映"
                     android:textSize="16sp"
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    />
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:background="@drawable/film_sxx"
+                    android:layout_below="@id/doing"
+                    android:layout_marginTop="4dp"
                     />
                 <ImageView
                     android:src="@drawable/com_icon_next_default_"
@@ -161,11 +177,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/fast"
                     android:text="即将上映"
                     android:textSize="16sp"
                     android:layout_alignParentLeft="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    />
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:background="@drawable/film_sxx"
+                    android:layout_below="@id/fast"
+                    android:layout_marginTop="4dp"
                     />
                 <ImageView
                     android:src="@drawable/com_icon_next_default_"
