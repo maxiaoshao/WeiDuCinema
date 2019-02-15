@@ -84,7 +84,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
             e.printStackTrace();
         }
 
-        heardPicPersent = new HeardPicPersent(new HeardCall());
+
 
     }
 
@@ -156,19 +156,5 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     protected void destoryData() {
 
     }
-    //获取数据
-    class HeardCall implements DataCall<Result> {
 
-        @Override
-        public void success(Result data) {
-
-        Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
-
-        }
-
-        @Override
-        public void fail(ApiException e) {
-            Toast.makeText(getBaseContext(), "异常", Toast.LENGTH_SHORT).show();
-        }
-    }
 }

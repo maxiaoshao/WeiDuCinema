@@ -34,6 +34,7 @@ import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.bean.encrypt.UserInfoBean;
 import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.db.DBManager;
+import com.example.weiducinema.precener.HeardPicPersent;
 import com.example.weiducinema.precener.SignPersent;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.j256.ormlite.dao.Dao;
@@ -64,15 +65,14 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
     private View diogView;
-
-    private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
     private Dao<UserInfo, String> userDao;
     private SignPersent persent;
     private UserInfoBean userInfo1;
     private ImageView systems_message;
     private Button btn_paizhao;
     private Button btn_xiangce;
-
+    private HeardPicPersent heardPicPersent;
+    private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
     @Override
     public String getPageName() {
         return null;
@@ -107,14 +107,15 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         systems_message.setOnClickListener(this);
         my_name.setOnClickListener(this);
         persent = new SignPersent(new SignCall());
-
+        heardPicPersent = new HeardPicPersent(new HeardCall());
 
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 89&& resultCode == RESULT_OK) {
+
+        if (requestCode == 89) {
             Crop(Uri.fromFile(new File(path)));
         }
         if (requestCode == 99&& resultCode == RESULT_OK) {
@@ -126,7 +127,6 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
             //  heardPicPersent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId(),);
         }
     }
-
 
     @Override
     public void onResume() {
@@ -225,7 +225,6 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 break;
 
 
-
         }
     }
 
@@ -238,7 +237,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         alertDialog.setView(diogView);
         btn_paizhao = (Button) diogView.findViewById(R.id.paizhao);
         btn_xiangce = (Button) diogView.findViewById(R.id.xiangce);
-
+        btn_paizhao.setOnClickListener(this);
         btn_xiangce.setOnClickListener(this);
         alertDialog.show();
 
@@ -295,6 +294,21 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         public void success(Result<UserInfo> data) {
          userInfo1.setSign("2");
          Toast.makeText(getContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void fail(ApiException e) {
+            Toast.makeText(getContext(), "异常", Toast.LENGTH_SHORT).show();
+        }
+    }
+    //获取数据
+    class HeardCall implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+
+            Toast.makeText(getActivity(), data.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
 
