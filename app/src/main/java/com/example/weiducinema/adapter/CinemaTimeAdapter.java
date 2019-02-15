@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,11 +43,12 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
-        final FilmTimeBean filmTimeBean = mList.get(i);
-        myHolder.title.setText(filmTimeBean.getScreeningHall());
+       final FilmTimeBean filmTimeBean = mList.get(i);
+       myHolder.title.setText(filmTimeBean.getScreeningHall());
        myHolder.begintime.setText(filmTimeBean.getBeginTime());
        myHolder.overtime.setText(filmTimeBean.getEndTime());
-       myHolder.element.setText(""+filmTimeBean.getPrice());
+       SpannableString spannableString = changTVsize(filmTimeBean.getPrice()+"");
+       myHolder.element.setText(spannableString);
        myHolder.img_next.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -63,6 +67,14 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
 //               context.startActivity(intent);
 //           }
 //       });
+    }
+    public static SpannableString changTVsize(String value) {
+        SpannableString spannableString = new SpannableString(value);
+        if (value.contains(".")) {
+            spannableString.setSpan(new RelativeSizeSpan(0.6f), value.indexOf("."), value.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return spannableString;
     }
 
     @Override
