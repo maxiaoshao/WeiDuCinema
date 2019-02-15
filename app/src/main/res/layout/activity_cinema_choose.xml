@@ -27,26 +27,73 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/pupol" />
 
-        <TextView
-            android:id="@+id/txt_session"
-            android:layout_width="312dp"
-            android:layout_height="26dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_marginTop="40dp"
+        <RelativeLayout
+            android:id="@+id/beijing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:text="铁血战士"
-            android:textColor="#fff"
-            android:textSize="11sp" />
+            <TextView
+                android:id="@+id/choose_cinema_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="24dp"
+                android:textColor="@color/white"
+                android:text="影院名称"/>
+            <TextView
+                android:id="@+id/choose_cinema_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="8sp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/white"
+                android:text="影院地址"
+                android:layout_below="@id/choose_cinema_name"/>
+            <TextView
+                android:id="@+id/choose_movie_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="5dp"
+                android:text="影片名称"
+                android:layout_below="@id/choose_cinema_address"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"/>
 
-        <LinearLayout
+            <TextView
+                android:paddingLeft="12dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:id="@+id/choose_cinema_marquee"
+                android:layout_below="@id/choose_movie_name"
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="#40ffffff"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="生命不是要超越别人，而是要超越自己。"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:layout_marginBottom="10dp"
+                />
+        </RelativeLayout>
+
+            <LinearLayout
             android:id="@+id/ll_zuo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_session"
+            android:layout_below="@id/beijing"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <ImageView
