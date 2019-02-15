@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -48,7 +51,8 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         viewHolder1.title.setText(li.get(i).getScreeningHall());
         viewHolder1.begintime.setText(li.get(i).getBeginTime());
         viewHolder1.overtime.setText(li.get(i).getEndTime());
-        viewHolder1.element.setText(li.get(i).getPrice()+"");
+        SpannableString spannableString = changTVsize(li.get(i).getPrice()+"");
+        viewHolder1.element.setText(spannableString);
         viewHolder1.img_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +60,15 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         .getSeatsTotal(),li.get(i).getId()+"");
             }
         });
+    }
+
+    public static SpannableString changTVsize(String value) {
+        SpannableString spannableString = new SpannableString(value);
+        if (value.contains(".")) {
+            spannableString.setSpan(new RelativeSizeSpan(0.6f), value.indexOf("."), value.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return spannableString;
     }
 
     @Override
