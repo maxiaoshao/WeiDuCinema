@@ -48,7 +48,7 @@ public class QueryPaiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         viewHolder1.title.setText(li.get(i).getScreeningHall());
         viewHolder1.begintime.setText(li.get(i).getBeginTime());
         viewHolder1.overtime.setText(li.get(i).getEndTime());
-        viewHolder1.element.setText(li.get(i).getSeatsTotal()+"");
+        viewHolder1.element.setText(li.get(i).getPrice()+"");
         viewHolder1.img_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

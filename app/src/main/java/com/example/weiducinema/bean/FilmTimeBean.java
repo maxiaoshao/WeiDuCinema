@@ -11,6 +11,7 @@ public class FilmTimeBean {
     private String duration;
     private String endTime;
     private int id;
+    private double price;
     private String screeningHall;
     private int seatsTotal;
     private int seatsUseCount;
@@ -78,5 +79,13 @@ public class FilmTimeBean {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

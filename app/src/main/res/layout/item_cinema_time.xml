@@ -99,6 +99,7 @@
             android:id="@+id/img_next"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:padding="5dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/com_icon_next_default_" />

@@ -212,10 +212,14 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 }
                 break;
             case R.id.paizhao:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
-                startActivityForResult(intent, 89);
-                alertDialog.dismiss();
+                try {//Manifest.permission.CAMERA
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
+                    startActivityForResult(intent, 89);
+                    alertDialog.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.xiangce:
                 Intent intent2 = new Intent(Intent.ACTION_PICK);

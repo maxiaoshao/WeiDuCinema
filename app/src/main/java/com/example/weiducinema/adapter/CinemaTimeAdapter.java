@@ -44,7 +44,7 @@ public class CinemaTimeAdapter extends RecyclerView.Adapter<CinemaTimeAdapter.My
         myHolder.title.setText(filmTimeBean.getScreeningHall());
        myHolder.begintime.setText(filmTimeBean.getBeginTime());
        myHolder.overtime.setText(filmTimeBean.getEndTime());
-       myHolder.element.setText(""+filmTimeBean.getSeatsTotal());
+       myHolder.element.setText(""+filmTimeBean.getPrice());
        myHolder.img_next.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
