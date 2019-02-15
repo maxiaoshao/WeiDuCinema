@@ -20,6 +20,7 @@
                 android:id="@+id/resc"
                 android:background="@drawable/pupol"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/im_ding"
@@ -29,7 +30,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp" />
                 <TextView
-                    android:id="@+id/text1"
+                    android:id="@+id/text10"
                     android:text="北京"
                     android:textColor="#ffffff"
                     android:textSize="14sp"
@@ -40,7 +41,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
               <LinearLayout
-                  android:layout_width="250dp"
+
+            android:layout_width="250dp"
                   android:layout_height="24dp"
                   android:layout_marginTop="30dp"
                   android:gravity="right"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.support.multidex.MultiDexApplication;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -24,6 +25,7 @@ public class AppZhuce extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        SDKInitializer.initialize(this);
         DiskCacheConfig diskCacheConfig = DiskCacheConfig.newBuilder(this)
                 .setBaseDirectoryName("hehe")
                 .setBaseDirectoryPath(Environment.getExternalStorageDirectory()).build();
