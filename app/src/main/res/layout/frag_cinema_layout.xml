@@ -27,13 +27,14 @@
         android:layout_alignParentRight="true"
         android:orientation="horizontal">
         <SearchView
+            android:searchIcon="@drawable/com_icon_search_default"
+
             android:id="@+id/cinema_search"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:background="@drawable/find_shape"
             android:paddingRight="10dp"
             android:layout_gravity="center"
-            android:queryHint="请输入要搜索的影院"
             android:textSize="20sp"
             ></SearchView>
     </LinearLayout>
@@ -49,6 +50,7 @@
             android:id="@+id/tui"
             android:textSize="14sp"
             android:padding="0dp"
+            android:layout_centerVertical="true"
             android:text="推荐影院"
             android:layout_marginLeft="30dp"
             android:textColor="#ffffff"
@@ -62,6 +64,7 @@
             android:layout_toRightOf="@+id/tui"
             android:layout_marginLeft="30dp"
             android:text="附近影院"
+            android:layout_centerVertical="true"
             android:background="@drawable/btn_wu"
             android:layout_width="83dp"
             android:layout_height="25dp" />

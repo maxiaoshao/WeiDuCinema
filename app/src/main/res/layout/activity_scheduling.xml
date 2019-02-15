@@ -43,7 +43,9 @@
                 android:id="@+id/aly"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/txt_site"
-                android:layout_width="312dp"
+                android:layout_width="match_parent"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/yingcheng"
                 android:layout_height="142dp">

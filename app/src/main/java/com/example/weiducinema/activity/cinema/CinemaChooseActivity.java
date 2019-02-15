@@ -8,15 +8,13 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import io.reactivex.functions.Consumer;
 import com.bw.movie.R;
 import com.example.weiducinema.activity.SeatTable;
 import com.example.weiducinema.activity.WDLoginActivity;
-import com.example.weiducinema.activity.my.MyAttentionActivity;
 import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.base.WDBaseActivity;
+import com.example.weiducinema.bean.EventMessage;
 import com.example.weiducinema.bean.MessageBean;
 import com.example.weiducinema.bean.PayBean;
 import com.example.weiducinema.bean.Result;
@@ -27,7 +25,6 @@ import com.example.weiducinema.core.http.NetworkManager;
 import com.example.weiducinema.core.md5.MD5Utils;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.OrderPersent;
-import com.example.weiducinema.precener.UserAttenChengPrencenter;
 import com.j256.ormlite.dao.Dao;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -41,6 +38,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class CinemaChooseActivity extends WDBaseActivity {
@@ -54,14 +52,24 @@ public class CinemaChooseActivity extends WDBaseActivity {
     private ImageView img_abandon;
     private String title;
     private int num = 0;
-    private Dao<UserInfo,String> userDao;
+    private Dao<UserInfo, String> userDao;
     private List<UserInfo> student;
     private int price;
 
     private IWXAPI api;
     private String paiid;
     OrderPersent orderPersent;
+    private TextView choose_cinema_name;
+    private TextView choose_cinema_address;
+    private TextView choose_movie_name;
+    private TextView choose_cinema_marquee;
+    private String cinemaId;
+    private String img_pic;
+    private String ciname_name;
+    private String address;
+
     public CinemaChooseActivity() {
+
     }
 
 
@@ -77,14 +85,18 @@ public class CinemaChooseActivity extends WDBaseActivity {
         api.registerApp("wxb3852e6a6b7d9516");
         seat_view = findViewById(R.id.seat_view);
         txt_choose_price = findViewById(R.id.txt_choose_price);
+        choose_cinema_address = findViewById(R.id.choose_cinema_address);
+        choose_cinema_marquee = findViewById(R.id.choose_cinema_marquee);
+        choose_cinema_name = findViewById(R.id.choose_cinema_name);
+        choose_movie_name = findViewById(R.id.choose_movie_name);
         seat_view.setMaxSelected(3);//设置最多选中
         img_confirm = findViewById(R.id.img_confirm);
-            orderPersent = new OrderPersent(new OrderData());
+        orderPersent = new OrderPersent(new OrderData());
         initChooseMessage();
         seat_view.setSeatChecker(new SeatTable.SeatChecker() {
             @Override
             public boolean isValidSeat(int row, int column) {
-                if(column==2) {
+                if (column == 2) {
                     return false;
                 }
                 return true;
@@ -92,7 +104,7 @@ public class CinemaChooseActivity extends WDBaseActivity {
 
             @Override
             public boolean isSold(int row, int column) {
-                if(row==6&&column==6){
+                if (row == 6 && column == 6) {
                     return true;
                 }
                 return false;
@@ -119,10 +131,10 @@ public class CinemaChooseActivity extends WDBaseActivity {
             }
 
         });
-        seat_view.setData(10,15);
+        seat_view.setData(10, 15);
 
 
-        if (!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
         img_confirm.setOnClickListener(new View.OnClickListener() {
@@ -131,15 +143,15 @@ public class CinemaChooseActivity extends WDBaseActivity {
                 try {
                     userDao = DBManager.getInstance(getBaseContext()).getUserDao();
                     student = userDao.queryForAll();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
-                if (student.size()==0){
-                    startActivity(new Intent(CinemaChooseActivity.this,WDLoginActivity.class));
-                }else{
-                    String md = student.get(0).getUserId()+""+paiid+"1"+"movie";
+                if (student.size() == 0) {
+                    startActivity(new Intent(CinemaChooseActivity.this, WDLoginActivity.class));
+                } else {
+                    String md = student.get(0).getUserId() + "" + paiid + "1" + "movie";
                     String s = MD5Utils.md5Password(md);
-                    orderPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"",paiid,"1",s);
+                    orderPersent.reqeust(student.get(0).getUserId() + "", student.get(0).getSessionId() + "", paiid, "1", s);
                 }
 
             }
@@ -147,7 +159,20 @@ public class CinemaChooseActivity extends WDBaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
-    public void chuan(MessageBean messageBean){
+    public void cinemaId(EventMessage message){
+        cinemaId = message.getCinemaId();
+        img_pic = message.getImg_pic();
+        ciname_name = message.getCiname_name();
+        address = message.getAddress();
+        choose_cinema_name.setText(ciname_name);
+        choose_cinema_address.setText(address);
+        choose_movie_name.setText("钢铁战士");
+      //  choose_cinema_marquee
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void chuan(MessageBean messageBean) {
         title = messageBean.getTitle();
         price = messageBean.getPrice();
         paiid = messageBean.getPid();
@@ -158,8 +183,9 @@ public class CinemaChooseActivity extends WDBaseActivity {
 
     @Override
     protected void destoryData() {
-      EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
+
     private void initChooseMessage() {
         String mPrice = "0.1";
         mPriceWithCalculate = new BigDecimal(mPrice);
@@ -167,6 +193,7 @@ public class CinemaChooseActivity extends WDBaseActivity {
 
     private BigDecimal mPriceWithCalculate;
     private int selectedTableCount = 0;
+
     private void changePriceWithSelected() {
         selectedTableCount++;
         String currentPrice = mPriceWithCalculate.multiply(new BigDecimal(String.valueOf(selectedTableCount))).toString();
@@ -174,12 +201,14 @@ public class CinemaChooseActivity extends WDBaseActivity {
         txt_choose_price.setText(spannableString);
         //计算机：处理浮点数是不精确的1.2 - 02   = 1   =》    0.9999999999
     }
+
     private void changePriceWithUnSelected() {
         selectedTableCount--;
         String currentPrice = mPriceWithCalculate.multiply(new BigDecimal(String.valueOf(selectedTableCount))).toString();
         SpannableString spannableString = changTVsize(currentPrice);
         txt_choose_price.setText(spannableString);
     }
+
     public static SpannableString changTVsize(String value) {
         SpannableString spannableString = new SpannableString(value);
         if (value.contains(".")) {
@@ -192,13 +221,13 @@ public class CinemaChooseActivity extends WDBaseActivity {
     private class OrderData implements DataCall<Result> {
         @Override
         public void success(Result data) {
-            if (data.getStatus().equals("0000")){
+            if (data.getStatus().equals("0000")) {
 
                 String orderId = data.getOrderId();
                 IRequest interfacea = NetworkManager.instance().create(IRequest.class);
-                interfacea.pay(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","1",orderId).subscribeOn(Schedulers.newThread())
+                interfacea.pay(student.get(0).getUserId() + "", student.get(0).getSessionId() + "", "1", orderId).subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe( new Consumer<PayBean>() {
+                        .subscribe(new Consumer<PayBean>() {
                             @Override
                             public void accept(PayBean payBean) throws Exception {
                                 PayReq req = new PayReq();

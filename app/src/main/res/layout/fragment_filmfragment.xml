@@ -47,7 +47,7 @@
                   android:layout_alignParentRight="true"
                   android:orientation="horizontal">
                 <SearchView
-                    android:queryHint="请输入要搜索的影片"
+                    android:searchIcon="@drawable/com_icon_search_default"
                     android:id="@+id/cinema_search"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
@@ -58,6 +58,7 @@
                     ></SearchView>
               </LinearLayout>
                 <recycler.coverflow.RecyclerCoverFlow
+                    android:layout_marginTop="20dp"
                     android:id="@+id/rcf_cinema_flow"
                     android:layout_below="@id/im_ding"
                     android:layout_marginLeft="24dp"
