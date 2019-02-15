@@ -1,6 +1,7 @@
 package com.example.weiducinema.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
@@ -113,19 +114,19 @@ public class WDShowmoiver extends WDBaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.yi:
-
+                            yi.setTextColor(Color.WHITE);
                             mHotFilmPopulPresenter.reqeust(0+"","","1", "10");
 
 
                         break;
                     case R.id.er:
-
+                            er.setTextColor(Color.WHITE);
                             mHotFilmPopulPresenter2.reqeust(0+"","","1", "10");
 
 
                         break;
                     case R.id.san:
-
+                            san.setTextColor(Color.WHITE);
                             mHotFilmPopulPresenter3.reqeust(0+"","","1", "10");
 
 
@@ -157,16 +158,19 @@ public class WDShowmoiver extends WDBaseActivity {
             yi.setChecked(true);
             er.setChecked(false);
             san.setChecked(false);
+            yi.setTextColor(Color.WHITE);
             mHotFilmPopulPresenter.reqeust(0+"","","1","10");
         }else if (type.equals("2")){
             yi.setChecked(false);
             er.setChecked(true);
             san.setChecked(false);
+            er.setTextColor(Color.WHITE);
             mHotFilmPopulPresenter2.reqeust(0+"","","1","10");
         }else{
             yi.setChecked(false);
             er.setChecked(false);
             san.setChecked(true);
+            san.setTextColor(Color.WHITE);
             mHotFilmPopulPresenter3.reqeust(0+"","","1","10");
         }
     }
