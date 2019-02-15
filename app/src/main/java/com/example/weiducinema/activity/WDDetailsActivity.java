@@ -144,6 +144,13 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
+                SimpleDraweeView pratticulars_filmreview_xs4 = popview.findViewById(R.id.pratticulars_pratticulars_qx_sim);
+                pratticulars_filmreview_xs4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
                 initDetails(popview);
 
                 break;
@@ -162,6 +169,13 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
                     }
                 });
+                SimpleDraweeView pratticulars_filmreview_xs3 = popview.findViewById(R.id.pratticulars_prevue_xs);
+                pratticulars_filmreview_xs3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
 
                 initPred(popview);
                 break;
@@ -173,6 +187,13 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
+                SimpleDraweeView pratticulars_filmreview_xs2 = popview.findViewById(R.id.pratticulars_stagephoto_xs);
+                pratticulars_filmreview_xs2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
                 initStills(popview);
                 break;
             case R.id.details_txt_review:
@@ -184,13 +205,21 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
+                SimpleDraweeView pratticulars_filmreview_xs = popview.findViewById(R.id.pratticulars_filmreview_xs);
+                pratticulars_filmreview_xs.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
                 initReview(popview);
 
                 break;
         }
     }
 
-    private void initReview(View popview) {
+    private void initReview(final View popview) {
+
 
 
         ex = popview.findViewById(R.id.ex);
@@ -210,9 +239,9 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     }
 
     private void initStills(View popview) {
-        detailsPrencenter = new DetailsPrencenter(new Details4());
-        detailsPrencenter.reqeust(moverid);
+
         adapter2 = new StillsAdapter(this);
+        adapter2.setData(li.getPosterList());
         pratticulars_stagephoto_jz = popview.findViewById(R.id.pratticulars_stagephoto_jz);
         pratticulars_stagephoto_jz.setLayoutManager(new GridLayoutManager(this,2));
         pratticulars_stagephoto_jz.addItemDecoration(new SpacesItemDecoration(10));
@@ -220,10 +249,10 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     }
 
     private void initPred(View popview) {
-        detailsPrencenter = new DetailsPrencenter(new Details3());
-        detailsPrencenter.reqeust(moverid);
+
         pratticulars_prevue_rec = popview.findViewById(R.id.pratticulars_prevue_rec);
         adapter = new PrevueAdapter(this);
+        adapter.setList(li.getShortFilmList());
         pratticulars_prevue_rec.setLayoutManager(new LinearLayoutManager(this));
         pratticulars_prevue_rec.addItemDecoration(new SpacesItemDecoration(10));
         pratticulars_prevue_rec.setAdapter(adapter);
