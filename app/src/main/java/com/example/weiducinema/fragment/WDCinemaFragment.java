@@ -89,9 +89,9 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
                 }
 
                 fu.setBackgroundResource(R.drawable.btn_gradient);
-                fu.setHintTextColor(Color.WHITE);
+                fu.setTextColor(Color.WHITE);
                 tui.setBackgroundResource(R.drawable.btn_wu);
-                tui.setHintTextColor(Color.BLACK);
+                tui.setTextColor(Color.BLACK);
 
             }
         });
@@ -103,9 +103,9 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
                 }
 
                 tui.setBackgroundResource(R.drawable.btn_gradient);
-                tui.setHintTextColor(Color.WHITE);
+                tui.setTextColor(Color.WHITE);
                 fu.setBackgroundResource(R.drawable.btn_wu);
-                fu.setHintTextColor(Color.BLACK);
+                fu.setTextColor(Color.BLACK);
 
             }
         });
