@@ -12,4 +12,29 @@
     android:layout_marginRight="20dp"
     android:layout_height="223dp"
      />
+    <RelativeLayout
+        android:layout_width="158dp"
+        android:layout_alignBottom="@id/simm"
+        android:background="#70eeeeee"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/t1"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="daidlkhakd"
+            android:maxEms="5"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/shijain"
+            android:textColor="#ffffff"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </RelativeLayout>

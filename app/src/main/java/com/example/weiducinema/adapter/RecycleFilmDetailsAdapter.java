@@ -45,6 +45,8 @@ public class RecycleFilmDetailsAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolder1 viewHolder1 = (ViewHolder1) viewHolder;
         viewHolder1.sim.setImageURI(li.get(i).getImageUrl());
+        viewHolder1.t1.setText(li.get(i).getName());
+        viewHolder1.shijain.setText(li.get(i).getRank()+"");
         viewHolder1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +62,12 @@ public class RecycleFilmDetailsAdapter extends RecyclerView.Adapter<RecyclerView
 
     class ViewHolder1 extends RecyclerView.ViewHolder {
         SimpleDraweeView sim;
+        TextView t1,shijain;
         public ViewHolder1(@NonNull View itemView) {
             super(itemView);
             sim = itemView.findViewById(R.id.simm);
+            t1 = itemView.findViewById(R.id.t1);
+            shijain = itemView.findViewById(R.id.shijain);
         }
     }
     public interface onItemClick{
