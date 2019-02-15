@@ -15,11 +15,20 @@
         android:layout_alignBottom="@id/sims"
         android:background="#70eeeeee"
         android:layout_height="40dp">
+       <View
+           android:layout_width="3dp"
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="10dp"
+           android:layout_height="18dp"
+           android:background="@drawable/film_sxx"
+           android:layout_below="@id/hot"
+           android:layout_marginTop="4dp"
+           />
     <TextView
         android:id="@+id/t1"
         android:textColor="#ffffff"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="23dp"
         android:text="daidlkhakd"
         android:textSize="16sp"
         android:layout_width="match_parent"

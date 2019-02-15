@@ -62,12 +62,12 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/img_pic"
             android:layout_marginTop="10dp"
-            android:background="#999999"
+            android:background="#f2f2f2"
             />
         <TextView
         android:id="@+id/tv_name"
@@ -96,12 +96,12 @@
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/user_name"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:background="#999999"
+            android:background="#f2f2f2"
             />
         <TextView
             android:id="@+id/tv_sex"
@@ -131,12 +131,12 @@
         <View
             android:id="@+id/view3"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/user_sex"
             android:layout_marginTop="10dp"
-            android:background="#999999"
+            android:background="#f2f2f2"
             />
         <TextView
             android:id="@+id/tv_data"
@@ -206,12 +206,12 @@
         <View
             android:id="@+id/view4"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/user_phone"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:background="#999999"
+            android:background="#f2f2f2"
             />
         <TextView
             android:id="@+id/tv_email"
@@ -221,7 +221,7 @@
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/view4"
             android:layout_marginBottom="20dp"
@@ -234,7 +234,7 @@
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_below="@+id/view4"
             android:layout_marginBottom="20dp"
@@ -264,7 +264,6 @@
             android:text="重置密码"
             android:textSize="14sp"
             android:textColor="#333333"
-            android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
             />
         <ImageView
