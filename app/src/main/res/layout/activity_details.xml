@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/yi"
+            android:background="@drawable/com_icon_movie_default_"
             android:layout_width="24dp"
             android:layout_height="24dp"
             />
