@@ -120,6 +120,7 @@
                     android:layout_marginTop="4dp"
                     />
                 <ImageView
+                    android:padding="5dp"
                     android:src="@drawable/com_icon_next_default_"
                     android:layout_alignParentRight="true"
                     android:layout_width="24dp"
@@ -156,6 +157,7 @@
                     android:layout_marginTop="4dp"
                     />
                 <ImageView
+                    android:padding="5dp"
                     android:src="@drawable/com_icon_next_default_"
                     android:layout_alignParentRight="true"
                     android:layout_width="24dp"
@@ -192,6 +194,7 @@
                     android:layout_marginTop="4dp"
                     />
                 <ImageView
+                    android:padding="5dp"
                     android:src="@drawable/com_icon_next_default_"
                     android:layout_alignParentRight="true"
                     android:layout_width="24dp"
