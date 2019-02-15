@@ -2,20 +2,27 @@ package com.example.weiducinema.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.example.weiducinema.activity.WDLoginActivity;
-import com.example.weiducinema.activity.WDShowmoiver;
 import com.example.weiducinema.activity.cinema.CinemaDetailsActivity;
 import com.example.weiducinema.adapter.YuanTuiAdaptr;
 import com.example.weiducinema.app.SpacesItemDecoration;
-import com.example.weiducinema.base.WDBaseFragment;
 import com.example.weiducinema.base.DataCall;
+import com.example.weiducinema.base.WDBaseFragment;
 import com.example.weiducinema.bean.EventMessage;
 import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.YuantuiBean;
@@ -32,22 +39,23 @@ import org.greenrobot.eventbus.EventBus;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.bw.movie.R.drawable.btn_gradient;
-
 /**
  * Created by 邵新轩(轩少)
  * function:
  * on 2019/1/23
  */
-public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.onItemClick {
+public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.onItemClick, View.OnClickListener {
     RecyclerView recy_tui;
-    Button tui,fu;
+    Button tui, fu;
     Dao<UserInfo, String> userDao;
     List<UserInfo> student;
     YuanTuiAdaptr adaptr;
     GuanCinmearPersent guanCinmearPersent;
     YuanCinemaFuPersent yuanCinemaFuPersent;
     YuanCinemaPersent yuanCinemaPersent;
+
+    //private SearchView cinema_search;
+
     @Override
     public String getPageName() {
         return null;
@@ -69,10 +77,11 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
 
         tui = view.findViewById(R.id.tui);
         fu = view.findViewById(R.id.fu);
+        //cinema_search = view.findViewById(R.id.cinema_search);
         adaptr = new YuanTuiAdaptr(getActivity());
         yuanCinemaPersent = new YuanCinemaPersent(new Tui());
         yuanCinemaFuPersent = new YuanCinemaFuPersent(new Fu());
-        yuanCinemaPersent.reqeust("0","","1","10");
+        yuanCinemaPersent.reqeust("0", "", "1", "10");
         recy_tui = view.findViewById(R.id.recy_tui);
         recy_tui.setLayoutManager(new LinearLayoutManager(getActivity()));
         recy_tui.addItemDecoration(new SpacesItemDecoration(20));
@@ -82,10 +91,10 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
         fu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (student.size()==0){
-                    yuanCinemaFuPersent.reqeust("0","","40.0481292144","116.3065021771","1","10");
-                }else{
-                    yuanCinemaFuPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","40.0481292144","116.3065021771","1","10");
+                if (student.size() == 0) {
+                    yuanCinemaFuPersent.reqeust("0", "", "40.0481292144", "116.3065021771", "1", "10");
+                } else {
+                    yuanCinemaFuPersent.reqeust(student.get(0).getUserId() + "", student.get(0).getSessionId() + "", "40.0481292144", "116.3065021771", "1", "10");
                 }
 
                 fu.setBackgroundResource(R.drawable.btn_gradient);
@@ -98,8 +107,8 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
         tui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (student.size()==0){
-                    yuanCinemaPersent.reqeust("0","","1","10");
+                if (student.size() == 0) {
+                    yuanCinemaPersent.reqeust("0", "", "1", "10");
                 }
 
                 tui.setBackgroundResource(R.drawable.btn_gradient);
@@ -109,31 +118,40 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
 
             }
         });
+        //cinema_search.setQueryHint("请输入关键字");
+        // cinema_search.setBackgroundColor(Color.WHITE);
     }
 
     @Override
     public void tiao(String cinameId, String imgPic, String cinameName, String address) {
-        System.out.println("XXX"+cinameId+imgPic+cinameName+address);
-        startActivity(new Intent(getActivity(),CinemaDetailsActivity.class));
-        EventBus.getDefault().postSticky(new EventMessage(cinameId,imgPic,cinameName,address));
+        System.out.println("XXX" + cinameId + imgPic + cinameName + address);
+        startActivity(new Intent(getActivity(), CinemaDetailsActivity.class));
+        EventBus.getDefault().postSticky(new EventMessage(cinameId, imgPic, cinameName, address));
     }
 
     @Override
     public void guan(int position, String tr) {
 
-        if (student.size()==0){
+        if (student.size() == 0) {
 
             startActivity(new Intent(getActivity(), WDLoginActivity.class));
-        }else {
+        } else {
 
-            if (tr.equals("1")){
-                guanCinmearPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"",position+"");
+            if (tr.equals("1")) {
+                guanCinmearPersent.reqeust(student.get(0).getUserId() + "", student.get(0).getSessionId() + "", position + "");
 
-            }else{
+            } else {
                 //qGuanPwdPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"",position+"");
 
             }
         }
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+
     }
 
 
@@ -150,7 +168,7 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
         }
     }
 
-    private class Fu implements DataCall<Result<List<YuantuiBean>>>  {
+    private class Fu implements DataCall<Result<List<YuantuiBean>>> {
         @Override
         public void success(Result<List<YuantuiBean>> data) {
             adaptr.setData(data.getResult());
@@ -166,11 +184,11 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
     private class Guan implements DataCall<Result> {
         @Override
         public void success(Result data) {
-            if (data.getStatus().equals("0000")){
-                Toast.makeText(getActivity(),"关注成功",Toast.LENGTH_LONG).show();
-                yuanCinemaFuPersent.reqeust(student.get(0).getUserId()+"",student.get(0).getSessionId()+"","40.0481292144","116.3065021771","1","10");
-            }else{
-                for (int i=0;i<student.size();i++){
+            if (data.getStatus().equals("0000")) {
+                Toast.makeText(getActivity(), "关注成功", Toast.LENGTH_LONG).show();
+                yuanCinemaFuPersent.reqeust(student.get(0).getUserId() + "", student.get(0).getSessionId() + "", "40.0481292144", "116.3065021771", "1", "10");
+            } else {
+                for (int i = 0; i < student.size(); i++) {
                     try {
                         userDao.delete(student.get(i));
                     } catch (SQLException e) {
@@ -178,7 +196,7 @@ public class WDCinemaFragment extends WDBaseFragment implements YuanTuiAdaptr.on
                     }
                 }
                 Toast.makeText(getActivity(), data.getMessage(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(),WDLoginActivity.class));
+                startActivity(new Intent(getActivity(), WDLoginActivity.class));
             }
         }
 
