@@ -3,8 +3,11 @@ package com.example.weiducinema.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +38,10 @@ import com.example.weiducinema.precener.SignPersent;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.j256.ormlite.dao.Dao;
 
+import java.io.File;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -64,6 +70,8 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     private SignPersent persent;
     private UserInfoBean userInfo1;
     private ImageView systems_message;
+    private Button btn_paizhao;
+    private Button btn_xiangce;
 
     @Override
     public String getPageName() {
@@ -97,12 +105,27 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         my_finish.setOnClickListener(this);
         my_sign.setOnClickListener(this);
         systems_message.setOnClickListener(this);
-
+        my_name.setOnClickListener(this);
         persent = new SignPersent(new SignCall());
 
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 89&& resultCode == RESULT_OK) {
+            Crop(Uri.fromFile(new File(path)));
+        }
+        if (requestCode == 99&& resultCode == RESULT_OK) {
+
+            Crop(data.getData());
+        }
+        if (requestCode == 100&& resultCode == RESULT_OK) {
+            my_pic.setImageBitmap((Bitmap) data.getParcelableExtra("data"));
+            //  heardPicPersent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId(),);
+        }
+    }
 
 
     @Override
@@ -143,7 +166,16 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.my_pic:
+                if (student.size()!= 0) {
+                    creatediog1();
+                }else {
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.my_name:
                 if (student.size() == 0) {
                     startActivity(new Intent(getActivity(), WDLoginActivity.class));
                 }
@@ -179,11 +211,40 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                     creatediog();
                 }
                 break;
+            case R.id.paizhao:
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
+                startActivityForResult(intent, 89);
+                alertDialog.dismiss();
+                break;
+            case R.id.xiangce:
+                Intent intent2 = new Intent(Intent.ACTION_PICK);
+                intent2.setType("image/*");
+                startActivityForResult(intent2, 99);
+                alertDialog.dismiss();
+                break;
 
 
 
         }
     }
+
+    private void creatediog1() {
+        // TODO Auto-generated method stub
+        builder = new AlertDialog.Builder(getActivity());
+        alertDialog = builder.create();
+        alertDialog.setTitle("请选择");
+        diogView = View.inflate(getActivity(), R.layout.dialog_layout, null);
+        alertDialog.setView(diogView);
+        btn_paizhao = (Button) diogView.findViewById(R.id.paizhao);
+        btn_xiangce = (Button) diogView.findViewById(R.id.xiangce);
+
+        btn_xiangce.setOnClickListener(this);
+        alertDialog.show();
+
+    }
+
+
     private void creatediog(){
         // TODO Auto-generated method stub
         builder = new AlertDialog.Builder(getActivity());
@@ -212,6 +273,20 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
             }
         });
         builder.create().show();
+    }
+
+    private void Crop(Uri data) {
+        // TODO Auto-generated method stub
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(data, "image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 251);
+        intent.putExtra("outputY", 251);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, 100);
+
     }
     //获取数据
     class SignCall implements DataCall<Result<UserInfo>> {

@@ -88,38 +88,6 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
 
     }
 
-    private void creatediog() {
-        // TODO Auto-generated method stub
-        builder = new AlertDialog.Builder(this);
-        alertDialog = builder.create();
-        alertDialog.setTitle("请选择");
-        diogView = View.inflate(this, R.layout.dialog_layout, null);
-        alertDialog.setView(diogView);
-        btn_paizhao = (Button) diogView.findViewById(R.id.paizhao);
-        btn_xiangce = (Button) diogView.findViewById(R.id.xiangce);
-
-        btn_xiangce.setOnClickListener(this);
-        alertDialog.show();
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 89&& resultCode == RESULT_OK) {
-            Crop(Uri.fromFile(new File(path)));
-        }
-        if (requestCode == 99&& resultCode == RESULT_OK) {
-
-            Crop(data.getData());
-        }
-        if (requestCode == 100&& resultCode == RESULT_OK) {
-            Bitmap bitmap = (Bitmap) data.getParcelableExtra("data");
-            img_pic.setImageBitmap(bitmap);
-          //  heardPicPersent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId(),);
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -140,23 +108,8 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.img_pic:
-                creatediog();
-                break;
             case R.id.img_back:
                 finish();
-                break;
-            case R.id.paizhao:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
-                startActivityForResult(intent, 89);
-                alertDialog.dismiss();
-                break;
-            case R.id.xiangce:
-                Intent intent2 = new Intent(Intent.ACTION_PICK);
-                intent2.setType("image/*");
-                startActivityForResult(intent2, 99);
-                alertDialog.dismiss();
                 break;
             case R.id.img_reset:
                 if (student.size()!=0){
@@ -198,19 +151,7 @@ public class My_Message_Activity extends WDBaseActivity implements View.OnClickL
         }
     }
 
-    private void Crop(Uri data) {
-        // TODO Auto-generated method stub
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(data, "image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 251);
-        intent.putExtra("outputY", 251);
-        intent.putExtra("return-data", true);
-        startActivityForResult(intent, 100);
 
-    }
     @Override
     protected void destoryData() {
 

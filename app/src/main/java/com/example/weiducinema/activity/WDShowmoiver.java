@@ -115,17 +115,23 @@ public class WDShowmoiver extends WDBaseActivity {
                 switch (checkedId) {
                     case R.id.yi:
                             yi.setTextColor(Color.WHITE);
+                            er.setTextColor(Color.BLACK);
+                            san.setTextColor(Color.BLACK);
                             mHotFilmPopulPresenter.reqeust(0+"","","1", "10");
 
 
                         break;
                     case R.id.er:
+                            yi.setTextColor(Color.BLACK);
                             er.setTextColor(Color.WHITE);
+                            san.setTextColor(Color.BLACK);
                             mHotFilmPopulPresenter2.reqeust(0+"","","1", "10");
 
 
                         break;
                     case R.id.san:
+                            yi.setTextColor(Color.BLACK);
+                            er.setTextColor(Color.BLACK);
                             san.setTextColor(Color.WHITE);
                             mHotFilmPopulPresenter3.reqeust(0+"","","1", "10");
 
@@ -159,18 +165,25 @@ public class WDShowmoiver extends WDBaseActivity {
             er.setChecked(false);
             san.setChecked(false);
             yi.setTextColor(Color.WHITE);
+            er.setTextColor(Color.BLACK);
+            san.setTextColor(Color.BLACK);
             mHotFilmPopulPresenter.reqeust(0+"","","1","10");
         }else if (type.equals("2")){
             yi.setChecked(false);
             er.setChecked(true);
             san.setChecked(false);
+            yi.setTextColor(Color.BLACK);
             er.setTextColor(Color.WHITE);
+            san.setTextColor(Color.BLACK);
             mHotFilmPopulPresenter2.reqeust(0+"","","1","10");
         }else{
             yi.setChecked(false);
             er.setChecked(false);
             san.setChecked(true);
+            yi.setTextColor(Color.BLACK);
+            er.setTextColor(Color.BLACK);
             san.setTextColor(Color.WHITE);
+
             mHotFilmPopulPresenter3.reqeust(0+"","","1","10");
         }
     }
