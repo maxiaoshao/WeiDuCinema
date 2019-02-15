@@ -28,6 +28,7 @@ public class YuanTuiAdaptr  extends RecyclerView.Adapter<RecyclerView.ViewHolder
         li = new ArrayList<>();
     }
     public void setData(List<YuantuiBean> result) {
+        li.clear();
         li = result;
     }
     @NonNull

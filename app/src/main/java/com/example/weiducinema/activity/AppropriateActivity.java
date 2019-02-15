@@ -60,7 +60,7 @@ public class AppropriateActivity extends WDBaseActivity {
         appropriateAdapter = new AppropriateAdapter(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new SpacesItemDecoration(20));
+        recyclerView.addItemDecoration(new SpacesItemDecoration(10));
         recyclerView.setAdapter(appropriateAdapter);
         appropriateAdapter.setOnItemClick(new AppropriateAdapter.onItemClick() {
             @Override

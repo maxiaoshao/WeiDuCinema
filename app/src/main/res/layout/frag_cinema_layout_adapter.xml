@@ -23,6 +23,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="14sp"
                 android:text="哈哈哈哈"
+                android:maxLines="1"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/sim"
                 android:layout_width="match_parent"
