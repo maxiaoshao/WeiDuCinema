@@ -9,6 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
     <Button
+        android:text="发表"
         android:id="@+id/fa"
         android:layout_width="0dp"
         android:layout_weight="3"

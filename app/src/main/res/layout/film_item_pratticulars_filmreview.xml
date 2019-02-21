@@ -35,11 +35,11 @@
         android:layout_marginTop="20dp"
         app:placeholderImage="@drawable/com_icon_down_default_" />
 
-    <ExpandableListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/ex"
         android:layout_below="@id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ExpandableListView>
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 
     <RelativeLayout

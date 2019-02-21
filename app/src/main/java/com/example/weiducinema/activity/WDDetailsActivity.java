@@ -1,20 +1,18 @@
 package com.example.weiducinema.activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ExpandableListView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
@@ -22,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.example.weiducinema.activity.my.MyChangePasswordActivity;
 import com.example.weiducinema.adapter.ExAdapter;
 import com.example.weiducinema.adapter.PrevueAdapter;
 import com.example.weiducinema.adapter.StillsAdapter;
@@ -31,12 +30,17 @@ import com.example.weiducinema.base.DataCall;
 import com.example.weiducinema.bean.CommentBean;
 import com.example.weiducinema.bean.DetailsBean;
 import com.example.weiducinema.bean.Result;
+import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.custom.WDSelectPicPopupWindow;
+import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.CommentPrencenter;
 import com.example.weiducinema.precener.DetailsPrencenter;
+import com.example.weiducinema.precener.SetMessagePersent;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.j256.ormlite.dao.Dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import cn.jzvd.JZVideoPlayer;
@@ -46,10 +50,13 @@ import cn.jzvd.JZVideoPlayerStandard;
  * created by fxb
  * 2019/1/25 08:47
  */
-public class WDDetailsActivity extends WDBaseActivity implements View.OnClickListener{
+public class WDDetailsActivity extends WDBaseActivity implements View.OnClickListener {
     ImageView fanhui;
     Button goupiao;
-    TextView mover_name,details_txt_details,details_txt_prediction,details_txt_stills,details_txt_review;
+    CommentPrencenter commentPrencenter;
+    Dao<UserInfo, String> userDao;
+    private List<UserInfo> student;
+    TextView mover_name, details_txt_details, details_txt_prediction, details_txt_stills, details_txt_review;
     DetailsPrencenter detailsPrencenter;
     SimpleDraweeView movier_sim;
     WDSelectPicPopupWindow menuWindow;
@@ -63,13 +70,14 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     StillsAdapter adapter2;
     private PopupWindow popupWindow;
     PrevueAdapter adapter;
-    ExpandableListView ex;
+    RecyclerView ex;
     ExAdapter adapter4;
     boolean equals;
     ImageView pratticulars_filmreview_while;
-    SimpleDraweeView pratticulars_pratticulars_sim,pratticulars_pratticulars_qx_sim;
-    TextView pratticulars_pratticulars_lx_txt,pratticulars_pratticulars_dy_txt,pratticulars_pratticulars_sc_txt,pratticulars_pratticulars_cd_txt,jianjie_txt;
-    RecyclerView pratticulars_pratticulars_recview,pratticulars_prevue_rec,pratticulars_stagephoto_jz;
+    SimpleDraweeView pratticulars_pratticulars_sim, pratticulars_pratticulars_qx_sim;
+    TextView pratticulars_pratticulars_lx_txt, pratticulars_pratticulars_dy_txt, pratticulars_pratticulars_sc_txt, pratticulars_pratticulars_cd_txt, jianjie_txt;
+    RecyclerView pratticulars_pratticulars_recview, pratticulars_prevue_rec, pratticulars_stagephoto_jz;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_details;
@@ -94,15 +102,15 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         detailsPrencenter = new DetailsPrencenter(new Details());
         final Intent intent = getIntent();
         String guans = intent.getStringExtra("guan");
-        if (guans==null){
+        if (guans == null) {
 
-        }else{
+        } else {
 
             equals = guans.equals("1");
         }
-        if (equals){
+        if (equals) {
             guan.setImageResource(R.drawable.com_icon_collection_selected_);
-        }else{
+        } else {
             guan.setImageResource(R.drawable.com_icon_collection_default_);
         }
         moverid = intent.getStringExtra("mid");
@@ -117,15 +125,15 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         goupiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(WDDetailsActivity.this,AppropriateActivity.class);
-                intent1.putExtra("movieid",li.getId()+"");
-                intent1.putExtra("moviename",li.getName());
-                intent1.putExtra("imageuri",li.getImageUrl());
-                intent1.putExtra("llname",li.getName());
-                intent1.putExtra("daoyan",li.getDirector());
-                intent1.putExtra("shichang",li.getDuration());
-                intent1.putExtra("leixing",li.getMovieTypes());
-                intent1.putExtra("chandi",li.getPlaceOrigin());
+                Intent intent1 = new Intent(WDDetailsActivity.this, AppropriateActivity.class);
+                intent1.putExtra("movieid", li.getId() + "");
+                intent1.putExtra("moviename", li.getName());
+                intent1.putExtra("imageuri", li.getImageUrl());
+                intent1.putExtra("llname", li.getName());
+                intent1.putExtra("daoyan", li.getDirector());
+                intent1.putExtra("shichang", li.getDuration());
+                intent1.putExtra("leixing", li.getMovieTypes());
+                intent1.putExtra("chandi", li.getPlaceOrigin());
                 startActivity(intent1);
             }
         });
@@ -139,12 +147,12 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.details_txt_details:
                 popview = View.inflate(this, R.layout.film_item_pratticulars_pratticulars, null);
-                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height /100*80);
-                popupWindow .setOutsideTouchable(true);
-                popupWindow .setFocusable(true);
+                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height / 100 * 80);
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setFocusable(true);
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
@@ -160,16 +168,16 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 break;
             case R.id.details_txt_prediction:
                 popview = View.inflate(this, R.layout.film_item_pratticulars_prevue, null);
-                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height /100*80);
-                popupWindow .setOutsideTouchable(true);
-                popupWindow .setFocusable(true);
+                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height / 100 * 80);
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setFocusable(true);
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
-                       JZVideoPlayer.releaseAllVideos();
+                        JZVideoPlayer.releaseAllVideos();
 
                     }
                 });
@@ -185,9 +193,9 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 break;
             case R.id.details_txt_stills:
                 popview = View.inflate(this, R.layout.film_item_pratticulars_stagephoto, null);
-                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height /100*80);
-                popupWindow .setOutsideTouchable(true);
-                popupWindow .setFocusable(true);
+                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height / 100 * 80);
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setFocusable(true);
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
@@ -203,9 +211,9 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
             case R.id.details_txt_review:
 
                 popview = View.inflate(this, R.layout.film_item_pratticulars_filmreview, null);
-                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height /100*80);
-                popupWindow .setOutsideTouchable(true);
-                popupWindow .setFocusable(true);
+                popupWindow = new PopupWindow(popview, WindowManager.LayoutParams.MATCH_PARENT, height / 100 * 80);
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setFocusable(true);
                 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
                 popupWindow.showAtLocation(mover_name, Gravity.BOTTOM, 0, 0);
                 popupWindow.setAnimationStyle(R.style.popwin_anim_style);
@@ -224,15 +232,30 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
     private void initReview(final View popview) {
 
+        final SetMessagePersent setMessagePersent;
 
-
-        ImageView pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
+        setMessagePersent = new SetMessagePersent(new SentMessage());
+        pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
         pratticulars_filmreview_while.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    userDao = DBManager.getInstance(WDDetailsActivity.this).getUserDao();
+                    student = userDao.queryForAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if (student.size()!=0){
+
+                }else {
+                    Toast.makeText(WDDetailsActivity.this,"请先登录",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(WDDetailsActivity.this,WDLoginActivity.class));
+                }
+                showInput(pratticulars_filmreview_while);
                 View inflate1 = View.inflate(WDDetailsActivity.this, R.layout.addpicture_item, null);
                 //   Dialog 弹框
-                Dialog bottomDialog = new Dialog(WDDetailsActivity.this, R.style.BottomDialog);
+
+                final Dialog bottomDialog = new Dialog(WDDetailsActivity.this, R.style.BottomDialog);
                 bottomDialog.setContentView(inflate1);
                 ViewGroup.LayoutParams layoutParamsthreefilmreview = inflate1.getLayoutParams();
                 layoutParamsthreefilmreview.width = getResources().getDisplayMetrics().widthPixels;
@@ -241,20 +264,67 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
                 bottomDialog.setCanceledOnTouchOutside(true);
                 bottomDialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
                 bottomDialog.show();
+                Button fa = inflate1.findViewById(R.id.fa);
+                final EditText ping_ping = inflate1.findViewById(R.id.ping_ping);
+
+                fa.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        setMessagePersent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId(),li.getId()+"",ping_ping.getText().toString().trim());
+                        hideInput();
+                        bottomDialog.dismiss();
+
+                    }
+                });
 
             }
         });
         ex = popview.findViewById(R.id.ex);
-        ex.setGroupIndicator(null);
-        CommentPrencenter commentPrencenter = new CommentPrencenter(new Coment());
+        commentPrencenter = new CommentPrencenter(new Coment());
         adapter4 = new ExAdapter(this);
-        commentPrencenter.reqeust(li.getId()+"","1","10");
+        commentPrencenter.reqeust(li.getId() + "", "1", "10");
+        ex.setLayoutManager(new LinearLayoutManager(this));
         ex.setAdapter(adapter4);
-        pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
-        pratticulars_filmreview_while.setOnClickListener(new View.OnClickListener() {
+        adapter4.setOnItemClick(new ExAdapter.onItemClick() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(WDDetailsActivity.this,"写评论",Toast.LENGTH_LONG).show();
+            public void tiao(String json) {
+                try {
+                    userDao = DBManager.getInstance(WDDetailsActivity.this).getUserDao();
+                    student = userDao.queryForAll();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if (student.size()!=0){
+
+                }else {
+                    Toast.makeText(WDDetailsActivity.this,"请先登录",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(WDDetailsActivity.this,WDLoginActivity.class));
+                }
+                View inflate1 = View.inflate(WDDetailsActivity.this, R.layout.addpicture_item, null);
+                //   Dialog 弹框
+
+                final Dialog bottomDialog = new Dialog(WDDetailsActivity.this, R.style.BottomDialog);
+                bottomDialog.setContentView(inflate1);
+                ViewGroup.LayoutParams layoutParamsthreefilmreview = inflate1.getLayoutParams();
+                layoutParamsthreefilmreview.width = getResources().getDisplayMetrics().widthPixels;
+                inflate1.setLayoutParams(layoutParamsthreefilmreview);
+                bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
+                bottomDialog.setCanceledOnTouchOutside(true);
+                bottomDialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
+                bottomDialog.show();
+                Button fa = inflate1.findViewById(R.id.fa);
+                final EditText ping_ping = inflate1.findViewById(R.id.ping_ping);
+                ping_ping.setText("回复 @ "+json+" :  ");
+                fa.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setMessagePersent.reqeust(student.get(0).getUserId(),student.get(0).getSessionId(),li.getId()+"",ping_ping.getText().toString().trim());
+                        hideInput();
+                        bottomDialog.dismiss();
+
+                    }
+                });
             }
         });
 
@@ -265,7 +335,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         adapter2 = new StillsAdapter(this);
         adapter2.setData(li.getPosterList());
         pratticulars_stagephoto_jz = popview.findViewById(R.id.pratticulars_stagephoto_jz);
-        pratticulars_stagephoto_jz.setLayoutManager(new GridLayoutManager(this,2));
+        pratticulars_stagephoto_jz.setLayoutManager(new GridLayoutManager(this, 2));
         pratticulars_stagephoto_jz.addItemDecoration(new SpacesItemDecoration(10));
         pratticulars_stagephoto_jz.setAdapter(adapter2);
     }
@@ -295,7 +365,8 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
 
     }
-        DetailsBean li;
+
+    DetailsBean li;
 
     private class Details implements DataCall<Result<DetailsBean>> {
 
@@ -374,6 +445,46 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         public void success(Result<List<CommentBean>> data) {
             adapter4.setData(data.getResult());
             adapter4.notifyDataSetChanged();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    /**
+     * 显示键盘     *     * @param et 输入焦点
+     * @param et
+     */
+    public void showInput(final ImageView et) {
+        et.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+
+    private class SentMessage implements DataCall<Result> {
+        @Override
+        public void success(Result data) {
+            if (data.getStatus().equals("0000")){
+                Toast.makeText(WDDetailsActivity.this,"评论成功",Toast.LENGTH_LONG).show();
+                commentPrencenter.reqeust(li.getId() + "", "1", "10");
+            }else{
+                Toast.makeText(WDDetailsActivity.this,data.getMessage(),Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getBaseContext(),WDLoginActivity.class));
+            }
         }
 
         @Override

@@ -1,13 +1,10 @@
 package com.example.weiducinema.adapter;
 
 import android.content.Context;
-import android.util.AttributeSet;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckBox;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -20,98 +17,67 @@ import java.util.List;
 
 /**
  * created by fxb
- * 2019/1/29 11:44
+ * 2019/1/26 16:26
  */
-public class ExAdapter extends BaseExpandableListAdapter {
-
-    List<CommentBean> list;
+public class ExAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    List<CommentBean> li;
     Context context;
 
-    public ExAdapter(WDDetailsActivity wdDetailsActivity) {
-        this.context = wdDetailsActivity;
-        list = new ArrayList<>();
+    public ExAdapter(WDDetailsActivity appropriateActivity) {
+        this.context = appropriateActivity;
+        li = new ArrayList<>();
     }
-    public void setData(List<CommentBean> result) {
-        list = result;
 
+    public void setData(List<CommentBean> data) {
+        li = data;
     }
+
+    @NonNull
     @Override
-    public int getGroupCount() {
-        return list==null?0:list.size();
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = View.inflate(context, R.layout.pupop_ping, null);
+        return new ViewHelow1(view);
     }
-
-    @Override
-    public int getChildrenCount(int groupPosition) {
-        return list.size();
-    }
-
-
 
     @Override
-    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        GroupView groupView;
-
-        if (convertView == null) {
-            convertView = View.inflate(parent.getContext(), R.layout.pupop_ping, null);
-            groupView = new GroupView(convertView);
-            convertView.setTag(groupView);
-        } else {
-            groupView = (GroupView) convertView.getTag();
-        }
-        groupView.sim.setImageURI(list.get(groupPosition).getCommentHeadPic());
-        groupView.seller_cb.setText(list.get(groupPosition).getCommentUserName());
-        groupView.seller_name_tv.setText(list.get(groupPosition).getCommentContent());
-        return convertView;
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
+        ViewHelow1 viewHelow1 = (ViewHelow1) viewHolder;
+        viewHelow1.sim.setImageURI(li.get(i).getCommentHeadPic());
+        viewHelow1.name.setText(li.get(i).getCommentUserName());
+        viewHelow1.jie.setText(li.get(i).getCommentContent());
+        viewHelow1.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.tiao(li.get(i).getCommentUserName());
+            }
+        });
     }
 
-    //
     @Override
-    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
-        return null;
+    public int getItemCount() {
+        return li.size();
     }
 
+    class ViewHelow1 extends RecyclerView.ViewHolder {
+        SimpleDraweeView sim;
+        TextView name, jie;
 
-
-
-
-    class GroupView{
-        public TextView seller_cb;
-        public TextView seller_name_tv;
-        public SimpleDraweeView sim;
-        public GroupView(View rootView) {
-            this.seller_cb =  rootView.findViewById(R.id.ping_name);
-            this.seller_name_tv = (TextView) rootView.findViewById(R.id.tt);
-            this.sim = rootView.findViewById(R.id.ping_sim);
+        public ViewHelow1(@NonNull View itemView) {
+            super(itemView);
+            sim = itemView.findViewById(R.id.ping_sim);
+            name = itemView.findViewById(R.id.ping_name);
+            jie = itemView.findViewById(R.id.tt);
         }
     }
 
-    @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
-    }
-    @Override
-    public Object getGroup(int groupPosition) {
-        return null;
+    public interface onItemClick {
+        void tiao(String json);
     }
 
-    @Override
-    public Object getChild(int groupPosition, int childPosition) {
-        return null;
+    private onItemClick onItemClick;
+
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
     }
 
-    @Override
-    public long getGroupId(int groupPosition) {
-        return 0;
-    }
-
-    @Override
-    public long getChildId(int groupPosition, int childPosition) {
-        return 0;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
-    }
 }
