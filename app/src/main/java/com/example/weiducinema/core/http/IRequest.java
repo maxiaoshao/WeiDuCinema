@@ -444,4 +444,15 @@ public interface IRequest {
             @Header("sessionId") String sessionId
 
     );
+    /**
+     * 品论影片
+     */
+    @FormUrlEncoded
+    @POST("movieApi/movie/v1/verify/movieComment")
+    Observable<Result<ChangeMessageBean>> setMessage(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Field("movieId") String movieId,
+            @Field("commentContent") String commentContent
+    );
 }
