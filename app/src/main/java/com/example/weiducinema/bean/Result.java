@@ -11,6 +11,17 @@ public class Result<T> {
     private String orderId;
     private String headPath;
     private Object[] args;
+    private int flag;
+    private String downloadUrl;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public Object[] getArgs() {
         return args;
@@ -58,5 +69,21 @@ public class Result<T> {
 
     public void setHeadPath(String headPath) {
         this.headPath = headPath;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
     }
 }

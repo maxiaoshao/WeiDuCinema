@@ -24,6 +24,7 @@ import com.example.weiducinema.core.exception.ApiException;
 
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.LoginPersent;
+import com.example.weiducinema.uitls.Validator;
 import com.example.weiducinema.uitls.WeiXinUtil;
 import com.j256.ormlite.dao.Dao;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -127,15 +128,23 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
     private void submit() {
         // validate
         phone = edittext_phone.getText().toString().trim();
+        boolean mobile = Validator.isMobile(phone);
         if (TextUtils.isEmpty(phone)) {
             Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
             return;
+        }else if(!mobile){
+            Toast.makeText(this, "手机号格式不对", Toast.LENGTH_SHORT).show();
+           return;
         }
 
 
         pwd = edittext_pwd.getText().toString().trim();
+        boolean password = Validator.isPassword(pwd);
         if (TextUtils.isEmpty(pwd)) {
             Toast.makeText(this, "登陆密码", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(!password){
+            Toast.makeText(this, "密码格式不对", Toast.LENGTH_SHORT).show();
             return;
         }
         String s = EncryptUtil.encrypt(pwd);
@@ -184,14 +193,14 @@ public class WDLoginActivity extends WDBaseActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
                 finish();
-            } else {
-                Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
             }
+                Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
 
         @Override
         public void fail(ApiException e) {
-            Toast.makeText(getBaseContext(), "异常", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "请检查信息", Toast.LENGTH_SHORT).show();
         }
     }
 

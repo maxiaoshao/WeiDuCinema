@@ -1,8 +1,11 @@
 package com.example.weiducinema.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,8 +36,10 @@ import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.encrypt.UserInfo;
 import com.example.weiducinema.bean.encrypt.UserInfoBean;
 import com.example.weiducinema.core.exception.ApiException;
+import com.example.weiducinema.core.http.DownLoadService;
 import com.example.weiducinema.db.DBManager;
 import com.example.weiducinema.precener.HeardPicPersent;
+import com.example.weiducinema.precener.NewPersent;
 import com.example.weiducinema.precener.SignPersent;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.j256.ormlite.dao.Dao;
@@ -73,6 +78,12 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
     private Button btn_xiangce;
     private HeardPicPersent heardPicPersent;
     private String path = Environment.getExternalStorageDirectory() + "/head.jpg";
+    private String url;
+    private NewPersent newpersent;
+    private String versionCode;
+    private int userId;
+    private String sessionId;
+
     @Override
     public String getPageName() {
         return null;
@@ -108,6 +119,23 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         my_name.setOnClickListener(this);
         persent = new SignPersent(new SignCall());
         heardPicPersent = new HeardPicPersent(new HeardCall());
+        newpersent = new NewPersent(new NewCall());
+        try {
+            versionCode = getActivity().getPackageManager().
+                    getPackageInfo(getContext().getPackageName(), 0).versionName;
+            try {
+                if (student.size()!=0) {
+                    UserInfo info = student.get(0);
+                     userId = info.getUserId();
+                     sessionId = info.getSessionId();
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -128,6 +156,14 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         }
     }
 
+    public static String getVersionName(Context context) throws PackageManager.NameNotFoundException {
+        // 获取packagemanager的实例
+        PackageManager packageManager = context.getPackageManager();
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+        String version = packInfo.versionName;
+        return version;
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -193,7 +229,7 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
                 startActivity(new Intent(getActivity(), MyOpinionActivity.class));
                 break;
             case R.id.my_new_versions:
-                startActivity(new Intent(getActivity(), MyNewVersionsActivity.class));
+                creatediog2();
                 break;
             case R.id.my_sign:
                 if (student.size()!=0) {
@@ -278,6 +314,31 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         builder.create().show();
     }
 
+    private void creatediog2(){
+        // TODO Auto-generated method stub
+        builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("检查更新").setIcon(R.drawable.my_pic_img);
+        builder.setMessage("发现新版本")
+                .setPositiveButton("下载", new DialogInterface.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        newpersent.reqeust(userId,sessionId,versionCode);
+
+
+
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                builder.create().dismiss();
+            }
+        });
+        builder.create().show();
+    }
+
     private void Crop(Uri data) {
         // TODO Auto-generated method stub
         Intent intent = new Intent("com.android.camera.action.CROP");
@@ -312,6 +373,24 @@ public class WDMyFragment extends WDBaseFragment implements View.OnClickListener
         @Override
         public void success(Result data) {
 
+            Toast.makeText(getActivity(), data.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void fail(ApiException e) {
+            Toast.makeText(getContext(), "异常", Toast.LENGTH_SHORT).show();
+        }
+    }
+    //获取数据
+    class NewCall implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+            url = data.getDownloadUrl();
+            Intent intent=new Intent(getContext(),DownLoadService.class);
+            intent.putExtra("download_url",url);
+            getActivity().startService(intent);
             Toast.makeText(getActivity(), data.getMessage(), Toast.LENGTH_SHORT).show();
 
         }

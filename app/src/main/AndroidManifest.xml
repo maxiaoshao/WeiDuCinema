@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bw.movie">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -49,28 +50,63 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.weiducinema.activity.WDShowActivity" />
-        <activity android:name="com.example.weiducinema.activity.WDScountActivity" />
-        <activity android:name="com.example.weiducinema.activity.WDRegionActivity" />
-        <activity android:name="com.example.weiducinema.activity.WDLoginActivity" />
-        <activity android:name="com.example.weiducinema.activity.WDShowmoiver" />
-        <activity android:name="com.example.weiducinema.activity.WDThreeActivity" />
-        <activity android:name="com.example.weiducinema.activity.WDDetailsActivity" />
-        <activity android:name="com.example.weiducinema.activity.AppropriateActivity" />
+        <activity android:name="com.example.weiducinema.activity.WDShowActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.WDScountActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.WDRegionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.WDLoginActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.WDShowmoiver"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.WDThreeActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.WDDetailsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.AppropriateActivity"
+            android:screenOrientation="portrait"
+            />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="VMMQE1cVVo2mKy5wRqdAixDXGbZPDzFX" />
 
-        <activity android:name="com.example.weiducinema.activity.SchedulingActivity" />
-        <activity android:name="com.example.weiducinema.activity.my.My_Message_Activity" />
-        <activity android:name="com.example.weiducinema.activity.my.MyAttentionActivity" />
-        <activity android:name="com.example.weiducinema.activity.my.MyTrackerActivity" />
-        <activity android:name="com.example.weiducinema.activity.my.MyOpinionActivity" />
-        <activity android:name="com.example.weiducinema.activity.my.MyNewVersionsActivity" />
-        <activity android:name="com.example.weiducinema.activity.cinema.CinemaDetailsActivity" />
-        <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity" />
-        <activity android:name="com.example.weiducinema.activity.my.MyChangePasswordActivity" />
+        <activity android:name="com.example.weiducinema.activity.SchedulingActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.My_Message_Activity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.MyAttentionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.MyTrackerActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.MyOpinionActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.MyNewVersionsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.cinema.CinemaDetailsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.cinema.CinemaChooseActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.MyChangePasswordActivity"
+            android:screenOrientation="portrait"
+            />
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -86,8 +122,26 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:exported="true" />
-        <activity android:name="com.example.weiducinema.activity.my.SentSeccussActivity"></activity>
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.SentSeccussActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.weiducinema.activity.my.SystemsActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+        <service android:name="com.example.weiducinema.core.http.DownLoadService"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="zmz.zhao.com.zmz.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

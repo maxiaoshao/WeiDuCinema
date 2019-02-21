@@ -413,4 +413,35 @@ public interface IRequest {
             @Field("sex") int sex,
             @Field("email") String email
     );
+
+    /**
+     * 版本更新
+     */
+    @GET("movieApi/tool/v1/findNewVersion")
+    Observable<Result> getNew(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Header("ak") String ak
+    );
+    /**
+     * movieApi/tool/v1/verify/changeSysMsgStatus
+     */
+    /**
+     * 版本更新
+     */
+    @GET("movieApi/tool/v1/verify/changeSysMsgStatus")
+    Observable<Result> getChange(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("id") int id
+    );
+    /**
+     * movieApi/tool/v1/verify/findUnreadMessageCount
+     */
+    @GET("movieApi/tool/v1/verify/findUnreadMessageCount")
+    Observable<Result> getfind(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+
+    );
 }

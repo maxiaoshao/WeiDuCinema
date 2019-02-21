@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/ping_ping"
+        android:layout_weight="7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="发表"
+        android:background="@drawable/tongyi_beijing"
+        android:id="@+id/fa"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content" />
+</LinearLayout>

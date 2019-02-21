@@ -1,14 +1,14 @@
 package com.example.weiducinema.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.example.weiducinema.adapter.ExAdapter;
@@ -221,6 +220,32 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     private void initReview(final View popview) {
 
 
+        pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
+        pratticulars_filmreview_while.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View inflate1 = View.inflate(WDDetailsActivity.this, R.layout.addpicture_item, null);
+                //   Dialog 弹框
+                final Dialog bottomDialog = new Dialog(WDDetailsActivity.this, R.style.BottomDialog);
+                bottomDialog.setContentView(inflate1);
+                ViewGroup.LayoutParams layoutParamsthreefilmreview = inflate1.getLayoutParams();
+                layoutParamsthreefilmreview.width = getResources().getDisplayMetrics().widthPixels;
+                inflate1.setLayoutParams(layoutParamsthreefilmreview);
+                bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
+                bottomDialog.setCanceledOnTouchOutside(true);
+                bottomDialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
+                bottomDialog.show();
+                View viewById = inflate1.findViewById(R.id.fa);
+                viewById.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomDialog.dismiss();
+                    }
+                });
+
+            }
+        });
+
 
         ex = popview.findViewById(R.id.ex);
         ex.setGroupIndicator(null);
@@ -228,13 +253,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
         adapter4 = new ExAdapter(this);
         commentPrencenter.reqeust(li.getId()+"","1","10");
         ex.setAdapter(adapter4);
-        pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
-        pratticulars_filmreview_while.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(WDDetailsActivity.this,"写评论",Toast.LENGTH_LONG).show();
-            }
-        });
+
 
     }
 

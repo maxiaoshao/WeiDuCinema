@@ -68,13 +68,14 @@ public class SysAdapter extends XRecyclerView.Adapter<SysAdapter.MyHolder>{
             }
 
 
-//            holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int id = systemMassage.getId();
-//                    onClickListen.Onclick(id);
-//                }
-//            });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = systemMassage.getId();
+                    mOnClickListen.Onclick(id);
+                    holder.massage.setVisibility(View.GONE);//隐藏
+                }
+            });
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -112,10 +113,11 @@ public class SysAdapter extends XRecyclerView.Adapter<SysAdapter.MyHolder>{
     }
 
 
-//    public interface OnClickListen{
-//        void Onclick(int id);
-//    }
-//    public void setOnClickListen(OnClickListen onClickListen) {
-//        this.onClickListen = onClickListen;
-//    }
+    public interface OnClickListen{
+        void Onclick(int id);
+    }
+    private OnClickListen mOnClickListen;
+    public void setOnClickListen(OnClickListen onClickListen) {
+        mOnClickListen = onClickListen;
+    }
 }

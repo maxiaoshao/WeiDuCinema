@@ -31,6 +31,7 @@
                 android:inputType="number"
                 android:id="@+id/edittext_phone"
                 android:layout_width="match_parent"
+                android:maxLength="11"
                 android:layout_height="30dp"
                 android:layout_toRightOf="@+id/ppp"
                 android:layout_marginLeft="20dp"
@@ -74,6 +75,7 @@
                 android:inputType="textPassword"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
+                android:minLines="8"
                 android:textSize="18sp" />
             <TextView
                 android:layout_width="match_parent"

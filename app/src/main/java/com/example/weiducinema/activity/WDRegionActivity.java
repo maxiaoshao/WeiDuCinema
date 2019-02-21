@@ -3,6 +3,7 @@ package com.example.weiducinema.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.example.weiducinema.bean.Result;
 import com.example.weiducinema.bean.encrypt.EncryptUtil;
 import com.example.weiducinema.core.exception.ApiException;
 import com.example.weiducinema.precener.RegionPersent;
+import com.example.weiducinema.uitls.Validator;
 
 
 public class WDRegionActivity extends AppCompatActivity implements View.OnClickListener {
@@ -60,14 +62,19 @@ public class WDRegionActivity extends AppCompatActivity implements View.OnClickL
     private void submit() {
         // validate
         String name = edittext_name.getText().toString().trim();
+        boolean username = Validator.isUsername(name);
+        Log.i("aa", "submit: "+username);
         if (TextUtils.isEmpty(name)) {
-            Toast.makeText(this, "昵称", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "昵称不能为空", Toast.LENGTH_SHORT).show();
             return;
+        }else if(!username){
+            Toast.makeText(this, "昵称格式不对", Toast.LENGTH_SHORT).show();
+             return;
         }
 
         String gender = edittext_gender.getText().toString().trim();
         if (TextUtils.isEmpty(gender)) {
-            Toast.makeText(this, "性别", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "性别不为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -78,20 +85,32 @@ public class WDRegionActivity extends AppCompatActivity implements View.OnClickL
         }
 
         String phone = edittext_phone.getText().toString().trim();
+        boolean mobile = Validator.isMobile(phone);
         if (TextUtils.isEmpty(phone)) {
             Toast.makeText(this, "手机号", Toast.LENGTH_SHORT).show();
             return;
+        }else if(!mobile){
+            Toast.makeText(this, "手机号格式不对", Toast.LENGTH_SHORT).show();
+           return;
         }
 
         String email = edittext_email.getText().toString().trim();
+        boolean email1 = Validator.isEmail(email);
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "邮箱", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(!email1){
+            Toast.makeText(this, "邮箱格式不对", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String login = edittext_login.getText().toString().trim();
+        boolean password = Validator.isPassword(login);
         if (TextUtils.isEmpty(login)) {
             Toast.makeText(this, "登陆密码", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(!password){
+            Toast.makeText(this, "密码格式不对", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -119,7 +138,7 @@ public class WDRegionActivity extends AppCompatActivity implements View.OnClickL
         }
         @Override
         public void fail(ApiException e) {
-            Toast.makeText(getBaseContext(),"异常",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"请检查信息",Toast.LENGTH_SHORT).show();
 
         }
     }
