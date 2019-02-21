@@ -1,5 +1,7 @@
 package com.example.weiducinema.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +11,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -56,6 +59,7 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
     String moverid;
     private int height;
     ImageView guan;
+
     StillsAdapter adapter2;
     private PopupWindow popupWindow;
     PrevueAdapter adapter;
@@ -222,6 +226,24 @@ public class WDDetailsActivity extends WDBaseActivity implements View.OnClickLis
 
 
 
+        ImageView pratticulars_filmreview_while = popview.findViewById(R.id.pratticulars_filmreview_while);
+        pratticulars_filmreview_while.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View inflate1 = View.inflate(WDDetailsActivity.this, R.layout.addpicture_item, null);
+                //   Dialog 弹框
+                Dialog bottomDialog = new Dialog(WDDetailsActivity.this, R.style.BottomDialog);
+                bottomDialog.setContentView(inflate1);
+                ViewGroup.LayoutParams layoutParamsthreefilmreview = inflate1.getLayoutParams();
+                layoutParamsthreefilmreview.width = getResources().getDisplayMetrics().widthPixels;
+                inflate1.setLayoutParams(layoutParamsthreefilmreview);
+                bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
+                bottomDialog.setCanceledOnTouchOutside(true);
+                bottomDialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
+                bottomDialog.show();
+
+            }
+        });
         ex = popview.findViewById(R.id.ex);
         ex.setGroupIndicator(null);
         CommentPrencenter commentPrencenter = new CommentPrencenter(new Coment());
